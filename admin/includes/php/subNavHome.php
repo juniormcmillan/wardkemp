@@ -1,0 +1,1 @@
+<li><a href="/admin/login.php?logout=1" onclick="return confirm('Are you sure?');" rel="nofollow">Logout</a></li>

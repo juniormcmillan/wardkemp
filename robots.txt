@@ -1,0 +1,7 @@
+# robots.txt generated at http://www.mcanerin.com
+User-agent: *
+Disallow: /admin
+Disallow: /includes
+Disallow: /include
+Disallow: /downloads
+Sitemap: http://www.wardkemp.co.uk/sitemap.xml

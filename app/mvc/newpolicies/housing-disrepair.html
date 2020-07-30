@@ -1,0 +1,470 @@
+{{header}}
+
+
+<style>
+
+	.ppi-arrow-text
+	{
+		text-align:left;
+		padding:30px;
+	}
+
+	.ppi-image
+	{
+		text-align:center;
+		padding:0px;
+		margin: 0 auto;
+	}
+
+	.ppi-hp-lighter
+	{
+		background-color:#ffffff; color:#272727; padding:0px;clear:both;
+	}
+
+
+	.ppi-hp-darker
+	{
+		background-color:#f2f2f1; color:#272727; padding:0px;clear:both;
+	}
+
+
+	.btn-file {
+		position: relative;
+		overflow: hidden;
+		margin-bottom:20px;
+
+	}
+	.btn-file input[type=file] {
+		position: absolute;
+		top: 0;
+		right: 0;
+		min-width: 100%;
+		min-height: 100%;
+		font-size: 100px;
+		text-align: right;
+		filter: alpha(opacity=0);
+		opacity: 0;
+		outline: none;
+		cursor: inherit;
+		display: block;
+	}
+
+	.ppi-list-nobullet
+	{
+		list-style-type: none;
+		margin:0px;
+		padding:0px;
+	}
+
+
+	.btn-purple {
+		background-color: #480b28;
+		color:	white;
+		border-color: #480b28;
+	}
+	.btn-purple:hover,
+	.btn-purple:focus,
+	.btn-purple:active,
+	.btn-purple.active {
+		background-color: #32081c;
+		color:	white;
+		border-color: #1c040f;
+	}
+	.btn-purple.disabled:hover,
+	.btn-purple.disabled:focus,
+	.btn-purple.disabled:active,
+	.btn-purple.disabled.active,
+	.btn-purple[disabled]:hover,
+	.btn-purple[disabled]:focus,
+	.btn-purple[disabled]:active,
+	.btn-purple[disabled].active,
+	fieldset[disabled] .btn-purple:hover,
+	fieldset[disabled] .btn-purple:focus,
+	fieldset[disabled] .btn-purple:active,
+	fieldset[disabled] .btn-purple.active {
+		background-color: #480b28;
+		border-color: #480b28;
+		color:	white;
+	}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<div  >
+
+
+				<!-- start of area for desktop -->
+<div class=" " style="background-color:#ffffff; color:#272727; padding:0px;">
+
+	<!-- form  	<form id="frmContact" action="contact" method="post" class="form-horizontal">
+ -->
+
+		<!-- IMPORTANT:  FORM's enctype must be "multipart/form-data" -->
+	<form id="frmContact"  method="post" action="" enctype="multipart/form-data" class="form-horizontal">
+
+	<div id="claimNow" class="container-fluid ppi-hp-darker "  style="">
+
+		<div class="ppi-website-container container" style="">
+
+			<div class="col-lg-9 col-md-9 col-sm-12  pull-left" >
+
+				<h2 class="ppi-homepage-titles ">
+					Register your PPI Plevin claim today
+				</h2>
+
+
+				You can make a claim even if you've already had a PPI claim paid, refused or don't think you were mis-sold the policy.
+				If over 50% of your PPI's premium was paid as commission to the lender, but this wasn't disclosed to you when you took out the premium, you may be eligible.
+				You can claim basically all of the commission and premium paid, plus interest.
+				<br>
+				<br>
+
+				<div class="form-group" >
+					<label class="col-sm-2 control-label pull-left" style=" float:left;text-align: left;">Title:</label>
+					<div class="col-sm-8 ">
+						<select class="form-control" id="formTitle" name="formTitle">
+							<option value="">Please choose:</option>
+							<option value="Mr">Mr</option>
+							<option value="Miss">Miss</option>
+							<option value="Mrs">Mrs</option>
+							<option value="Mx">Mx</option>
+							<option value="Dr">Dr</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group" >
+					<label class="col-sm-2 control-label pull-left" style=" float:left;text-align: left;">Forename:</label>
+					<div class="col-sm-8 ">
+						<input class="form-control input-small " autocomplete="on" name="formForeName" id="formForeName" type="text" placeholder="Your Forename" value="">
+					</div>
+				</div>
+				<div class="form-group" >
+					<label class="col-sm-2 control-label pull-left" style=" float:left;text-align: left;">Surname:</label>
+					<div class="col-sm-8 ">
+						<input class="form-control input-small " autocomplete="on" name="formSurName" id="formSurName" type="text" placeholder="Your Surname" value="">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 col-xs-12 control-label" style=" float:left;text-align: left;">Email:</label>
+					<div class="col-sm-8 col-xs-12 ">
+						<input class="form-control input-small" autocomplete="on" name="formEmail" id="formEmail" type="text" placeholder="Your Email Address" value="">
+					</div>
+				</div>
+
+
+
+				<div class="form-group " >
+					<label class="col-sm-2 col-xs-12 control-label" style="float:left;text-align: left;">Phone:</label>
+					<div class="col-sm-8 col-xs-12 ">
+						<input class="form-control input-small" autocomplete="on" name="formTelephone" id="formTelephone" type="text" placeholder="Your Telephone Number" value="">
+					</div>
+				</div>
+
+
+
+
+
+				<br>
+				<br>
+
+
+				<div class="form-group " >
+					<label class="col-sm-2 col-xs-12 control-label" style="float:left;text-align: left;"></label>
+					<div class="col-sm-8 col-xs-12 text-center">
+						<button class="btn  btn-success" type="submit">Send</button>
+					</div>
+				</div>
+
+
+
+
+
+				<br>
+				<br>
+			</div>
+
+				<div class="col-lg-3 col-md-3 hidden-sm hidden-xs pull-right" style="clear:both;">
+				<img style="position:absolute;bottom:0px; left:0px; max-height:380px;" class="img-responsive" src="/app/images/legal-expert.png" alt="Legal experts">
+
+			</div>
+
+
+
+
+		</div>
+
+	</div>
+
+	</form>
+
+
+
+	<!-- first section -->
+	<div class="container-fluid ppi-hp-lighter"  style="">
+		<div class="ppi-website-container container">
+			<div class="col-lg-12 col-lg-offset-0" style="padding: 10px 10px 30px 10px;">
+				<h2 class="ppi-homepage-titles ">
+					What is a Plevin claim?
+				</h2>
+				PPI Plevin claims are a reference to a case brought by Susan Plevin to recover the commission element of her original PPI claim. Susan Plevin won a landmark ruling by the Supreme Court in 2014. 72% of her £5,780 PPI premium, sold to her by Paragon Personal Finance, was a commission rather than a payment that would protect her. The Supreme Court ruled that this was also a form of mis-selling due to a failure to disclose the size of the commission.  Mrs Plevin won her PPI case and the judgement has since affected thousands of people who have also been sold PPI policies in a similar way.
+				<br><br>
+				The rule to distinguish whether the claim is a Plevin claim, states that if over 50% of your PPI was a commission, you can make a claim.
+				<br><br>Throughout the PPI scandal, the height of the commission levels found to be within a PPI payment reached 67%.
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- second section -->
+	<div class="container-fluid ppi-hp-darker "  style="">
+		<div class="ppi-website-container container">
+			<div class="col-lg-12 col-lg-offset-0" style="padding: 10px 10px 30px 10px;">
+				<h2 class="ppi-homepage-titles ">
+					Who can make a Plevin claim?
+				</h2>
+				You can make a claim even if you've already had a PPI claim paid, rejected or don't think you were mis-sold the policy. If over 50% of your PPI's premium was paid as commission to the lender, but this wasn't disclosed to you when you took out the premium, you may be eligible. You can claim basically all of the commission and premiums paid, plus interest.			</div>
+		</div>
+	</div>
+
+	<!-- first section -->
+	<div class="container-fluid ppi-hp-lighter"  style="">
+		<div class="ppi-website-container container">
+			<div class="col-lg-12 col-lg-offset-0" style="padding: 10px 10px 30px 10px;">
+				<h2 class="ppi-homepage-titles ">
+					I have already been paid for my PPI, can I still claim under Plevin?
+				</h2>
+				Yes. If you send us any letter or email you received from your bank, we will check to see if you can claim more money. If the letter mentions that they are paying you any commission over 50% of the premium then this means you will be able to claim again for the rest of the commission they received.			</div>
+		</div>
+	</div>
+
+
+	<!-- second section -->
+	<div class="container-fluid ppi-hp-darker "  style="">
+		<div class="ppi-website-container container">
+			<div class="col-lg-12 col-lg-offset-0" style="padding: 10px 10px 30px 10px;">
+				<h2 class="ppi-homepage-titles ">
+					How do I make a PPI claim under Plevin?
+				</h2>
+				We can help assist you make a PPI Plevin claim. If you have not already sent us details of your PPI claim, sign up with us now. We can offer you a fast, effective and straightforward service and we ask for only a small amount of information to get your case moving.
+				<br><br>
+				Once you have provided us with your authorisation to contact your lenders, we will take care of everything else. On receipt of confirmation that you have a claim, we will set about recovering this.
+				<br><br>
+				As we are a firm of Solicitors, your case will stay with us throughout the whole process. If you are considering continuing a PPI claim with a claims management company, it is important to note that they will eventually have to pass your case on to a solicitor in order to force the banks to pay.
+				<br><br>
+				Just give us a call on the number below and we will start your claim today. Once we have written to your lenders, they have eight-weeks to respond to complaints about undisclosed commission. Why delay, give us a call.
+			</div>
+		</div>
+
+	</div>
+
+	<div class="container-fluid ppi-hp-lighter "  style="">
+		<div class="ppi-website-container container">
+			<div class="col-lg-12 col-lg-offset-0" style="padding: 10px 10px 30px 10px;">
+				<h2 class="ppi-homepage-titles ">
+					Making a claim is quick and easy.
+				</h2>
+				Follow our step by step guide to make a claim.
+				<br>
+
+			</div>
+
+			<div class="col-lg-3">
+				<img class="ppi-image img-responsive" src="/app/images/plevin-arrow-1.png">
+				<div class="ppi-arrow-text">
+					To start your PPI Plevin claim, contact us using the online form or call us on 0203 074 1100.
+				</div>
+			</div>
+
+			<div class="col-lg-3">
+				<img class="ppi-image img-responsive" src="/app/images/plevin-arrow-2.png">
+				<div class="ppi-arrow-text">
+					We will contact your lender and identify any potential PPI Plevin claims you may have.
+				</div>
+			</div>
+
+			<div class="col-lg-3">
+				<img class="ppi-image img-responsive" src="/app/images/plevin-arrow-3.png">
+				<div class="ppi-arrow-text">
+					Once we have identified a potential PPI Plevin claim we will be in touch to ask you to sign our legal documentation.
+				</div>
+			</div>
+
+			<div class="col-lg-3 ">
+				<img class="ppi-image img-responsive" src="/app/images/plevin-arrow-4.png">
+				<div class="ppi-arrow-text">
+					We will contact your lender and make a claim. We will be in touch about any compensation due to you.
+				</div>
+			</div>
+
+
+		</div>
+
+	</div>
+
+	<!-- bottom section
+	<div class="ppi-bottom-bg container-fluid "  style="background-color:#ffffff; color:#272727; padding:10px;clear:both;min-height:200px;">
+		<div class="ppi-website-container container">
+			<div class="col-xs-12">
+				<div class="h2 text-center" style="padding-top:0px;padding-bottom:10px;">
+				Bottom bit
+				</div>
+			</div>
+		</div>
+	</div>
+-->
+
+
+
+<script>
+
+
+
+	// once all page is loaded
+	window.onload = function(e)
+	{
+
+		$(document).ready(function($)
+		{
+
+			$("#frmContact").on("submit", function()
+			{
+				doSendClaim();
+				//Code: Action (like ajax...)
+				return false;
+			});
+
+			$('#frmContact').validate(
+				{
+
+
+					rules: {
+
+
+						formForeName: {
+							minlength: 2,
+							required: true
+						},
+						formSurName: {
+							minlength: 2,
+							required: true
+						},
+						// checks if email is already taken on server
+						formEmail: {
+							email: true,
+							required: true
+						},
+						formTelephone: {
+							minlength: 2,
+							required: true
+						},
+
+					},
+					highlight: function (element) {
+						$(element).closest('.form-group').addClass('has-error');
+					},
+					unhighlight: function (element) {
+						$(element).closest('.form-group').removeClass('has-error');
+					},
+					errorElement: 'span',
+					errorClass: 'help-block',
+					errorPlacement: function (error, element) {
+						if (element.parent('.input-group').length) {
+							error.insertAfter(element.parent());
+						} else {
+							error.insertAfter(element);
+						}
+
+					}
+
+
+
+				}
+			);
+
+			// validates and submits form - added hotjar
+			function doSendClaim()
+			{
+
+				var	bTitle					=	$("#frmContact").validate().element("#formTitle");
+				var	bformForeName			=	$("#frmContact").validate().element("#formForeName");
+				var	bformSurName			=	$("#frmContact").validate().element("#formSurName");
+				var	bformEmail				=	$("#frmContact").validate().element("#formEmail");
+				var	bformPhone				=	$("#frmContact").validate().element("#formTelephone");
+
+				var formData 				= 	$("#frmContact").serialize();
+
+				// make sure we at least have
+				if ((bTitle==true)  && (bformForeName==true)  && (bformSurName==true)  && (bformEmail==true) && (bformPhone==true) )
+				{
+					$.ajax(
+						{
+							url:		'/app/mvc/newpolicies/doRegisterHousing.php',
+							type:		'POST',
+							cache:		false,
+							async:		true,
+							dataType:	'json',
+							data:
+								{
+									formData : formData,
+								},
+							success:	function(data)
+							{
+								// re-enable button
+								//					$('#sendContactForm').html('Send').prop('disabled',false);
+
+
+								if	(data.returncode == 'error')
+								{
+									// hotjar failing
+									//						hj('formSubmitFailed');
+
+									$.alert({
+										type: 'red',
+										confirmButton: 'Ok',
+										title: 'Warning!',
+										content: data.message,
+									});
+
+
+								}
+								else if (data.returncode == 'success')
+								{
+									// hotjar success
+									//						hj('formSubmitSuccessful');
+									window.location.href = '/?pUpdate=claimSent';
+								}
+							},
+							failure:	function()
+							{
+								alert('failure');
+							}
+						}
+					)
+				}
+			}
+
+
+
+
+
+
+
+
+		});
+
+	};
+</script>
+
+
+{{footer}}

@@ -1,0 +1,1477 @@
+{{header}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css.map" rel="stylesheet">
+
+
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+
+
+
+
+<!--- main content -->
+<style>
+
+.ppi-client-question
+{
+	padding-top:5px;
+	padding-bottom:5px;
+
+	padding-left:0px;
+	padding-right:0px;
+	clear:both;
+
+	font-weight:bold;
+
+}
+
+.ppi-padding-right
+{
+	padding-right:0px;
+}
+
+
+.ppi-padding
+{
+	padding-left:0px;
+	padding-right:0px;
+}
+
+.ppi-padding
+{
+	padding-left:0px;
+	padding-right:0px;
+
+}
+.ppi-client-display
+{
+	display: none;
+}
+
+
+
+.no-border {
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+
+
+	}
+textarea:focus,
+textarea.form-control:focus,
+[type=text].form-control:focus,
+[contenteditable].form-control:focus {
+	box-shadow: inset 0 -1px 0 #ddd;
+}
+
+
+
+</style>
+
+<div class="container " >
+
+	<form id="frmContact" action="" method="post" class="form-horizontal2 ppi-padding">
+	<input type="hidden" id="case_key" name="case_key" value="{{case_key}}">
+
+		<span style=""><h2>Client Statement Questions</h2></span><br>
+
+		Dear {{title}} {{surname}}<br><br>
+
+		We now need you to answer the following questions about your knowledge of the PPI policy. Please complete all questions displayed and any which appear as you complete your answers.<br><br>
+
+		It is extremely important that you answer honestly as we will use your answers to prepare a statement for you to sign which may be referred to in any court proceedings. <br><br>
+
+		If you have any queries about this process or about the process itself then please <a title="Click here" class="ppi-footer-contact-link2" href="mailto:info@ppisolicitors.co.uk?subject={{case_key}} Query Concerning Statement Questions" target="_top">click here</a> to send us a message.
+
+		<br><br>
+
+		Many Thanks
+		<br><br>
+
+
+
+		<div class="form-group ppi-client-question" >
+
+			<div class="col-sm-9 ppi-padding " >Have you ever worked in a job selling or dealing with PPI policies?</div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q1" name="q1"  class="form-control">
+					<option value="" >Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+			</div>
+		</div>
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q2" >
+
+			<div class="col-sm-9 ppi-padding">Was your PPI policy sold to you when you took out a credit card? </div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q2" name="q2" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+					<option value="Dont">Don't Know</option>
+				</select>
+			</div>
+		</div>
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q2a">
+
+			<div class="col-sm-9 ppi-padding">Have you cancelled that credit card?</div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q2a"  name="q2a" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+					<option value="Dont">Don't Know</option>
+				</select>
+			</div>
+		</div>
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q2b">
+
+			<div class="col-xs-9 ppi-padding">When did you cancel it? [MONTH, YEAR]</div>
+
+			<div class="col-xs-2 ppi-padding">
+
+				<div class="input-group date ">
+					<input id="q2b" name="q2b" type="text" class="form-control datepicker"><span class="input-group-addon "><i class="glyphicon glyphicon-calendar"></i></span>
+				</div>
+
+			</div>
+
+			<div class="col-xs-1 ppi-padding-right">
+				<button type="button" id="q2b-continue" class="btn  btn-info">continue</button>
+			</div>
+
+		</div>
+
+
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q3">
+
+			<div class="col-sm-9 ppi-padding">Was your PPI policy sold to you when you took out a loan?</div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q3" name="q3" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+					<option value="Dont">Don't Know</option>
+				</select>
+			</div>
+		</div>
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q3a">
+
+			<div class="col-sm-9 ppi-padding">Have you repaid that loan?</div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q3a" name="q3a" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+					<option value="Dont">Don't Know</option>
+				</select>
+			</div>
+		</div>
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q3b">
+
+			<div class="col-xs-9 ppi-padding">When did you finish repaying it?</div>
+
+			<div class="col-xs-2 ppi-padding">
+
+				<div class="input-group date ">
+					<input id="q3b" name="q3b" type="text" class="form-control datepicker"><span class="input-group-addon "><i class="glyphicon glyphicon-calendar"></i></span>
+				</div>
+
+			</div>
+
+			<div class="col-xs-1 ppi-padding-right" >
+				<button type="button" id="q3b-continue" class="btn  btn-info">continue</button>
+			</div>
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q4">
+
+			<div class="col-sm-9 ppi-padding">Were you told when you applied that your loan or credit card was dependant on you taking out PPI?</div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q4" name="q4" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+					<option value="Dont">Don't Know</option>
+				</select>
+			</div>
+		</div>
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q4a">
+
+			<div class="col-sm-9 ppi-padding">Who told you?</div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q4a" name="q4a" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Employee of bank on the phone">Employee of bank on the phone</option>
+					<option value="Employee of the bank in person">Employee of the bank in person</option>
+					<option value="Website wording">Website wording</option>
+					<option value="Document sent to me">Document sent to me</option>
+					<option value="Other">Other</option>
+					<option value="Dont">Don't Know</option>
+				</select>
+			</div>
+		</div>
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display  ppi-q5">
+
+			<div class="col-sm-9 ppi-padding">Were you told the PPI premium was being added to your loan or credit card? </div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q5" name="q5" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+					<option value="Dont">Don't Know</option>
+				</select>
+			</div>
+		</div>
+
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q6">
+
+			<div class="col-sm-9 ppi-padding">At the time the PPI was taken out, were you informed that the bank/credit card provider received a commission?</div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q6" name="q6" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+					<option value="Dont">Don't Know</option>
+				</select>
+			</div>
+		</div>
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q6a">
+
+			<div class="col-sm-9 ppi-padding">Did you know how much commission the bank received on the PPI? </div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q6a" name="q6a" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+			</div>
+		</div>
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q6b">
+
+			<div class="col-sm-9 ppi-padding">Did you assume the bank/credit card provider might receive a commission from the PPI policy?</div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q6b" name="q6b" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+			</div>
+		</div>
+
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q6c">
+
+			<div class="col-sm-9 ppi-padding">What percentage of the premium did you assume the bank/credit card provider would receive as a commission? </div>
+
+			<div class="col-sm-2 ppi-padding">
+
+				<div class="input-group ">
+					<input id="q6c" name="q6c" type="text" class="form-control " maxLength=4><span class="input-group-addon "><i class="fa fa-percent" aria-hidden="true"></i></span>
+				</div>
+
+			</div>
+
+			<div class="col-sm-1 ppi-padding-right" >
+				<button  type="button" id="q6c-continue"  class="btn  btn-info">continue</button>
+			</div>
+
+		</div>
+
+
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q7">
+
+			<div class="col-sm-12 ppi-padding">If you had been told at the time the PPI policy was taken out that the commission on the Payment Protection Policy was more than 50%, what would you have done?<br></div>
+
+			<div class="col-sm-12 ppi-padding">
+				<label class="radio-inline">
+					<input type="radio" name="q7" value="a">Not taken it out and shopped around
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="q7" value="b">Tried to negotiate the premium down
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="q7" value="c">Taken it out anyway as wanted protection
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="q7" value="d">Don't know
+				</label>
+
+			</div>
+			<br><br>
+		</div>
+
+
+
+
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q8">
+
+			<div class="col-sm-12 ppi-padding">If at the time, you had been told that the commission was more than 60%, would you have then:<br></div>
+			<div class="col-sm-12 ppi-padding">
+				<label class="radio-inline">
+					<input type="radio" name="q8" value="a">Not taken it out and shopped around
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="q8" value="b">Tried to negotiate the premium down
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="q8" value="c">Taken it out anyway as wanted protection
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="q8" value="d">Don't know
+				</label>
+
+			</div>
+			<br><br>
+		</div>
+
+
+
+
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q9">
+
+			<div class="col-sm-12 ppi-padding">If at the time, you had been told that the commission was more than 70%, would you have then:<br></div>
+			<div class="col-sm-12 ppi-padding">
+				<label class="radio-inline">
+					<input type="radio" name="q9" value="a">Not taken it out and shopped around
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="q9" value="b">Tried to negotiate the premium down
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="q9" value="c">Taken it out anyway as wanted protection
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="q9" value="d">Don't know
+				</label>
+
+			</div>
+			<br><br>
+		</div>
+
+
+
+
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q10">
+
+			<div class="col-sm-9 ppi-padding">Since taking out the PPI, did you ever discover that the commission on the policy was more than 50% of the premium? </div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q10" name="q10" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+			</div>
+		</div>
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q10a">
+
+			<div class="col-sm-12 ppi-padding">How and when were you made aware the commission was more than 50% of the PPI policy?</div>
+
+			<div class="col-sm-12 ppi-padding">
+
+					<textarea id="q10a" name="q10a" class="no-border form-control" rows=2 columns=50 ></textarea><br>
+
+			</div>
+
+			<div class="col-sm-12 ppi-padding text-center" style="padding-top:0px;">
+				<button type="button" id="q10a-continue" class="btn  btn-info">continue</button>
+
+
+				<br>
+				<br>
+
+
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q11">
+
+			<div class="col-sm-9 ppi-padding">Before now, had you ever heard of the Plevin court case, or that a bank receiving a commission of 50% or more from a PPI premium may entitle you to claim compensation?
+				<br><br>
+			</div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q11" name="q11" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+			</div>
+
+		</div>
+
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q11a" >
+
+			<div class="col-sm-9 ppi-padding">Approximately when did you hear about it?</div>
+
+			<div class="col-sm-2 ppi-padding">
+
+				<div class="input-group date ">
+					<input id="q11a" name="q11a" type="text" class="form-control datepicker"><span class="input-group-addon "><i class="glyphicon glyphicon-calendar"></i></span>
+				</div>
+
+			</div>
+
+			<div class="col-sm-1 ppi-padding-right" >
+				<button  type="button" id="q11a-continue" class="btn  btn-info">continue</button>
+
+
+				<br>
+				<br>
+
+			</div>
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q12">
+
+			<div class="col-sm-9 ppi-padding">Did you ever claim on the PPI policy? </div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q12" name="q12" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+					<option value="Dont">Don't Know</option>
+				</select>
+			</div>
+		</div>
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display  ppi-q12a">
+
+			<div class="col-sm-12 ppi-padding">What did you claim for?</div>
+
+			<div class="col-sm-12 ppi-padding">
+
+				<textarea id="q12a" name="q12a" class="no-border form-control" rows=2 columns=50 ></textarea><br>
+
+			</div>
+
+			<div class="col-sm-12 ppi-padding text-center" style="padding-top:0px;">
+				<button type="button" id="q12a-continue" class="btn  btn-info">continue</button>
+
+
+				<br>
+				<br>
+
+
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q13" >
+
+			<div class="col-sm-9 ppi-padding">When you received your compensation payment, did it cover all of the premium and interest you had ever paid?</div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q13" name="q13" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+					<option value="Dont">Don't Know</option>
+				</select>
+			</div>
+		</div>
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q14" >
+
+			<div class="col-sm-9 ppi-padding">After you received a compensation payment, did you ever receive any further compensation either directly or through another company? </div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q14" name="q14" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+					<option value="Dont">Don't Know</option>
+				</select>
+			</div>
+		</div>
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q15">
+
+			<div class="col-sm-9 ppi-padding">Have you been made bankrupt or made an Individual Voluntary Arrangement (IVA) with your creditors since the date you purchased the PPI policy?</div>
+
+			<div class="col-sm-3 ppi-padding">
+				<select id="q15" name="q15" class="form-control">
+					<option value="">Please Select</option>
+					<option value="Neither">Neither</option>
+					<option value="IVA">IVA</option>
+					<option value="Bankrupt">Bankrupt</option>
+				</select>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+		<div class="form-group ppi-client-question ppi-client-display ppi-q16" style="clear:both">
+			<div class="col-xs-12 text-center" style="padding-top:60px;">
+
+				<br>
+				<br>
+				<button type="submit" id="q16-continue"  class="btn  btn-success">Submit</button>
+
+				<br>
+				<br>
+
+
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<br><br>	<br><br>
+
+		</form>
+</div>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+
+	// once all page is loaded
+	window.onload = function(e)
+	{
+
+
+		$(document).ready(function () {
+
+			$('.datepicker').datepicker
+			({
+				format: "dd/mm/yyyy",
+				startDate: "07/04/2008",
+				endDate: '+0d',
+				autoclose: true,
+				todayHighlight: true
+
+
+			});
+
+
+
+
+
+
+
+			/* question 1 is simple - just open number 2 and disable the first option
+			*
+			*
+			* */
+			$( "#q1" ).change(function()
+			{
+				$("#q1 option:first").attr("disabled", "true");
+
+		//		$( ".ppi-q2" ).show();
+
+				// shows the correct next item
+				showAndHide(1);
+
+
+
+			});
+
+
+
+			/* question 2 - yes = 2a else 3
+			 *
+			 *
+			 * */
+
+			$( "#q2" ).change(function() {
+
+				$("#q2 option:first").attr("disabled", "true");
+
+				if (this.value == "Yes")
+				{
+					$( ".ppi-q2a" ).show();
+					$( ".ppi-q3" ).hide();
+					$( ".ppi-q2b" ).hide();
+
+				}
+				else
+				{
+			//		$( ".ppi-q3" ).show();
+					$( ".ppi-q2a" ).hide();
+					$( ".ppi-q2b" ).hide();
+
+					// shows the correct next item
+					showAndHide(2);
+
+
+
+				}
+
+
+			});
+
+
+
+
+			/* question 2 - yes = 2a else 3
+			 *
+			 *
+			 * */
+
+			$( "#q2a" ).change(function() {
+
+				$("#q2a option:first").attr("disabled", "true");
+
+				if (this.value == "Yes")
+				{
+					$( ".ppi-q2b" ).show();
+//					$( ".ppi-q3" ).hide();
+				}
+				else
+				{
+//					$( ".ppi-q3" ).show();
+					$( ".ppi-q2b" ).hide();
+					// shows the correct next item
+					showAndHide(2);
+
+				}
+
+
+			});
+
+
+			/* question 2b continue button*/
+			$( "#q2b-continue" ).click(function() {
+
+				var thedate = $("#q2b").val();
+
+				if (thedate == "")
+				{
+					$.alert({
+						theme: 'material',
+						animation: 'scale',
+						type: 'red',
+						typeAnimated: 'true',
+						confirmButton: 'Ok',
+						title: 'Reminder',
+						content: "Please input a date in the box provided.",
+					});
+				}
+				else
+				{
+					// shows the correct next item
+					showAndHide(2);
+//					$( ".ppi-q3" ).show();
+				}
+			});
+
+
+
+
+
+			/*  question 3 disables the a/b options if needed */
+
+			$( "#q3" ).change(function() {
+
+				$("#q3 option:first").attr("disabled", "true");
+
+				if (this.value == "Yes")
+				{
+					$( ".ppi-q3a" ).show();
+					$( ".ppi-q4" ).hide();
+					$( ".ppi-q3b" ).hide();
+				}
+				else
+				{
+				//	$( ".ppi-q4" ).show();
+					$( ".ppi-q3a" ).hide();
+					$( ".ppi-q3b" ).hide();
+
+					// shows the correct next item
+					showAndHide(3);
+
+				}
+
+
+			});
+
+
+
+
+			/* question 3a */
+			$( "#q3a" ).change(function() {
+
+				$("#q3a option:first").attr("disabled", "true");
+
+				if (this.value == "Yes")
+				{
+					$( ".ppi-q3b" ).show();
+					$( ".ppi-q4" ).hide();
+				}
+				else
+				{
+					$( ".ppi-q4" ).show();
+					$( ".ppi-q3b" ).hide();
+				}
+
+
+			});
+
+
+			/* question 3b continue button*/
+			$( "#q3b-continue" ).click(function() {
+
+				var thedate = $("#q3b").val();
+
+				if (thedate == "")
+				{
+					$.alert({
+						theme: 'material',
+						animation: 'scale',
+						type: 'red',
+						typeAnimated: 'true',
+						confirmButton: 'Ok',
+						title: 'Reminder',
+						content: "Please input a date in the box provided.",
+					});
+				}
+				else
+				{
+					// shows the correct next item
+					showAndHide(3);
+//					$( ".ppi-q4" ).show();
+				}
+
+			});
+
+
+
+
+
+
+
+
+
+
+
+
+			/*  question 4 disables the a option if needed */
+
+			$( "#q4" ).change(function() {
+
+				$("#q4 option:first").attr("disabled", "true");
+
+				if (this.value == "Yes")
+				{
+					$( ".ppi-q4a" ).show();
+					$( ".ppi-q5" ).hide();
+				}
+				else
+				{
+//					$( ".ppi-q5" ).show();
+					$( ".ppi-q4a" ).hide();
+
+					// shows the correct next item
+					showAndHide(4);
+
+				}
+
+
+			});
+
+
+
+
+			/* question 4a */
+			$( "#q4a" ).change(function() {
+
+				$("#q4a option:first").attr("disabled", "true");
+
+//				$( ".ppi-q5" ).show();
+
+
+				// shows the correct next item - only do the show?
+				showAndHide(4,true);
+
+			});
+
+
+
+
+
+
+
+			/* question 5 */
+			$( "#q5" ).change(function() {
+
+				$("#q5 option:first").attr("disabled", "true");
+
+//				$( ".ppi-q6" ).show();
+
+				// shows the correct next item - only do the showing, not hiding
+				showAndHide(5,true);
+
+			});
+
+
+
+
+
+
+
+
+
+			/*  question 6  has a/b/c options*/
+
+			$( "#q6" ).change(function() {
+
+				$("#q6 option:first").attr("disabled", "true");
+
+				if (this.value == "Yes")
+				{
+					$( ".ppi-q6a" ).show();
+					$( ".ppi-q6b" ).hide();
+					$( ".ppi-q6c" ).hide();
+				}
+				else if (this.value == "No")
+				{
+					$( ".ppi-q6b" ).show();
+					$( ".ppi-q6a" ).hide();
+					$( ".ppi-q6c" ).hide();
+				}
+				else if (this.value == "Dont")
+				{
+					$( ".ppi-q6c" ).show();
+					$( ".ppi-q6a" ).hide();
+					$( ".ppi-q6b" ).hide();
+				}
+
+
+			});
+
+
+
+			/* question 6abc */
+			$( "#q6a,#q6b ,#q6c " ).change(function() {
+
+//				$( ".ppi-q7" ).show();
+
+				// shows the correct next item - only do the show?
+				showAndHide(6);
+
+			});
+
+
+
+
+
+
+			/* question 7 */
+			$( 'input[name="q7"]').change(function() {
+
+				var value =	$('input[name="q7"]:checked').val();
+
+				if (value == "c")
+				{
+					$( ".ppi-q8" ).show();
+					$( ".ppi-q9" ).hide();
+					$( ".ppi-q10" ).hide();
+				}
+				else
+				{
+					$( ".ppi-q10" ).show();
+					$( ".ppi-q8" ).hide();
+					$( ".ppi-q9" ).hide();
+				}
+
+
+			});
+
+
+
+
+			/* question 8 conditional on 7*/
+			$( 'input[name="q8"]' ).change(function() {
+
+				var value =	$('input[name="q8"]:checked').val();
+
+
+				if (value == "c")
+				{
+					$( ".ppi-q9" ).show();
+					$( ".ppi-q10" ).hide();
+				}
+				else
+				{
+					$( ".ppi-q10" ).show();
+					$( ".ppi-q9" ).hide();
+				}
+
+
+
+			});
+
+
+
+
+			/* question 9  conditional on 8*/
+			$( 'input[name="q9"]' ).change(function() {
+
+				var value =	$('input[name="q9"]:checked').val();
+
+				$( ".ppi-q10" ).show();
+
+
+
+			});
+
+
+
+
+
+
+
+
+
+
+
+
+			/* question 10 */
+			$( "#q10" ).change(function() {
+
+				$("#q10 option:first").attr("disabled", "true");
+
+
+				if (this.value == "Yes")
+				{
+					$( ".ppi-q10a" ).show();
+					$( ".ppi-q11" ).hide();
+				}
+				else
+				{
+					$( ".ppi-q10a" ).hide();
+//					$( ".ppi-q11" ).show();
+					// shows the correct next item - only do the show?
+					showAndHide(10);
+
+				}
+
+
+			});
+
+
+
+
+			/* question 10a */
+			$( "#q10a-continue" ).click(function() {
+
+				var text = $("#q10a").val();
+
+				if (text == "")
+				{
+					$.alert({
+						theme: 'material',
+						animation: 'scale',
+						type: 'red',
+						typeAnimated: 'true',
+						confirmButton: 'Ok',
+						title: 'Reminder',
+						content: "Please enter text in the box provided.",
+					});
+				}
+				else
+				{
+//					$( ".ppi-q11" ).show();
+					// shows the correct next item - only do the show?
+					showAndHide(10);
+				}
+
+			});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			/* question 11 */
+			$( "#q11" ).change(function() {
+
+				$("#q11 option:first").attr("disabled", "true");
+
+
+				if (this.value == "Yes")
+				{
+					$( ".ppi-q11a" ).show();
+					$( ".ppi-q12" ).hide();
+				}
+				else
+				{
+					$( ".ppi-q11a" ).hide();
+//					$( ".ppi-q12" ).show();
+
+					showAndHide(11);
+
+				}
+
+
+			});
+
+
+
+
+
+
+
+			/* question 11a continue*/
+			$( "#q11a-continue" ).click(function() {
+
+				var thedate = $("#q11a").val();
+
+				if (thedate == "")
+				{
+					$.alert({
+						theme: 'material',
+						animation: 'scale',
+						type: 'red',
+						typeAnimated: 'true',
+						confirmButton: 'Ok',
+						title: 'Reminder',
+						content: "Please input a date in the box provided.",
+					});
+				}
+				else
+				{
+//					$( ".ppi-q12" ).show();
+					showAndHide(11);
+				}
+
+			});
+
+
+
+
+
+
+			/* question 12 */
+			$( "#q12" ).change(function() {
+
+				$("#q12 option:first").attr("disabled", "true");
+
+
+				if (this.value == "Yes")
+				{
+					$( ".ppi-q12a" ).show();
+					$( ".ppi-q13" ).hide();
+				}
+				else
+				{
+					$( ".ppi-q12a" ).hide();
+					$( ".ppi-q13" ).show();
+				}
+
+
+			});
+
+
+
+
+
+
+
+
+			/* question 12a continue*/
+			$( "#q12a-continue" ).click(function() {
+
+				var text = $("#q12a").val();
+
+				if (text == "")
+				{
+					$.alert({
+						theme: 'material',
+						animation: 'scale',
+						type: 'red',
+						typeAnimated: 'true',
+						confirmButton: 'Ok',
+						title: 'Reminder',
+						content: "Please input text in the box provided.",
+					});
+				}
+				else
+				{
+//					$( ".ppi-q13" ).show();
+					showAndHide(12);
+				}
+
+			});
+
+
+
+
+
+
+
+
+
+			/* question 13 */
+			$( "#q13" ).change(function() {
+
+				$("#q13 option:first").attr("disabled", "true");
+
+//				$( ".ppi-q14" ).show();
+				showAndHide(13);
+
+
+			});
+
+
+			/* question 14 */
+			$( "#q14" ).change(function() {
+
+				$("#q14 option:first").attr("disabled", "true");
+
+//				$( ".ppi-q15" ).show();
+				showAndHide(14);
+
+
+			});
+
+
+			/* question 15 */
+			$( "#q15" ).change(function() {
+
+				$("#q15 option:first").attr("disabled", "true");
+
+				$( ".ppi-q16" ).show();
+
+
+			});
+
+
+
+			/* submission of the form */
+			$( "#q16-continue" ).click(function(e) {
+
+				e.preventDefault();
+
+
+
+				var formData = 	$("#frmContact").serialize();
+
+
+
+				$.ajax(
+					{
+						url:		'/app/mvc/clientcare/doSaveStatement.php',
+						type:		'POST',
+						cache:		false,
+						async:		true,
+						dataType:	'json',
+						data:
+							{
+								formData : formData,
+
+							//	case_key : {{case_key}},	email : {{email}}
+
+							},
+						success:	function(data)
+						{
+							// we also need to not continue if the form has already been signed
+							if (data.returncode == 'success')
+							{
+
+
+								window.location.href = '/?pUpdate=detailsSent';
+							}
+						},
+						failure:	function()
+						{
+							alert('failure');
+						}
+					})
+
+
+
+				});
+
+
+
+
+
+// list of items to hide and list of items to show
+
+
+
+
+	function showAndHide(index)
+	{
+		// we will build this list manually in code
+		// if the respective item is 'off' or empty, we can skip to the next item in the list
+		var	itemsToShow	=	[
+
+			[".ppi-q2 "],		// 1 first item
+			[".ppi-q3 "],		// 2
+			[".ppi-q4 "],		// 3
+			[".ppi-q5 "],		// 4
+			[".ppi-q6 "],		// 5
+			[".ppi-q7 "],		// 6
+			[".ppi-q8 "],		// 8
+			[".ppi-q9 "],		// 9
+			[".ppi-q10 "],		// 10
+			[".ppi-q11 "],		// 11
+			[".ppi-q12 "],		// 12
+			[".ppi-q13 "],		// 13
+			[".ppi-q14 "],		// 14
+			[".ppi-q15 "],		// 15
+			[".ppi-q16 "],		// 16
+			[".ppi-q2, .ppi-q4 "],		// 2
+			[".ppi-q16, .ppi-q15 "]		// 2
+
+		];
+
+
+
+		var	itemsToShow	=	[
+
+			{{questions_string}}
+
+		];
+
+
+
+
+		var itemsToHide	=	(
+
+			[".ppi-q16, .ppi-q15, "],
+				[".ppi-q16, .ppi-q15, "]
+
+
+		);
+
+
+	//	index=index-1;
+
+		// go thru items and if it is not blank
+		var num	=	itemsToShow.length;
+
+
+//alert('start:'+num);
+
+		for (var i=index;i<num;i++)
+		{
+			if (itemsToShow[i] == "")
+			{
+//				alert("I:" + i + "  skipped");
+				continue;
+			}
+
+
+			var classes_to_show	=	itemsToShow[i][0];
+
+//			alert("I:" + i + "  classes to show:" + classes_to_show);
+
+			$( classes_to_show ).show();
+
+			break;
+		}
+
+
+
+	}
+
+
+
+		});
+
+
+
+	};
+
+</script>
+
+
+
+{{footer}}

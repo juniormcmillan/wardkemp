@@ -1,0 +1,343 @@
+{{header}}
+
+<style>
+
+
+</style>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<!--- main content -->
+<div>
+	{{page_content}}
+	<br>
+
+
+
+	<form id="frmContact" action="contact" method="post" class="form-horizontal">
+		<div class="col-xs-12 col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1  col-md-8 col-md-offset-2">
+
+
+			<div class="form-group">
+				<div class="col-sm-5 col-xs-12 bl-enquiry-heading">
+				Company Details
+				</div>
+				<div class="col-sm-7 col-xs-12 ">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Company Name:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<input class="form-control input-small" autocomplete="on" name="formCompanyName" id="formCompanyName" type="text" placeholder="Company Name" value="">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Address:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<input class="form-control input-small" autocomplete="on" name="formAddress" id="formAddress" type="text" placeholder="Address" value="">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Postcode:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<input class="form-control input-small" autocomplete="on" name="formPostcode" id="formPostcode" type="text" placeholder="Postcode" value="">
+				</div>
+			</div>
+
+
+
+			<div class="form-group">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Company Website:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<input class="form-control input-small" autocomplete="on" name="formWebsite" id="formWebsite" type="text" placeholder="Company Website" value="">
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Your Name:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<input class="form-control input-small col-xs-6" autocomplete="on" name="formName" id="formName" type="text" placeholder="Your Name" value="">
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Email:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<input class="form-control input-small" autocomplete="on" name="formEmail" id="formEmail" type="text" placeholder="Your Email Address" value="">
+				</div>
+			</div>
+
+
+
+			<div class="form-group ">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Phone:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<input class="form-control input-small" autocomplete="on" name="formTelephone" id="formTelephone" type="text" placeholder="Your Telephone Number" value="">
+				</div>
+			</div>
+
+
+
+
+			<div class="form-group ">
+				<label class="col-sm-5 col-xs-12 control-label">What is it about?:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<select name="formWhatAbout" id="formWhatAbout" class="form-control ">
+						<option value="">*** Please choose ***</option>
+						<option value="Housing Disrepair">Housing Disrepair claim</option>
+						<option value="PPI Plevin">PPI Plevin claim</option>
+						<option value="Other">Other</option>
+					</select>
+				</div>
+			</div>
+
+
+			<div class="form-group ">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Your Message:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<textarea name="formMessage"  id="formMessage" class="form-control input-small"  rows="10"  placeholder="Your Message" value="{{formMessage}}"></textarea>
+				</div>
+			</div>
+
+
+
+
+			<div class="form-group ">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Please tick box:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<div class="g-recaptcha " data-sitekey="6LchmrIZAAAAAM8wNnNFYQwrpzDbenvfvIGHGWir"></div>
+				</div>
+			</div>
+
+
+			<div class="form-group bl-submit-contact-button">
+				<div class="col-sm-5 col-xs-12 ">
+				</div>
+
+				<div class="col-sm-7 col-xs-12 ">
+					<br><br>
+					<button class="btn btn-sm btn-blue bl-submit-contact-button-inside"   type="button"  id="sendForm"  name="sendForm">Submit&nbsp;&nbsp;<i class="fa fa-envelope fa-lg" aria-hidden="true"></i></button>
+					<br><br><br><br><br><br>
+
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+
+
+
+</div>
+
+
+{{links_string}}
+
+<br>
+
+
+
+<style>
+.help-block
+{
+	font-size:	8pt;
+}
+</style>
+
+
+
+
+<script>
+	var oValidator;
+	// reset after a period of time
+	setInterval(function(){ grecaptcha.reset(); }, 5 * 60 * 1000 );
+
+	// validates and submits form - added hotjar
+	function doSendForm()
+	{
+
+		var bIsValid = oValidator.form();
+
+		// make sure we are validated
+ 		if (bIsValid == true)
+ 		{
+			var formData = 	$("#frmContact").serialize();
+
+			$.ajax(
+				{
+					url:		'/app/mvc/contact/doSendFirm.php',
+					type:		'POST',
+					cache:		false,
+					async:		true,
+					dataType:	'json',
+					data:
+						{
+							formData : formData,	formWho : "Surveyor",
+						},
+					success:	function(data)
+					{
+						// re-enable button
+						//					$('#sendForm').html('Send').prop('disabled',false);
+						if	(data.returncode == 'error')
+						{
+							$.alert({
+								type: 'red',
+								confirmButton: 'Ok',
+								title: 'Warning!',
+								content: data.message,
+							});
+
+
+						}
+						else if (data.returncode == 'success')
+						{
+							window.location.href = '/?pUpdate=enquirySent';
+						}
+					},
+					failure:	function()
+					{
+						alert('failure');
+					}
+				}
+
+			)
+
+		}
+
+
+	}
+
+
+
+
+
+	// once all page is loaded
+    window.onload = function(e)
+    {
+
+
+
+		$(document).ready(function(){
+
+
+
+			// duplicate presses fix submit
+			$('#sendForm').on('click',function()
+			{
+				doSendForm();
+
+			});
+
+
+			oValidator =	 $('#frmContact').validate(
+							{
+
+
+								rules: {
+
+
+									'checkboxes[]': {
+										required: true,
+										minlength: 1,
+
+										},
+
+									formName: {
+										minlength: 2,
+										required: true
+									},
+									formCompanyName: {
+										minlength: 2,
+										required: true
+									},
+									formAddress: {
+										minlength: 2,
+										required: true
+									},
+									formWebsite: {
+										minlength: 2,
+										required: true
+									},
+									formPostcode: {
+										minlength: 2,
+										required: true
+									},
+
+									formMessage: {
+										minlength: 2,
+										required: true
+									},
+									formEmail: {
+										email: true,
+										required: true
+									},
+									formTelephone: {
+										minlength: 2,
+										required: true
+									},
+
+
+									formWhatAbout: {
+										required: true
+									},
+
+
+
+
+								},
+								messages:{
+
+									"checkboxes[]": "Please select at least one ATE product that you are interested in",
+								},
+
+
+
+								highlight: function (element) {
+									$(element).closest('.form-group').addClass('has-error');
+								},
+								unhighlight: function (element) {
+									$(element).closest('.form-group').removeClass('has-error');
+								},
+
+								errorElement: 'span',
+								errorClass: 'help-block',
+								errorPlacement: function (error, element) {
+									if (element.parent('.input-group').length) {
+										error.insertAfter(element.parent());
+									}
+
+									else if(element.attr("type") == "checkbox")  {
+										error.appendTo("#errorToShow");
+									}
+
+
+									else {
+										error.insertAfter(element);
+									}
+								}
+
+
+
+
+							});
+
+
+            }
+
+
+
+
+        );
+
+    };
+
+
+</script>
+
+{{footer}}

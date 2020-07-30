@@ -1,0 +1,1 @@
+<li><a href="/admin/login.php?logout=1" rel="nofollow">Logout</a></li>

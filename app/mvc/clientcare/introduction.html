@@ -1,0 +1,125 @@
+{{header}}
+<!--- main content -->
+
+
+<div class="container-fluid" style="min-height:600px;padding:0px;margin:0px;">
+
+
+	<div class="col-md-3 col-xs-12 col-sm-12" style="padding:0px;margin:0px;">
+		{{navbar_clientcare}}
+	</div>
+
+	<div class="col-md-9 col-xs-12 col-sm-12">
+
+	<span style=""><h2>Introduction</h2></span><br>
+
+		Dear {{title}} {{surname}}<br><br>
+
+		{{client_text}}
+
+		<div class="text-center col-xs-12 ">
+			<br><br>
+			{{signature_string}}
+			<br><br><br><br><br><br>
+		</div>
+
+	</div>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+	// signature popup
+	function signaturePreCheck()
+	{
+		var case_key		=	"{{case_key}}";
+		var	email			=	"{{email}}";
+		var	code			=	"{{code}}";
+
+		$.confirm({
+			type: 'red',
+			title: 'Important!',
+			content: 'I confirm that I have read the following:<br><br>' +
+			'a)	<a href="/clientcare/agreement/?case_key={{case_key}}&email={{email}}&code={{code}}#2_3">Damage Based Agreement ("DBA")</a><br>'+
+			'b)	<a href="/clientcare/agreement/?case_key={{case_key}}&email={{email}}&code={{code}}#2_5">Conditional Fee Agreement ("CFA")</a><br>'+
+			'c)	<a href="/clientcare/agreement/?case_key={{case_key}}&email={{email}}&code={{code}}#3_6">ATE legal expense insurance policy</a><br>',
+
+			buttons: {
+				OK: {
+					text: 'OK',
+					btnClass: 'btn-success',
+					keys: ['enter', 'shift','esc'],
+					action: function()
+					{
+
+						$.ajax(
+							{
+								url:		'/app/mvc/clientcare/doPreSet.php',
+								type:		'POST',
+								cache:		false,
+								async:		true,
+								dataType:	'json',
+								data:
+									{
+										case_key : case_key,	email : email,	code	:	code
+									},
+								success:	function(data)
+								{
+									// we also need to not continue if the form has already been signed
+									if (data.returncode == 'success')
+									{
+										// if we have a link to go to, lets jump to it
+										if (data.uri)
+										{
+											window.location.href = '/'+data.uri;
+										}
+										// this would indicate we have finished all signatures
+										else
+										{
+											$.alert({
+												type: 'green',
+												confirmButton: 'Ok',
+												title: 'Thank You!',
+												content: data.message,
+											});
+										}
+									}
+								},
+								failure:	function()
+								{
+									alert('failure');
+								}
+							}
+
+						)
+
+
+
+
+					}
+				},
+
+
+				CANCEL: {
+					text: 'CANCEL',
+				}
+
+			}
+
+		});
+
+
+
+	}
+
+
+
+</script>
+
+
+
+{{footer}}

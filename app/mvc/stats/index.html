@@ -1,0 +1,131 @@
+{{header}}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css.map" rel="stylesheet">
+
+
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+<!-- main content -->
+
+<div class="container-fluid fp-website-container" >
+    <div class="col-sm-12 centered ">
+        <br/><br/><br/>
+        <form class="dropdown_dynamic" id="dropdown_dynamic" name="stats"  action="#" method="POST">
+
+
+            <div class="form-group">
+                <label for="dateRange">Date range:</label>
+
+                <div class="input-group input-daterange" id="dateRange">
+                    <input type="text" class="form-control datepicker" id="fromDate" name="fromDate" value="{{yesterdayDate}}" placeholder="From:">
+                    <div class="input-group-addon">to</div>
+                    {{todayDate}}
+                    <!--<input type='text' class='form-control datepicker' id='toDate' name='toDate' value='' placeholder='To:'>-->
+                </div>
+
+            </div>
+
+
+            <br/>
+
+
+            <button type='button' class='btn btn-primary btn-block' onclick='ddChangeDynamic(this);'>Check Now!</button>
+
+            <br/><br/>
+        </form>
+
+        <div id="referrer_result">
+
+            result goes here
+
+        </div>
+        <div id="date_range">
+
+        </div>
+
+
+        <br/>
+        <br/>
+        <br/>
+
+
+
+    </div>
+</div>
+
+
+
+<script>
+
+
+	// once all page is loaded
+	window.onload = function(e)
+	{
+
+
+		$(document).ready(function () {
+
+        $('.datepicker').datepicker
+        ({
+            format: "dd/mm/yyyy",
+            startDate: "01/01/2005",
+            endDate: '+0d',
+            autoclose: true,
+            todayHighlight: true
+
+
+        });
+
+    });
+
+
+
+	};
+    function ddChangeDynamic() {
+
+
+        var fromDate			=	$('#fromDate').val();
+        var toDate			    =	$('#toDate').val();
+
+
+        // using ajax, we can call a php script and send it the variables.
+        $.ajax(
+            {
+                // change the URL HERE!!!
+                url:		'app/mvc/stats/doStatsDropdown.php',
+                type:		'POST',
+                cache:		false,
+                async:		true,
+                dataType:	'json',
+                // notice we are passing all the variables
+                data:
+                    {
+                        fromDate 		        :	fromDate,
+                        toDate 		            :	toDate
+
+                    },
+                success:	function(data)
+                {
+
+                    // put the data you got back into the variables!
+                    // post the results to this div
+                    $("#referrer_result").html(data.string);
+                    $("#date_range").html(data.date_range);
+
+                },
+                // if there is a catastrophic error (never seen this happen before)
+                failure:	function()
+                {
+                    alert('failure');
+                }
+            }
+
+        )
+
+
+    }
+
+
+</script>
+
+{{footer}}

@@ -1,0 +1,245 @@
+{{header}}
+
+
+<br>
+
+<form id="frmSignup" action="sign-up" method="post" class="form-horizontal"  onsubmit="return doRegister()">
+
+<div class="container">
+
+
+	<br>
+	<br>
+
+
+    <div class="row">
+		<div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+			<div class="col-md-10 col-sm-12 col-xs-12">
+				<div class="panel panel-default ">
+				  	<div class="panel-heading fairplane-panel">
+			    		<h3 class="panel-title">Sign Up</h3>
+			 		</div>
+					<div class="panel-body">
+						<div class="row-fluid ">
+							<!-- split -->
+							<div class="col-sm-7">
+								<div class="form-group col-sm-12">
+									<label class="control-label"><span class="required">*</span>Email Address:</label>
+									<input class="form-control input-small"  name="formEmail" id="formEmail" type="text" placeholder="Email Address" value="" >
+								</div>
+								<div class="form-group col-sm-12">
+									<label class="control-label"><span class="required">*</span>Password:</label>
+									<input class="form-control input-small"  name="formPassword" id="formPassword" type="password" placeholder="Password" value="" >
+								</div>
+								<div class="form-group col-sm-12">
+									<label class="control-label"><span class="required">*</span>Confirm Password:</label>
+									<input class="form-control input-small"  name="formPassword2" id="formPassword2" type="password" placeholder="Confirm Password" value="" >
+								</div>
+							</div>
+							<!-- split -->
+							<div class="col-sm-5">
+								<div class="col-sm-12" style="text-align:center;">
+									<br>
+									<br>
+									<br>
+									<br>
+					    			<button type="button" class="btn btn-success btn-large" onclick="doRegister();">Submit</button>
+									<hr>
+									<div align="center">
+									Already have an account?<br>Click <a class="login-link" href="/login" title="" >here</a> to login.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- split -->
+			<div class="col-md-2 hidden-sm hidden-xs" style=" position:absolute;bottom:10px;right:0px;">
+				<img class="hidden-xs"  src="/app/images/website/fred_pointing.png">
+			</div>
+
+		</div>
+
+
+
+
+	</div>
+
+	<br>
+	<br>
+
+</div>
+
+</form>
+
+
+
+<script>
+
+
+
+
+// once all page is loaded
+window.onload = function(e)
+{
+	$(document).ready(function(){
+
+
+	$('#frmSignup').validate(
+	{
+
+		rules:
+		{
+
+
+
+
+
+	formPassword:
+	{
+		minlength: 4,
+		required: true
+	},
+	formPassword2:
+	{
+		equalTo: '#formPassword',
+		required: true
+	},
+
+	// checks if email is already taken on server (do the same for the FairPlaneID)
+	formEmail:
+	{
+		email: true,
+		required: true,
+	}
+
+  },
+	// message if the email is in use
+	messages:
+	{
+		formEmail:
+		{
+			required: "Please Enter Email!",
+			email: "This is not a valid email!",
+			remote: "Email already in use!"
+		},
+
+	},
+
+
+
+       highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) {
+            if(element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        }
+
+
+    });
+
+
+
+
+
+
+}); // end document.ready
+
+
+
+}
+
+
+
+
+
+
+
+
+// validate and submit
+function doRegister()
+{
+
+//	var	bformFairPlaneID		=	$("#frmSignup").validate().element("#formFairPlaneID");
+	var	bformEmail				=	$("#frmSignup").validate().element("#formEmail");
+	var	bformPassword			=	$("#frmSignup").validate().element("#formPassword");
+	var	bformPassword2			=	$("#frmSignup").validate().element("#formPassword2");
+
+	// re-validate these items
+	if (bformPassword && bformPassword2 && bformEmail )
+	{
+
+		var  formPassword			=	$('#formPassword').val();
+		var  formPassword2			=	$('#formPassword2').val();
+		var  formEmail				=	$('#formEmail').val();
+
+
+		$.ajax(
+			{
+				url:		'/app/mvc/register/doRegister.php',
+				type:		'GET',
+				cache:		false,
+				async:		true,
+				dataType:	'json',
+				data:
+					{
+						formEmail : formEmail,
+						formPassword : formPassword,
+						formPassword2 : formPassword2,
+					},
+				success:	function(data)
+				{
+					if	(data.returncode == 'error')
+					{
+						$.alert({
+							theme: 'material',
+							animation: 'scale',
+							type: 'red',
+							typeAnimated: 'false',
+							confirmButton: 'Ok',
+							title: 'A problem has occured!',
+							content: data.message,
+						});
+
+
+					}
+					else if (data.returncode == 'success')
+					{
+						// update to save all other data
+
+						$.redirect("/",{ pUpdate: "thankYou"},"GET");
+
+
+					}
+				},
+				failure:	function()
+				{
+					alert('failure');
+				}
+			}
+
+		)
+
+	}
+
+}
+
+
+
+
+
+</script>
+
+
+{{footer}}

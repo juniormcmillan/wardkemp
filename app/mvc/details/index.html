@@ -1,0 +1,507 @@
+{{header}}
+<style>
+
+	html, body {
+		height: 100%;
+	}
+	#actions {
+		margin: 2em 0;
+	}
+
+input.form-control-inline-fix
+{
+	display: inline-block;
+}
+
+label.error {
+  font-weight: bold;
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
+
+.hasError {color: #CC0000; text-align:center; padding:10px;}
+
+
+.ppi-panel .panel-heading
+{
+	color:	#ffffff;
+	background-color:	#480b28	;
+	background-image:none;	 !important;
+
+
+}
+
+
+</style>
+<div class="container fairplane-middle"  >
+	<div class="row " >
+
+		<div class="col-xs-12 col-lg-12 col-lg-offset-0    col-md-12 col-md-offset-0    col-sm-12 col-sm-offset-0   fileUpload" >
+
+<span class="fileUploadLargeText">
+Hi {{forename}},
+<br><br>
+Your claim for compensation for your PLEVIN PPI has been successful!
+</span>
+<br><br>
+<span class="fileUploadNormalText">
+We have now received your compensation and need to pay you electronically. In order to be able to do this, please enter your 6 digit bank sort code and 8 digit account number in the boxes below.
+</span>
+<br><br>
+<span class="fileUploadNormalText">
+This is a secure page and your bank details will be encrypted when they are sent to us. We will not share them with any other organisation.
+</span>
+
+
+
+
+
+
+			<br><br>
+
+			<form id="frmDetails" action="" method="post" class="form-horizontal"  >
+
+			<input type="hidden" id="case_key" name="case_key" value="{{case_key}}">
+			<input type="hidden" id="surname" name="surname" value="{{surname}}">
+			<input type="hidden" id="email"  name="email" value="{{email}}">
+			<input type="hidden" id="formErrorResubmit" value="{{error_resubmit}}">
+			<input type="hidden" id="formSubmit" value="yes">
+
+
+
+  	 	 		<div class="panel panel-default ppi-panel">
+				  	<div class="panel-heading">
+				  		<h3 class="panel-title">Bank Details</h3>
+				 	</div>
+				  	<div class="panel-body ">
+						<div class="hasError">{{error_message}}</div>
+
+
+						<div class="clearfix"><br></div>
+
+
+
+						<div class="row-fluid ">
+
+							<div class="form-group ">
+								<label class="col-xs-12 col-xs-offset-0 col-sm-5 col-sm-offset-0 control-label" >Name of account holder:</label>
+								<div class="col-xs-12 col-xs-offset-0 col-sm-7 col-sm-offset-0">
+									<input type="text" class="form-control form-control-inline-fix " style="width:100%;" name="formAccountName" id="formAccountName"  placeholder="Name of account holder" value="{{formAccountName}}" required>
+								</div>
+							</div>
+						</div>
+
+
+
+
+						<div class="row-fluid ">
+
+					    <div class="form-group ">
+    						<label class="col-xs-6 col-xs-offset-3 col-sm-5 col-sm-offset-0 control-label" >Account Number:</label>
+   							<div class="col-xs-6 col-xs-offset-3 col-sm-5 col-sm-offset-0">
+								<input type="text" class="form-control form-control-inline-fix number" style="display:inline-block;  width:165px; letter-spacing:2px;" name="formAccount" id="formAccount"  maxlength="8" placeholder="" value="{{formAccount}}" required>
+							</div>
+						</div>
+						</div>
+
+						<div class="row-fluid ">
+					    <div class="form-group sort">
+    					    <label class="col-xs-7 col-xs-offset-3 col-sm-5 col-sm-offset-0  control-label">Sort Code:</label>
+
+							<div class="col-xs-7 col-xs-offset-3 col-sm-5 col-sm-offset-0  form-group2">
+								<input id="formSortCode1" name="formSortCode1" class="scGroup form-control form-control-inline-fix number" style="width:45px;" type="text" maxlength="2"  value="{{formSortCode1}}"/>
+		         				-
+		         				<input id="formSortCode2" name="formSortCode2" class="scGroup form-control form-control-inline-fix number" style="width:45px;" type="text" maxlength="2"  value="{{formSortCode2}}"/>
+								-
+								<input id="formSortCode3" name="formSortCode3" class="scGroup form-control form-control-inline-fix number" style="width:45px;" type="text" maxlength="2"  value="{{formSortCode3}}"/>
+
+								<div class="SortCode form-group1"></div>
+							</div >
+						</div>
+						</div>
+
+
+
+						<div class="col-xs-12" style="text-align:center;">
+							<br>
+							<!-- this is for POPUP
+							-->
+							<button type="button" id="submit_button" name="submit_button" class="btn btn-success btn-large" onclick="doCheckDetails();">Submit</button>
+							<!-- for form version
+							<button type="submit" id="submit_button" name="submit_button" class="btn btn-success btn-large">Submit</button>
+-->
+							<br>
+						</div>
+
+
+					</div>
+
+
+
+				</div>
+			</form>
+
+
+
+
+							<br>
+							<br>
+
+
+
+<div style="clear:both;color:black;">
+
+	<br><br>
+
+
+
+
+
+</div>
+
+<!---
+<div class="fileUploadSmallText" style="font-size:11pt;">
+Alternatively, please call us on 0203 074 1100 quoting reference:<b>{{case_number}}</b> and provide your details over the telephone.
+
+</div>
+<br><br>
+			--->
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<script defer src="/app/includes/js/additional-methods.js"></script>
+
+<script defer src="/app/includes/js/jquery.autotab.min.js"></script>
+
+
+<script>
+
+	// once all page is loaded
+	window.onload = function(e)
+	{
+
+$(document).ready(function(){
+
+
+
+
+		$(".number").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+    }
+   });
+
+$.autotab({ tabOnSelect: true });
+$('.number').autotab('filter', 'number');
+
+
+$('#frmDetails').validate({
+        rules: {
+            formSortCode1: {
+                minlength: 2,
+                maxlength: 2,
+                required: true,
+				require_from_group: [3, ".scGroup"]
+            },
+            formSortCode2: {
+                minlength: 2,
+                maxlength: 2,
+                required: true,
+				require_from_group: [3, ".scGroup"]
+            },
+            formSortCode3: {
+                minlength: 2,
+                maxlength: 2,
+                required: true,
+				require_from_group: [3, ".scGroup"]
+            },
+			formAccount: {
+				minlength: 8,
+				maxlength: 8,
+				required: true
+			},
+			formAccountName: {
+				required: true
+			}
+        },
+
+		groups: {
+    	    SortCode: "formSortCode1 formSortCode2 formSortCode3"
+		},
+
+
+		messages:  {
+
+			formAccountName:
+			{
+				required: "Enter the name of the Account holder",
+			},
+
+			formAccount:
+			{
+				required: "Enter your Account number",
+				minlength: "8 digits are necessary"
+			},
+
+			formSortCode1:
+			{
+				required: "Enter your Sort Code",
+				minlength: "6 digits are necessary"
+			},
+			formSortCode2:
+			{
+				required: "Enter your Sort Code",
+				minlength: "6 digits are necessary"
+			},
+			formSortCode3:
+			{
+				required: "Enter your Sort Code",
+				minlength: "6 digits are necessary"
+			}
+
+
+		},
+
+
+        highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element)
+        {
+
+			if (element.attr("name") == "formSortCode1" || element.attr("name") == "formSortCode2" || element.attr("name") == "formSortCode3")
+			{
+        		error.insertAfter(".SortCode");
+			}
+
+            else {
+                error.insertAfter(element);
+            }
+        }
+
+
+    });
+
+
+
+});
+
+// end document.ready
+
+
+
+};
+
+
+
+
+
+
+
+
+// checks that the details are valid for the account and sortcode
+function doCheckDetails()
+{
+	var formAccount		=	$('#formAccount').val();
+	var formAccountName	=	$('#formAccountName').val();
+	var formSortCode1	=	$('#formSortCode1').val();
+	var formSortCode2	=	$('#formSortCode2').val();
+	var formSortCode3	=	$('#formSortCode3').val();
+
+	var case_key		=	$('#case_key').val();
+	var surname			=	$('#surname').val();
+
+
+
+	var	bformAccount			=	$("#frmDetails").validate().element("#formAccount");
+	var	bformAccountName		=	$("#frmDetails").validate().element("#formAccountName");
+	var	bformSortCode1			=	$("#frmDetails").validate().element("#formSortCode1");
+	var	bformSortCode2			=	$("#frmDetails").validate().element("#formSortCode2");
+	var	bformSortCode3			=	$("#frmDetails").validate().element("#formSortCode3");
+
+
+	if (!bformAccount || !bformAccountName || !bformSortCode1 || !bformSortCode2 || !bformSortCode3)
+	{
+		return;
+	}
+
+
+	$.ajax(
+	{
+		url:		'/app/mvc/details/doAccountCheck.php',
+		type:		'POST',
+		cache:		false,
+		async:		true,
+		dataType:	'json',
+		data:		{	formAccount: formAccount, formAccountName : formAccountName, formSortCode1 : formSortCode1, formSortCode2 : formSortCode2, formSortCode3 : formSortCode3, case_key : case_key,  surname : surname	},
+		success:	function(data)
+		{
+			if	(data.returncode == 'error')
+			{
+
+				$.alert({
+					theme: 'material',
+					animation: 'scale',
+					type: 'red',
+					typeAnimated: 'true',
+					confirmButton: 'Ok',
+					title: 'Attention!',
+					content: data.message,
+				});
+
+
+
+			}
+			else if (data.returncode == 'success')
+			{
+
+				doSuccessDialog(data.bank,formAccount,formAccountName,formSortCode1,formSortCode2,formSortCode3,surname,case_key,surname);
+
+
+			}
+		},
+		failure:	function()
+		{
+			alert('failure');
+		}
+	})
+}
+
+
+
+// displays the back confirm popup
+function doSuccessDialog(formBank,formAccount,formAccountName,formSortCode1,formSortCode2,formSortCode3,surname,case_key,surname)
+{
+	var myDialog 	=	$.confirm({
+		backgroundDismiss: false,
+		closeIcon: true,
+		title: 'Please Confirm',
+		columnClass: 'col-md-8 col-md-offset-2',
+		content: 'url:/app/mvc/details/doConfirm.php?formBank='+formBank+'&formAccount='+formAccount+'&formAccountName='+formAccountName+'&formSortCode1='+formSortCode1+'&formSortCode2='+formSortCode2+'&formSortCode3='+formSortCode3+'&surname='+surname+'&case_key='+case_key+'',
+
+
+
+		buttons: {
+			ok:
+			{
+				btnClass: 'btn-success',
+				action: function(){
+
+					$.ajax(
+						{
+							url:		'/app/mvc/details/doSaveDetails.php',
+							type:		'POST',
+							cache:		false,
+							async:		true,
+							dataType:	'json',
+							data:
+								{
+									formBank : formBank,
+									formAccount : formAccount,
+									formAccountName : formAccountName,
+									formSortCode1 : formSortCode1,
+									formSortCode2 : formSortCode2,
+									formSortCode3 : formSortCode3,
+									surname : surname,
+									case_key : case_key,
+								},
+							success:	function(data)
+							{
+								// re-enable button
+								//					$('#sendContactForm').html('Send').prop('disabled',false);
+
+
+								if	(data.returncode == 'error')
+								{
+									// hotjar failing
+									//						hj('formSubmitFailed');
+
+									$.alert({
+										type: 'red',
+										confirmButton: 'Ok',
+										title: 'Warning!',
+										content: data.message,
+									});
+
+
+								}
+								else if (data.returncode == 'success')
+								{
+									// hotjar success
+									//						hj('formSubmitSuccessful');
+
+									window.location.href = '/?pUpdate=detailsSent';
+								}
+							},
+							failure:	function()
+							{
+								alert('failure');
+							}
+						}
+					)
+
+
+
+
+
+				$('#frmDetails').submit();
+				}
+			},
+			cancel:
+			{
+				btnClass: 'btn-danger any-other-class', // multiple classes.
+
+			},
+
+		},
+
+		confirmButtonClass: 'btn-success',
+		cancelButtonClass: 'btn-danger',
+		confirmButton: 'Yes',
+		cancelButton: 'No',
+
+
+
+
+	});
+
+
+}
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{footer}}

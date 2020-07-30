@@ -1,0 +1,146 @@
+{{header}}
+
+
+
+
+
+<br>
+
+<form id="frmLogin" action="activate" method="get" class="form-horizontal">
+<div class="container">
+
+
+	<br>
+	<br>
+
+
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+			<div class="col-md-10 col-sm-12 col-xs-12">
+				<div class="panel panel-default ">
+				  	<div class="panel-heading fairplane-panel">
+			    		<h3 class="panel-title">Please enter your activation code</h3>
+			 		</div>
+				  	<div class="panel-body">
+						<div class="row-fluid ">
+							<!-- split -->
+							<div class="col-sm-6">
+								<div class="form-group col-sm-12">
+									<label class="control-label"><span class="required"></span>Activation code:</label>
+									<input class="form-control input-small" autocomplete="on" name="code" id="code" type="text" placeholder="Please enter your activation code" value="">
+								</div>
+							</div>
+							<!-- split -->
+							<div class="col-sm-6">
+								<div class="form-group col-sm-12" style="text-align:center;">
+									<br>
+									<div align="center">
+										<button type="submit" class="btn btn-success btn-large">Submit</button>
+									</div>
+
+									<br>
+
+
+									<div align="center">
+										Click <a href="/request-code" title="New Code" >here</a> to request a new code.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- split -->
+			<div class="col-md-2 hidden-sm hidden-xs" style=" position:absolute;bottom:10px;right:0px;">
+				<img class="hidden-xs"  src="/app/images/website/fred_pointing.png">
+			</div>
+		</div>
+
+	</div>
+
+</div>
+<br>
+<br>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+
+
+	// once all page is loaded
+	window.onload = function(e)
+	{
+
+
+$(document).ready(function(){
+
+ $('#frmLogin').validate(
+ {
+  rules: {
+
+
+    formCode: {
+      minlength: 2,
+      required: true
+    }
+  },
+
+       highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) {
+            if(element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        }
+    });
+
+	// run this if we have an issue
+	if ($('#formErrorResubmit').val())
+	{
+		var valid = $('#frmLogin').validate().form();
+	}
+
+
+}); // end document.ready
+
+	}
+
+
+
+
+</script>
+
+
+{{footer}}

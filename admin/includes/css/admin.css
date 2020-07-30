@@ -1,0 +1,325 @@
+/* 
+
+ToC
+
+	1. defaults
+	2. structure
+	3. links and navigation
+	4. fonts
+	5. images
+	6. forms stuff
+
+*/
+
+
+
+/* --------- 1. defaults  --------- */
+
+* {/* zero margins and padding */
+	margin: 0;
+	padding: 0;
+}
+
+body {/* set page background colour */
+	/*background: #404040 url(/admin/images/page-background.jpg) repeat-x;*/
+	padding-bottom: 30px;
+	font: 1.0em Arial, sans-serif;
+}
+
+#skipNav {/* skip-navigation container */
+	position: absolute;
+	top: 2px;
+	right: 5px;
+	width: 60px;
+	text-align: center;
+}
+
+a:link {text-decoration: underline; color: #5292EA; background-color: transparent;}
+a:visited {text-decoration: underline; color: #5292EA; background-color: transparent;}
+a:hover {text-decoration: none; color: #5292EA; background-color: transparent;}
+
+hr {height: 1px; border-top: dashed 1px #B8B3B2; border-bottom: 0; margin: 10px 0 10px 0; padding: 0; line-height: 0;}
+
+.listTable {border:0; width:1200px;}
+.listTable tr {vertical-align:top;}
+.listTable th {font-size:12px; font-weight:bold; padding:2px; margin:0; color:#666666; text-align:left;}
+.listTable td {font-size:10px; font-weight:normal; padding:2px; margin:0; color:#666666;}
+
+
+/*  --------- 2. structure  --------- */
+
+#pageHolder {/* site content container */
+	width: 1280px;
+	margin: 0 auto;
+	border: 1px dashed #cccccc;
+	border-top: 0px;
+}
+
+#footerArea {/* site footer container */
+	width: 86em;
+	margin: 0 auto;
+	background-color: #ffffff;
+	border: 0;
+	padding: 5px;
+}
+
+#headerContainer {/* add border to masthead */
+	background: #FFFFFF;
+	margin-bottom: 15px;
+}
+
+#headerLogo {margin:0 0 5px 0;}
+
+#navContainer {/* navigation container */
+	clear: left;
+}
+
+#content {/* content container */
+	background: #f9f9f9 url(/admin/images/page-divider.gif) repeat-y 54em 0;
+	margin-bottom: 15px;
+}
+
+#mainContent, #sidebar {
+	float: left;
+	padding: 1.5em;
+}
+
+#mainContent {
+	width: 51em;
+}
+
+#sidebar {
+	width: 28.9em;
+}
+
+.introBox {
+	border: 1px solid #bbbbbb;
+	padding: 15px 85px 15px 15px;
+	background: #e1e1e1 url(/admin/images/intro-background.gif) repeat-x 0 100%;
+	position: relative;
+}
+
+.starburst {
+	position: absolute;
+	right: -30px;
+	top: 10px;
+}
+
+.clearFix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.mainAdminPage {position: relative; width: 960; margin: 0; padding: 10px; width:}
+.mainAdminPage h1 {margin: 0 0 10px 2px; font-size: 24px; line-height: 1.5em; color:#333333;}
+
+.mainAdminLeft {position: relative; width: 630px; margin: 0 30px 0 2px; padding: 0;}
+.mainAdminLeft h2 {height: 24px; margin: 15px 0 5px 0; font-size: 18px; line-height: 1em; color:#333333;}
+.mainAdminLeft p {font-size: 12px; line-height: 1.5em; color: #666666; margin: 0; width:620px; display:block;}
+.mainAdminLeft ul {margin: 5px 0 5px 10px; padding: 0; font-size: 12px; line-height: 1.5em; list-style: none; color: #666666;}
+.mainAdminLeft li {position: relative; background-image: url(/images/bullet_blue.gif); background-position: 0px 9px; background-repeat: no-repeat; padding: 3px 0 3px 12px;}
+
+.mainAdminMiddle {position: relative; float: left; display: inline; width: 430px; margin: 0 28px 0 0; padding: 0;}
+.mainAdminMiddle img {border: 0;}
+.mainAdminMiddle h4 {font-size: 16px; font-weight: normal; line-height: 1.5em; color: #333333;}
+
+.mainAdminRight {position: relative; float: left; display: inline; width: 204px; margin: -2px 0 0 0; padding: 0;}
+
+.mainAdminFull {position: relative; width: 940px; margin: 0; padding: 10px;}
+.mainAdminFull h1 {margin: 0 0 10px 2px; font-size: 24px; line-height: 1.5em; color:#333333;}
+.mainAdminFull h2 {height: 24px; margin: 15px 0 5px 0; font-size: 18px; line-height: 1em; color:#333333;}
+.mainAdminFull p {font-size: 12px; line-height: 1.5em; color: #666666; margin: 0;}
+.mainAdminFull ul {margin: 5px 0 5px 10px; padding: 0; font-size: 12px; line-height: 1.5em; list-style: none; color: #666666;}
+.mainAdminFull li {position: relative; background-image: url(/images/bullet_blue.gif); background-position: 0px 9px; background-repeat: no-repeat; padding: 3px 0 3px 12px;}
+
+/* ---------- 3. links and navigation ---------- */
+
+a {/* default link style */
+	color: #000000;
+}
+
+/* -- skip navigation -- */
+#skipNav a {
+	font: 1.0em Arial, sans-serif;
+	display: block;
+	color: #000000;
+	width: 60px;
+	padding-bottom: 10px;
+}
+
+#skipNav a:hover {
+	color: #898989;
+	background: url(/admin/images/skip-nav.gif) 50% 100% no-repeat;
+}
+
+
+/* -- main navigation -- */
+#mainNav {
+	background: #232F84;
+	border-top: 1px solid #232F84;
+	padding: 6px 0;
+}
+
+#mainNav ul {
+	text-align: left;
+}
+
+#mainNav li {
+	display: inline;
+}
+
+#mainNav a {
+	font: bold 1.2em Arial, sans-serif;
+	color: #FFFFFF;
+	text-decoration: none;
+	padding: 6px 10px 6px 10px;
+}
+
+#mainNav a:hover {
+	color: #FFFFFF;
+	background:#5292EA;
+	border-top: 1px solid #5292EA;
+}
+
+.section1 #mainNav #link1 a, .section2 #mainNav #link2 a, .section3 #mainNav #link3 a, .section4 #mainNav #link4 a, .section5 #mainNav #link5 a, .section6 #mainNav #link6 a, .section7 #mainNav #link7 a, .section8 #mainNav #link8 a, .section9 #mainNav #link9 a, .section10 #mainNav #link10 a {/* automation for active tab */
+	color: #FFFFFF;
+	background: #5292EA;
+	border-top: 1px solid #5292EA;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.section1 #mainNav #link1 a:hover, .section2 #mainNav #link2 a:hover, .section3 #mainNav #link3 a:hover, .section4 #mainNav #link4 a:hover, .section5 #mainNav #link5 a:hover, .section6 #mainNav #link6 a:hover, .section7 #mainNav #link7 a:hover, .section8 #mainNav #link8 a:hover, .section9 #mainNav #link9 a:hover, .section10 #mainNav #link10 a:hover {/* hover over-ride for automated tab */
+	color: #FFFFFF;
+}
+
+/* -- sub-navigation -- */
+#subNav {
+	font: 1.2em Arial, sans-serif;
+	margin-top: -1px;
+	background: #5292EA;
+	border-bottom: 1px solid #5292EA;
+	padding: 6px;
+	color: #FFFFFF;
+	font-size:11px;
+	font-weight:normal;
+}
+
+#subNav ul {
+	text-align: left;
+}
+
+#subNav li {
+	display: inline;
+}
+
+#subNav a {
+	color: #FFFFFF;
+	text-decoration: none;
+	padding: 6px 10px;
+}
+
+#subNav a:hover {
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+
+/* ---------- 4. fonts ---------- */
+
+html {
+	font-size: 100%;
+}
+
+body {
+	font-size: 62.5%;
+}
+
+h1 {/* main heading */
+	font: normal 1.8em/1.1em Arial, sans-serif;
+	margin-bottom: 5px;
+}
+
+h2 {/* cross-head */
+	font: bold 1.2em/1.0em "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, sans-serif;
+	margin-top: 1.3em;
+	margin-bottom: 2px;
+	color: #1a9f44;
+}
+
+p {
+	font: 1.1em/1.4em "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, sans-serif;
+	margin-bottom: 0.8em;
+}
+
+/* ---------- 5. images ---------- */
+
+a img {/* remove borders from linked images */
+	border: 0;
+}
+
+#logo img {
+	margin-top: 30px;
+	margin-left: 10px;
+}
+
+/* ---------- 6. forms stuff ---------- */
+
+#searchArea form {
+	padding: 17px 0 0 20px;
+}
+
+#searchArea p {
+	color: #eeeeee;
+	float: left;
+	margin-right: 10px;
+}
+
+#searchArea p.mainSearchLabel {
+	float: none;
+	display: block;
+}
+
+#mainSearchField {
+	width: 23em;
+	border: 1px solid #666666;
+	background-color: #111111;
+	color: #eeeeee;
+	font-size: 1.0em;
+	padding: 1px;
+}
+
+#mainSearchSubmit {
+	width: 40px;
+	border: 1px solid #666666;
+	font-size: 1.0em;
+	background-color: #333333;
+	color: #eeeeee;
+	margin-right: -10px;
+}
+
+.formData {display:inline;}
+.formData fieldset{border:1px solid #CCCCCC; margin:10px 0 0px 0; padding:5px;}
+.formData legend {font-size: 16px; font-weight: bold; line-height: 1.5em; color: #333333; margin: 0.5em 0 0.5em 0; padding: 0;}
+.formData p {width:660px; display:block; margin:5px 0 5px 0; padding:0;}
+.formData label {display:inline; float:left; width:150px; margin:2px 0 2px 5px;}
+.formData input.text {display:inline; float:left; border:1px solid #DDDDDD; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:2px; width:350px; background-color:#FFFFFF;}
+
+.formButton {font-size: 10px; background-color: #232F84; border: 1px solid #FFFFFF; color:#FFFFFF; padding:2px 5px 2px 5px;}
+
+.formInputData {border:1px solid #DDDDDD; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:2px; width:350px; background-color:#FFFFFF;}
+.formInputDataSmall {display:inline; float:left; border:1px solid #DDDDDD; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:2px; width:50px; background-color:#FFFFFF;}
+.formInputWysiwyg {display:inline; float:left; border:1px solid #DDDDDD; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:2px; width:770px; height:600px; background-color:#FFFFFF;}
+
+.formEditor {display:inline;}
+.formEditor fieldset{border:1px solid #CCCCCC; margin:10px 0 0px 0; padding:5px; width:920px;}
+.formEditor legend {font-size: 16px; font-weight: bold; line-height: 1.5em; color: #333333; margin: 0.5em 0 0.5em 0; padding: 0;}
+.formEditor p {width:900px; display:block; float:left; margin:5px 0 5px 0; padding:0;}
+.formEditor label {display:inline; float:left; width:220px; margin:2px 0 2px 5px;}
+.formEditor input.text {display:inline; float:left; border:1px solid #DDDDDD; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:2px; width:600px; background-color:#FFFFFF;}
+
+/* Table row highlighting */
+.trHighlight { background-color: #CCCCCC; cursor:default;}
+.trInitial { background-color: #FFFFFF; cursor:default;}

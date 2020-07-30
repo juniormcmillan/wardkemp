@@ -1,0 +1,2013 @@
+
+
+
+.dropdown-menu
+{
+	right: auto !important;
+	left: auto !important;
+}
+
+
+.ppi-hp-box-outer
+{
+	padding:20px;
+	margin:0px;
+}
+.ppi-hp-box-inner
+{
+	border-radius:10px;
+	-moz-border-radius:10px;
+	background-color:#6f2e50;
+	color:#ffffff;
+	padding:15px;
+	background-color: rgba(111, 46, 80, 0.6);
+}
+
+.ppi-box-title
+{
+	font-size:24px;
+	font-weight:bold;
+	padding-bottom:10px;
+}
+.ppi-box-text
+{
+
+	font-size:16px;
+	font-weight:normal;
+	padding-bottom:20px;
+}
+.ppi-click-here
+{
+	font-size:16px;
+	font-weight:normal;
+}
+
+.panel-group
+{
+	width:auto;
+	margin: 0 auto 0;
+}
+
+.panel-title > a:before {
+	float: right !important;
+	font-family: FontAwesome;
+	content:"\f056";
+	padding-right: 5px;
+}
+.panel-title > a.collapsed:before {
+	float: right !important;
+	content:"\f055";
+}
+.panel-title > a:hover,
+.panel-title > a:active,
+.panel-title > a:focus  {
+	text-decoration:none;
+}
+
+.panel-title
+
+{
+	font-size:11pt;
+
+}
+
+.fa.fa-spin-hover:hover {
+
+
+	transform: rotate(180deg);
+}
+.fa.fa-spin-hover {
+
+	transition: transform 2s ease 0s;
+}
+
+
+.ppi-homepage-sub-titles
+{
+	margin-left:0px;
+	margin-right:0px;
+	padding-left:0px;
+	padding-right:0px;
+	padding-top:0px;
+	padding-bottom:20px;
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-size: 16pt;
+	font-weight: 700;
+}
+/* homepage */
+.ppi-homepage-titles
+{
+	margin-left:0px;
+	margin-right:0px;
+	padding-left:0px;
+	padding-right:0px;
+	padding-top:0px;
+	padding-bottom:10px;
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-size: 22pt;
+	font-weight: 700;
+}
+
+/* bordering of the blog*/
+.ppi-blog-section
+{
+	border:1px solid #dddddd;
+	padding-top:5px;
+	padding-bottom:5px;
+	margin-bottom:10px;
+	text-align:left;
+}
+
+.ppi-blog-section a
+{
+	text-decoration: none;
+	color:	#000000;
+	font-weight: bold;
+}
+
+/* row vertical align*/
+.vertical-align {
+	display: flex;
+	align-items: center;
+}
+
+
+
+
+
+
+
+
+
+.ppi-site-footer, .page-wrap:after
+{
+	/*	min-height: 400px; */
+	font-size:9pt;
+}
+
+
+.ppi-site-footer-colors
+{
+	background-color:#464540;
+	color: #ffffff;
+}
+/* basic width of content area*/
+.ppi-website-container
+{
+	width:100%;
+	max-width:1200px /* was 992 then 1500 then 1200*/;
+	padding-left:10px;
+	padding-right:10px;
+	border:0px solid blue;
+
+}
+
+.ppi-footer-info
+{
+	padding-top:50px;
+	padding-bottom:50px;
+}
+
+
+.ppi-footer-contact-link, a.ppi-footer-contact-link:link, a.ppi-footer-contact-link:visited
+{
+	text-decoration: none;
+	color:#ffffff;
+}
+
+
+.ppi-header-contact-link, a.ppi-header-contact-link:link, a.ppi-header-contact-link:visited
+{
+	text-decoration: none;
+	color:#000000;
+}
+
+
+.ppi-footer-sections-height
+{
+	position:relative;
+	min-height:120px;
+}
+
+
+.ppi-top-area
+{
+	background-color:#ff2e50;
+	color:#ffffff;
+
+
+}
+
+
+
+
+/* desktop */
+.ppi-blog-header
+{
+	padding-top:0px;
+	padding-bottom:10px;
+}
+
+
+
+.ppi-top-first-row
+{
+
+	border:0px solid yellow;
+	background-color:#e9e9e9;
+	padding:0px;
+}
+
+
+/* phone number, email and search bar */
+.ppi-top-info-bar
+{
+	width:100%;
+	text-align:right; padding:10px;margin:0px;
+
+
+	color:#000000;
+	/*text-align:right; display:inline-block; padding:10px 20px 10px 20px;*/
+
+}
+
+/* top search box on hp */
+.ppi-search-box
+{
+	display:inline-block;
+	padding-left:10px;
+	padding-bottom:0px;
+	margin:0px;
+	clear:both;
+
+}
+
+
+/* row including navigation */
+.ppi-top-second-row
+{
+	border:0px solid green;
+	background-color:#ffffff;
+	padding:0px;margin:0px;
+
+}
+
+
+
+/* homepage boxes */
+.ppi-product-box
+{
+	min-height:	250px;
+	text-align: center;
+	background: white;
+	color:	#000000;
+	padding:30px;
+}
+
+.ppi-product-box:hover
+{
+	background: #3d8fcb;
+	color: white;
+	cursor: pointer;
+}
+
+/* product boxes on homepage */
+.ppi-product-1
+{
+	border-bottom: 1px solid #dcdcdc;
+	border-right: 1px solid #dcdcdc;
+}
+.ppi-product-2
+{
+	border-bottom: 1px solid #dcdcdc;
+}
+.ppi-product-3
+{
+	border-left: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
+}
+.ppi-product-4
+{
+	border-right: 1px solid #dcdcdc;
+}
+.ppi-product-6
+{
+	border-left: 1px solid #dcdcdc;
+}
+
+.ppi-product-title
+{
+	text-align:left;
+	font-size:	16pt;
+	font-weight:	bold;
+	padding-bottom:	5px;
+	padding-top:	5px;
+}
+.ppi-product-description
+{
+	text-align:left;
+}
+
+
+/* the border and inside of ATE header on HP */
+.ppi-inside-2
+{
+	background:#ffffff;
+
+	border: 8px solid rgb(200, 200, 200);
+	border: 8px solid rgba(200, 200, 200, .5);
+	-webkit-background-clip: padding-box; /* for Safari */
+	background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
+
+	border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+
+}
+
+/* main page */
+.ppi-main-page
+{
+	background-color:#ffffff;
+	color:#000000;
+	padding:0px;
+	padding-bottom:0px;
+}
+
+
+/* login button */
+.ppi-login-button
+{
+	float:right;
+}
+
+/* inside padding for mobile */
+.ppi-login-button-inside
+{
+	padding-top:8px;
+	padding-bottom:8px;
+}
+
+.ppi-mobile
+{
+	display: none;
+}
+
+/* contact page button */
+.ppi-submit-contact-button
+{
+	text-align:	left;
+}
+.ppi-submit-contact-button-inside
+{
+	padding-top:8px;
+	padding-bottom:8px;
+}
+
+
+/* turns on pointer events for search etc */
+.form-control-feedback {
+	pointer-events: auto; /* or - auto // or -  unset  */
+	cursor:pointer;
+	padding:0px;
+	margin:0px;
+}
+
+/* search icon alignment */
+.ppi-search-box-icon
+{
+	z-index:9999;
+	line-height: 30px;
+	vertical-align: top;
+}
+
+/* login button */
+.ppi-login-button
+{
+	display:inline-block;padding-left:10px;
+}
+
+
+/* minimum width for lists in menu */
+.list-unstyled,
+.list-unstyled ul
+{
+	min-width: 280px;
+	color: #cccccc;
+
+}
+
+/* star for required */
+.required:after { content:" *  "; }
+
+.required {
+	color: red;
+}
+
+* {
+	margin: 0;
+}
+html, body {
+	height: 100%;
+}
+.wrapper
+{
+	min-height:	100%;
+}
+
+.footer {
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	height: 450px; /* Set the fixed height of the footer here */
+
+}
+.page-wrap {
+	min-height: 100%;
+	/* equal to footer height */
+	background-color:#ffffff;
+	color: #000000;
+}
+.page-wrap:after {
+	content: "";
+	display: block;
+}
+
+
+#cookiesWarning
+{
+	display:block;
+	position: fixed;
+	bottom:0px;
+	z-index: 99;
+	width: 100%;
+	height:	auto;
+	margin:	0px;
+	text-align:center;
+	padding-top: 5px;
+	background-color: #e8e8e8;
+	color: #000000;
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-size: 16px;
+
+
+}
+
+#cookiesWarning a
+{
+	text-decoration :none;
+	color:	#555555;
+}
+
+
+
+/* default color for navbar links */
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+	color: #000000;
+	background-color: #ffffff;
+
+}
+
+
+/* navbar */
+.navbar-collapse{
+	background-color: #ffffff;
+	color: #000000;
+	text-decoration:none;
+
+
+}
+
+.navbar-brand, .navbar-nav > li > a {
+	text-shadow: none !important;
+
+
+}
+
+/* top level */
+.navbar-default .navbar-collapse .navbar-nav > li > a {
+	color: #000000;
+
+
+}
+
+/* top level hover*/
+.navbar-collapse .navbar-nav > li > a:hover,
+.navbar-collapse .navbar-nav > li > a:focus {
+	color: #f00000;
+	background-color: #ffffff;
+	text-decoration: underline;
+	text-decoration-thickness: 10%;
+
+}
+
+.navbar-collapse .navbar-nav > .active > a,
+.navbar-collapse .navbar-nav > .active > a:hover,
+.navbar-collapse .navbar-nav > .active > a:focus {
+	color: #ff0000;
+	background-color: #ff00ff;
+}
+
+
+
+
+
+.navbar-collapse .navbar-nav > .open > a,
+.navbar-collapse .navbar-nav > .open > a:hover,
+.navbar-collapse .navbar-nav > .open > a:focus {
+	color: #000000;
+	background-color: #e8e8e8;
+	text-decoration :none;
+}
+
+
+
+/* top level navbar font size and padding*/
+.navbar-default .navbar-nav > li > a
+{
+	font-size: 10pt;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+/* color of hover on highest level of navbar */
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+
+	color: #000000;
+}
+
+/* color of fully opened menu */
+.navbar-default .navbar-nav > li > .dropdown-menu {
+
+	background-color: #e8e8e8;
+
+}
+
+/* color of text/links in STANDARD submenu */
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a
+{
+
+	color: #000000;
+
+
+
+}
+
+/* color of HOVER/selected text/links in STANDARD submenu */
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus
+{
+	color: #ffffff;
+
+	background-color: #6f2e50;
+
+}
+
+
+
+/* color of text/links in megamenu list items */
+.list-unstyled a
+{
+	padding:	5px 10px;
+	text-decoration: none;
+	color: #ffffff;
+	width: 100%;
+	display:inline-block;
+
+}
+
+
+/* color of HOVER/selected text/links in megamenu list items */
+.list-unstyled a:hover
+{
+	color: #ffffff;
+	background-color: #6f2e50;
+}
+
+/* base link color for megamenu */
+.list-unstyled a
+{
+	color: #cccccc;
+}
+
+
+
+/* base link color for megamenu */
+.list-unstyled a
+{
+	color: #cccccc;
+}
+
+
+
+
+
+
+/* minimum width for lists in menu */
+.list-unstyled,
+.list-unstyled ul
+{
+	min-width: 300px;
+	color: #cccccc;
+}
+
+/* padding in menu */
+.yamm .yamm-content {
+	padding: 0px 0px;
+}
+
+
+/*
+	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+
+		color: #e5dbdb;
+
+		background-color: #00ff00;
+
+	}
+
+	li {
+	}
+
+
+*/
+
+
+
+
+
+
+/* navbar when on mobile with hamburger*/
+
+.navbar.navbar-default
+{
+	background-color: #6f2e50;
+	border: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	padding:0px;
+	margin:0px;
+}
+
+
+
+/* we may just need this for mobile!  as padding pushes down the menu*/
+.navbar.navbar-default .navbar-collapse
+{
+	border: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	padding:0px;
+	margin:0px;
+}
+
+
+
+
+
+
+/* hamburger outline */
+.navbar-ppi .navbar-toggle {
+	border-color: #ffffff;
+	background-color :#ffffff;
+}
+
+/* hamburger */
+.navbar-ppi .navbar-toggle:hover,
+.navbar-ppi .navbar-toggle:focus {
+	background-color: #ffffff;
+}
+
+/* hamburger inner lines */
+.navbar-ppi .navbar-toggle .icon-bar {
+	background-color: #3c3c3c;
+	color:	#ffffff;
+}
+
+/* some padding for the left hamburger and right side */
+.navbar-ppi
+{
+	padding:0px;margin:0px;
+}
+
+
+/* when we shrink to hamburger - the line that can appear across the screen */
+.navbar-fairplane .navbar-collapse,
+.navbar-fairplane .navbar-form
+{
+
+}
+
+
+
+
+
+
+
+
+.ppi-products-section
+{
+	background-color:#ffffff;
+	margin:10px 0px 0px 0px;
+	padding:0px 0px 0px 0px;
+	border:1px solid #3d8fcb;
+	border-radius: 5px;
+}
+h2.title
+{
+	color:	#000000;
+	font-size:24pt;
+	font-weight:bold;
+	padding-top:0px;
+	margin-top:0px;
+}
+.ppi-products-section a:link
+{
+	color: #3d8fcb;
+	text-decoration:none;
+	display:block;
+	padding-top:4px;
+}
+
+
+
+
+
+/* main products info section */
+.ppi-products-page
+{
+	background-color:#ffffff;
+	padding:0px 50px 0px 0px;
+	margin:0px;
+}
+
+.ppi-products-page-summary
+{
+	background-color:#3c3c3c;
+	color:#ffffff;
+	padding-top:13px;
+	padding-bottom:12px;
+	padding-left:70px;
+	border-top-right-radius: 5px;
+	background-position: left 15px top 8px;
+	background-repeat: no-repeat;
+	background-image: url("/app/images/product.png");
+	background-size: 36px 36px;
+
+	font-size:20px;
+	font-weight: bold;
+	margin-bottom:20px;
+
+}
+
+
+.ppi-products-page-benefits
+{
+	background-color:#f2f2f2;
+	color:#000000;
+	padding-top:13px;
+	padding-bottom:12px;
+	padding-left:70px;
+	border-top-right-radius: 5px;
+	background-position: left 15px top 8px;
+	background-repeat: no-repeat;
+	background-image: url("/app/images/key.png");
+	background-size: 36px 36px;
+
+	font-size:20px;
+	font-weight: bold;
+	margin-bottom:20px;
+	margin-top:0px;
+}
+
+
+
+.ppi-products-page-pricing
+{
+	background-color:#f2f2f2;
+	color:#000000;
+	padding-top:13px;
+	padding-bottom:12px;
+	padding-left:70px;
+	border-top-right-radius: 5px;
+	background-position: left 15px top 8px;
+	background-repeat: no-repeat;
+	background-image: url("/app/images/cost.png");
+	background-size: 36px 36px;
+
+	font-size:20px;
+	font-weight: bold;
+	margin-bottom:20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* xs  2-box */
+@media(max-width:567px)
+{
+
+	.ppi-title
+	{
+		font-size:24px; font-weight:700;padding:5px 0px 0px 0px; margin:0px;
+	}
+
+
+	/* homepage */
+	.ppi-homepage-titles
+	{
+		padding-top:0px;
+		padding-bottom:10px;
+		font-family: Arial, Helvetica, Sans-Serif;
+		font-size: 20px;
+		font-weight: 700;
+	}
+
+}
+
+
+
+
+/* tablet sized */
+@media (min-width: 768px)
+{
+
+	/* we can change colors here to check things */
+	.navbar .navbar-nav {
+
+		margin-top: 0;
+
+	}
+
+
+
+
+
+
+
+}
+
+
+
+
+/* this is for mobile 924 or is it */
+@media (max-width:767px) {
+
+
+	/* homepage */
+	.ppi-homepage-titles
+	{
+		padding-top:0px;
+		padding-bottom:10px;
+		font-family: Arial, Helvetica, Sans-Serif;
+		font-size: 20px;
+		font-weight: 700;
+	}
+
+	.ppi-title
+	{
+		font-size:20px; font-weight:700;padding:5px 0px 0px 0px; margin:0px;
+	}
+
+	/* main products info section */
+	.ppi-products-page
+	{
+		background-color:#ffffff;
+		padding:0px 0px 0px 0px;
+		margin:0px;
+	}
+
+	.ppi-products-section
+	{
+		display:none;
+	}
+
+
+
+	/* weird dropdown positioning - makes everything block-width */
+	.navbar-nav .open .dropdown-menu {
+		position: static;
+		float: none;
+		width: auto;
+		margin-top: 0;
+		background-color: transparent;
+		border: 0;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+
+
+
+	/* image used in background for homepage & mobile */
+	.ppi-mobile-homepage-bg
+	{
+		/* Image is centered vertically and horizontally at all times */
+		background-position: center top;
+
+		background-repeat: no-repeat;
+
+		/* This is what makes the background image rescale based on its container's size */
+		background-size: cover;  /* auto is the other method, but runs out of space */
+
+		background-image: url("/app/images/backdrop/ppi-banner-test-2.jpg");
+
+		background-color: #cccccc;
+
+		padding-top:120px;
+		padding-bottom:250px;
+
+		max-height:550px;
+
+	}
+
+}
+
+
+
+
+/* enquiry page text*/
+.ppi-enquiry-heading
+{
+	font-size:	20pt;
+	font-weight:	bold;
+	color: #337ab7;
+	text-align: right;
+
+}
+
+/* enquiry page text*/
+.ppi-enquiry-additional
+{
+	padding:0px;
+}
+
+
+
+.ppi-box-text
+{
+	font-size:12px;
+	padding:10px 15px 10px 15px;
+	margin:0px;
+}
+
+.ppi-box-title
+{
+	font-size:20px; font-weight:700;
+	padding:10px 15px 10px 15px;
+	margin:0px;
+	border-bottom: 1px solid #dddddd;
+}
+
+.ppi-box-border
+{
+	background-color:#e9e9e9;
+	padding-top:15px;
+	padding-bottom:0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	min-height:450px;
+}
+
+.ppi-box-image
+{
+	padding: 0px;
+}
+
+a.ppi-box-read-more:link , a.ppi-box-read-more:hover ,  a.ppi-box-read-more:focus,  a.ppi-box-read-more:visited ,  a.ppi-box-read-more
+{
+	text-decoration: none;
+	color:	#000000;
+	font-size: 14px;
+}
+
+.ppi-box-bottom
+{
+	position:absolute;
+	bottom:0px;
+	left:10px;
+	padding:20px;
+	font-size:10px;
+	font-weight: bold;
+}
+
+/* this is for desktop*/
+@media(min-width:1200px)
+{
+
+
+	.ppi-title
+	{
+		font-size:28px; font-weight:700;padding:5px 0px 0px 0px; margin:0px;
+	}
+
+}
+
+
+/* this is for desktop*/
+@media(min-width:1550px)
+{
+
+	.ppi-title
+	{
+		font-size:36px; font-weight:700;padding:5px 0px 0px 0px; margin:0px;
+	}
+}
+
+/* this is for mobile and tablet*/
+@media (max-width: 1199px)
+{
+
+	.ppi-top-info-bar
+	{
+		border-radius: 0px;
+		background-color:#4f1e30;
+		padding:0px;margin:0px;
+		font-size: 10pt;
+
+		color:#ffffff; display:block;
+		text-align :left;width:100%; padding:5px 0px 5px 12px;
+
+	}
+
+
+	.ppi-title
+	{
+		font-size:34px; font-weight:700;padding:5px 0px 0px 0px; margin:0px;
+	}
+
+	.ppi-product-1
+	{
+		border-bottom: 1px solid #dcdcdc;
+		border-right: 1px solid #dcdcdc;
+	}
+	.ppi-product-2
+	{
+		border-bottom: 1px solid #dcdcdc;
+	}
+	.ppi-product-3
+	{
+		border-left: 0px solid #dcdcdc;
+		border-bottom: 1px solid #dcdcdc;
+		border-right: 1px solid #dcdcdc;
+	}
+	.ppi-product-4
+	{
+		border-right: 0px solid red;
+		border-bottom: 1px solid #dcdcdc;
+	}
+
+	.ppi-product-5
+	{
+		border-right: 1px solid #dcdcdc;
+	}
+	.ppi-product-6
+	{
+		border-left: 0px solid #dcdcdc;
+	}
+
+
+
+	/* enquiry page text*/
+	.ppi-enquiry-heading
+	{
+		font-size:	20pt;
+		font-weight:	bold;
+		color: #337ab7;
+		text-align: left;
+
+	}
+
+
+	/* contact page button adjustments*/
+	.ppi-submit-contact-button
+	{
+		text-align:	center;
+	}
+
+
+	/* login button adjustments */
+	.ppi-login-button
+	{
+		float:right;
+		padding:7px;
+	}
+
+
+	#ppi-header-image
+	{
+		display:none;
+	}
+
+	.navbar-collapse .navbar-nav > .open > a,
+	.navbar-collapse .navbar-nav > .open > a:hover,
+	.navbar-collapse .navbar-nav > .open > a:focus {
+		color: #ffffff;
+		background-color: #4f1e30;
+	}
+
+
+	/* color of fully opened menu */
+	.navbar-default .navbar-nav > li > .dropdown-menu {
+
+		background-color: #3c3c3c;
+
+	}
+
+
+
+	/* color of hover on highest level of navbar */
+	.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+
+		color: #bbbbbb;
+		background-color: #3c3c3c;
+	}
+
+	/* color of fully opened menu */
+	.navbar-default .navbar-nav > li > .dropdown-menu {
+
+		background-color: #3c3c3c;
+		color: #bbbbbb;
+
+	}
+
+	/* color of text/links in STANDARD submenu */
+	.navbar-default .navbar-nav > li > .dropdown-menu > li > a
+	{
+		color: #bbbbbb !important;
+	}
+
+
+
+	/* default color for navbar links */
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+		color: #ffffff !important;
+		background-color: #3c3c3c;
+	}
+
+
+
+	/* navbar */
+	.navbar-collapse{
+		background-color: #3c3c3c;
+		color: #ffffff;
+		text-decoration:none;
+	}
+
+
+
+	/* this is to align the mobile nav below the logo*/
+	#navbar-collapse-1
+	{
+		padding-top:0px;
+		/* adjust this to the height of the logo - eg 40px; */
+		margin-top:	0px;
+	}
+
+
+	/* we may just need this for mobile!  as padding pushes down the menu items to bottom of screen*/
+	.navbar.navbar-default .navbar-collapse
+	{
+		border: 0;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		padding:10px;
+		margin:0px;
+	}
+
+	/* weird dropdown positioning - makes everything block-width along the horizontal menu*/
+	.navbar-nav .open .dropdown-menu {
+		position: relative;
+		float: none;
+		width: auto;
+		margin-top: 0;
+		background-color: transparent;
+		border: 0;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+
+
+	.list-unstyled a
+	{
+		padding-left: 0px;
+		margin-left: 20px;
+
+		color:	#cccccc;
+
+	}
+
+	/* only if the navbar links are not white */
+	.dropdown-toggle:active, .open .dropdown-toggle
+	{
+		color:#ffffff !important;
+		background-color:#3c3c3c !important;
+
+
+	}
+
+
+
+	/* this allows images to overlap the navbar */
+	.navbar
+	{
+
+		z-index: 1;
+
+	}
+
+
+	/* all items in the navbar are 100% width as mobile */
+	.navbar-nav
+	{
+		width: 100%;
+
+	}
+
+	.navbar-nav .open .dropdown-menu
+	{
+
+	}
+
+	ul.dropdown-menu
+	{
+		width:	100%;
+		border-radius:	0px;
+		box-shadow:0;
+	}
+
+	.navbar .navbar-collapse {
+		text-align: center;
+	}
+
+
+	.ppi-website-navbar-separate .navbar-header {
+		float: left;
+		width: auto!important;
+		padding-left:25px;
+	}
+
+
+	.navbar-header {
+		float: none;
+	}
+	.navbar-left,.navbar-right {
+		float: none !important;
+		position: relative;
+	}
+	.navbar-toggle {
+		display: block;
+	}
+	.navbar-collapse {
+		border-top: 1px solid transparent;
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+	}
+	.navbar-fixed-top {
+		top: 0;
+		border-width: 0 0 1px;
+	}
+	.navbar-collapse.collapse {
+		display: none!important;
+	}
+	.navbar-nav>li {
+		float: none;
+	}
+	.navbar-nav>li>a {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	.collapse.in{
+		display:block !important;
+	}
+	.navbar .navbar-collapse {
+		text-align: left;
+	}
+	/* left the navbar */
+	.navbar .navbar-nav
+	{
+		display: block;
+		float: left;
+	}
+
+
+	.ppi-desktop
+	{
+		display: none;
+	}
+
+	.ppi-mobile
+	{
+		display: inherit;
+	}
+	/**/
+
+
+
+
+
+}
+
+
+
+
+/* floats the hamburger to the left side */
+.navbar-toggle {
+	float: left;
+	margin-left: 10px;
+	padding-left:10px;
+}
+
+/* center the navbar */
+.navbar {
+	text-align: center;
+	padding:0px !important;
+	margin:0px !important;
+}
+/* center the navbar */
+.navbar .navbar-nav {
+	display: inline-block;
+	float: none;
+	margin:0px !important;
+	position:relative;
+	padding-top:40px !important;
+}
+
+
+/* top search bar styles */
+input#ppi-search-top {
+	border-radius: 5px;
+	background: transparent;
+	border-top: transparent !important;
+	border-left: transparent !important;
+	border-right: transparent !important;
+	border-bottom: transparent !important;
+	border: 1px solid #3c3c3c !important;
+	font-weight: 200;
+	background-color:#4f1e30 !important;
+	padding-left: 10px;
+	margin:0px;
+	box-shadow: none !important;
+	height:	31px ;
+	color: #3c3c3c;
+}
+
+
+input#ppi-search-top {
+	background-color:#4f1e30;
+	color: #acacac;
+	font-style: italic;
+	font-size: 9pt !important;
+
+
+
+}
+
+
+
+/**/
+input#ppi-search-bottom {
+	background: transparent;
+	border-top: transparent !important;
+	border-left: transparent !important;
+	border-right: transparent !important;
+	border-bottom: transparent !important;
+	border: 1px solid #3c3c3c !important;
+	background-color: #f5f3f4;
+	box-shadow: none !important;
+
+	font-weight: 200;
+
+
+}
+
+.fa-user-circle {
+	color: #005daf;
+	background: #ffffff;
+	border-radius: 50%;
+}
+.fa-search
+{
+	color: #3c3c3c;
+}
+
+.ppi-search
+{
+	height: 34px !important;
+}
+
+.btn:focus,.btn:active {
+	outline: none !important;
+}
+
+/* image used in background for homepage & mobile */
+.ppi-mobile-homepage-bg
+{
+	/* Image is centered vertically and horizontally at all times */
+	background-position: center top;
+
+	background-repeat: no-repeat;
+
+	/* This is what makes the background image rescale based on its container's size */
+	background-size: cover;  /* auto is the other method, but runs out of space */
+
+	background-image: url("/app/images/backdrop/ppi-banner-test-2.jpg");
+
+	background-color: #cccccc;
+
+	padding-top:120px;
+	padding-bottom:250px;
+
+}
+
+
+/* page titles */
+.ppi-page-title
+{
+	padding-top:60px;
+	padding-bottom:280px;
+}
+
+/* image used in background for homepage & mobile */
+.ppi-service-bg
+{
+	/* Image is centered vertically and horizontally at all times */
+	background-position: center top;
+
+	background-repeat: no-repeat;
+
+	/* This is what makes the background image rescale based on its container's size */
+	background-size: cover;  /* auto is the other method, but runs out of space */
+
+	background-image: url("/app/images/home-feature-section-1.jpg");
+
+	background-color: #cccccc;
+
+
+	padding-top:80px;
+	padding-bottom:100px;
+
+}
+
+/* image used in background for homepage & mobile */
+.ppi-bottom-bg
+{
+	/* Image is centered vertically and horizontally at all times */
+	background-position: center top;
+
+	background-repeat: no-repeat;
+
+	/* This is what makes the background image rescale based on its container's size */
+	background-size: cover;  /* auto is the other method, but runs out of space */
+
+	background-image: url("/app/images/home-feature-section-2.jpg");
+
+	background-color: #cccccc;
+
+
+	padding-top:0px;
+	padding-bottom:0px;
+
+}
+
+
+
+
+
+/* border transparent on homepage enquiry area */
+.ppi-lightbox-inside
+{
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	margin-top:30px;
+	box-shadow: -8px 8px 2px rgba(0, 0, 0, 0.3);
+	border-radius:15px;
+	background:#ffffff;
+	/*	border: 10px solid rgba(0, 0, 0, 0.1); */
+	-webkit-background-clip: padding;
+
+}
+
+
+/* standard page content style */
+.ppi-page-content
+{
+	background-color:#ffffff;
+	color:#000000;
+	padding:0px;
+}
+
+
+.h1
+{
+	padding-top:0px;
+	padding-bottom:10px;
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-weight: bold;
+}
+
+
+
+
+/* pagination */
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+	z-index: 3;
+	color: #ffffff;
+	cursor: default;
+	background-color: #3c3c3c;
+	border-color: #3c3c3c;
+}
+
+
+/* pagination */
+.pagination>li>a, .pagination>li>span {
+	position: relative;
+	float: left;
+	padding: 6px 12px;
+	margin-left: -1px;
+	line-height: 1.42857143;
+	color: #3c3c3c;
+	text-decoration: none;
+	background-color: #ffffff;
+	border: 1px solid #3c3c3c;
+}
+
+/* pagination */
+.pagination-disabled
+{
+	border: 1px solid #3c3c3c  !important;
+	background-color:#ffffff  !important;
+	color:#3c3c3c  !important;
+}
+
+/* pagination */
+.pagination>li>a:hover {
+	position: relative;
+	float: left;
+	padding: 6px 12px;
+	margin-left: -1px;
+	line-height: 1.42857143;
+	color: #3c3c3c;
+	text-decoration: none;
+	background-color: #cccccc;
+	border: 1px solid #3c3c3c;
+}
+
+/* breadcrumbs - maybe not needed */
+.ppi-page-breadcrumbs
+{
+	background-color:#f5f3f3; color:#4f1e30; padding:10px;
+}
+
+
+/*  search results page header for item*/
+h3.ppi-search-result-header a
+{
+	color:	#4f1e30;
+	text-decoration: none;
+}
+
+
+
+
+.btn-dark {
+	color: #ffffff;
+	background-color: #3F3F3F;
+	border-color: #2C2C2C;
+}
+
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark:active,
+.btn-dark.active,
+.open .dropdown-toggle.btn-dark {
+	color: #ffffff;
+	background-color: #2C2C2C;
+	border-color: #2C2C2C;
+}
+
+.btn-dark:active,
+.btn-dark.active,
+.open .dropdown-toggle.btn-dark {
+	background-image: none;
+}
+
+.btn-dark.disabled,
+.btn-dark[disabled],
+fieldset[disabled] .btn-dark,
+.btn-dark.disabled:hover,
+.btn-dark[disabled]:hover,
+fieldset[disabled] .btn-dark:hover,
+.btn-dark.disabled:focus,
+.btn-dark[disabled]:focus,
+fieldset[disabled] .btn-dark:focus,
+.btn-dark.disabled:active,
+.btn-dark[disabled]:active,
+fieldset[disabled] .btn-dark:active,
+.btn-dark.disabled.active,
+.btn-dark[disabled].active,
+fieldset[disabled] .btn-dark.active {
+	background-color: #3F3F3F;
+	border-color: #2C2C2C;
+}
+
+.btn-dark .badge {
+	color: #3F3F3F;
+	background-color: #ffffff;
+}
+
+
+
+
+
+/* feature boxes on homepage */
+.ppi-feature-container
+{
+	position:	relative;
+	padding-top:	20px;
+	padding-bottom:	20px;
+	padding-left:0px;
+	padding-right:0px;
+	margin:0px;
+}
+
+.ppi-feature-image
+{
+	padding-top:12px;
+}
+
+.ppi-feature-description
+{
+	padding-bottom:30px;
+	font-size: 14px;
+}
+
+.ppi-feature-read-more
+{
+	position:absolute;
+	bottom:20px;
+	right:20px;
+}
+
+
+.ppi-feature-text
+{
+	padding:0px;
+	margin:0px;
+}
+
+.ppi-feature-title
+{
+	text-align:left;
+	font-size:	16pt;
+	font-weight:	bold;
+	padding-bottom:	5px;
+	padding-top:	10px;
+	padding-left:	0px;
+}
+
+
+/* for the feature snippets */
+.ppi-feature-snippet
+{
+	background-color:#f2f2f1;
+	padding:10px 10px 20px 10px;
+	margin-top:20px;
+	margin-bottom:20px;
+	min-height:100px;
+}
+
+
+/* medium 2-box
+@media(max-width:992px)
+{
+
+	.ppi-product-1
+	{
+		border-bottom: 1px solid #dcdcdc;
+		border-right: 1px solid #dcdcdc;
+	}
+	.ppi-product-2
+	{
+		border-bottom: 1px solid #dcdcdc;
+	}
+	.ppi-product-3
+	{
+		border-left: 0px solid #dcdcdc;
+		border-bottom: 1px solid #dcdcdc;
+		border-right: 1px solid #dcdcdc;
+	}
+	.ppi-product-4
+	{
+		border-right: 0px solid #dcdcdc;
+		border-bottom: 1px solid #dcdcdc;
+	}
+
+	.ppi-product-5
+	{
+		border-right: 1px solid #dcdcdc;
+	}
+	.ppi-product-6
+	{
+		border-left: 0px solid #dcdcdc;
+	}
+}
+*/
+
+/* answers section */
+.ppi-answers-left
+{
+	padding-top:20px;padding-left:20px;padding-right:20px;
+}
+
+.ppi-answers-right
+{
+	padding-top:40px;padding-left:20px;padding-right:20px;
+}
+
+
+/* xs  2-box */
+@media(max-width:767px)
+{
+
+
+	.ppi-box-text
+	{
+		font-size:12px;
+		padding:10px 15px 10px 15px;
+		margin:0px;
+	}
+
+	.ppi-box-title
+	{
+		font-size:20px; font-weight:700;
+		padding:10px 15px 10px 15px;
+		margin:0px;
+		border-bottom: 1px solid #dddddd;
+	}
+
+	.ppi-box-border
+	{
+		background-color:#e9e9e9;
+		padding-top:15px;
+		padding-bottom:50px;
+		padding-left: 0px;
+		padding-right: 0px;
+		margin-top:20px;
+		margin-bottom:20px;
+	}
+
+	.ppi-box-image
+	{
+		padding: 0px;
+	}
+
+
+
+	.ppi-title
+	{
+		font-size:28px; font-weight:700;padding:5px 0px 0px 0px; margin:0px;
+	}
+
+
+	/* answers section */
+	.ppi-answers-left
+	{
+		padding-top:20px;padding-left:0px;padding-right:0px;
+	}
+
+	.ppi-answers-right
+	{
+		padding-top:40px;padding-left:0px;padding-right:0px;
+	}
+
+
+	/* meet the team image */
+	.ppi-meet-team-image
+	{
+		float: left;
+	}
+
+	.ppi-product-1
+	{
+		border: 0px;
+		border-bottom: 1px solid #dcdcdc;
+	}
+	.ppi-product-2
+	{
+		border: 0px;
+		border-bottom: 1px solid #dcdcdc;
+	}
+	.ppi-product-3
+	{
+		border: 0px;
+		border-bottom: 1px solid #dcdcdc;
+	}
+	.ppi-product-4
+	{
+		border: 0px;
+		border-bottom: 1px solid #dcdcdc;
+	}
+
+	.ppi-product-5
+	{
+		border: 0px;
+		border-bottom: 1px solid #dcdcdc;
+	}
+	.ppi-product-6
+	{
+		border: 0px;
+		border-bottom: 1px solid #dcdcdc;
+	}
+
+
+	/* mobile */
+	.ppi-blog-header
+	{
+		padding-top:50px;
+		padding-bottom:10px;
+	}
+
+
+}
+
+
+
+h4 {line-height: 1.3em;}
+
+
+
+
+
+
+
+.btn-blue {
+	background-color: #3c8fca;
+	border-color: #3c8fca;
+	color:	#ffffff;
+}
+.btn-blue:hover,
+.btn-blue:focus,
+.btn-blue:active,
+.btn-blue.active {
+	background-color: #3382ba;
+	border-color: #2d74a6;
+	color:	#ffffff;
+}
+.btn-blue.disabled:hover,
+.btn-blue.disabled:focus,
+.btn-blue.disabled:active,
+.btn-blue.disabled.active,
+.btn-blue[disabled]:hover,
+.btn-blue[disabled]:focus,
+.btn-blue[disabled]:active,
+.btn-blue[disabled].active,
+fieldset[disabled] .btn-blue:hover,
+fieldset[disabled] .btn-blue:focus,
+fieldset[disabled] .btn-blue:active,
+fieldset[disabled] .btn-blue.active {
+	background-color: #3c8fca;
+	border-color: #3c8fca;
+}
+
+
+.vertical-menu {
+	width:	100%;
+}
+
+.vertical-menu a {
+	background-color: #ffffff; /* Grey background color */
+	color: black; /* Black text color */
+	display: block; /* Make the links appear below each other */
+	padding: 12px; /* Add some padding */
+	text-decoration: none; /* Remove underline from links */
+	border-radius: 5px;
+	-moz-border-radius:	5px;
+	-webkit-border-radius: 5px;
+	margn-bottom:5px;
+}
+
+.vertical-menu li > a:hover {
+	background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+	background-color: #4CAF50; /* Add a green color to the "active/current" link */
+	color: white;
+}
+
+.navbar-brand
+{
+	line-height:inherit;
+	height:	100%;
+	padding:10px;
+}
+
+.ppi-website-navbar-menu .navbar-brand {
+	/*position: relative;*/
+
+}
+
+
+/* menu under the hamburger */
+.ppi-website-navbar
+{
+	margin-left:0px;margin-right:0px;clear:both;
+}
+
+.active a
+{
+	background-color :#cccccc;
+	color:	#000000;
+}
+
+.sign a
+{
+	background-color :#4CAF50 !important ;
+	color:	#ffffff !important;
+
+}
+
+
+.panel-heading2
+{
+	background-color :#6f2e50;;
+	color:	#ffffff;
+	padding:10px 10px 10px 20px ;
+	margin: 0px;
+	border-radius:0px;
+	clear:both;
+	font-size: 20px;
+}
+
+
+/* fixes the pixel gap with navigation and dropdown */
+.navbar-collapse.collapse  {
+	width: auto;
+	border:0px !important;
+	-webkit-box-shadow: none;
+	box-shadow: none !important;
+}
+
+.ppi-please-read
+{
+	color :#ffffff;
+	background-color:#6f2e50;
+	padding:10px;
+}
+
+.ppi-confirm-checkbox
+{
+	color :#ffffff;
+	background-color:#999999;
+	padding-top: 8px;
+	padding-bottom: 8px;
+
+
+}
+input[type="checkbox"] {
+
+}
+.checkbox {
+	margin: 30px 0 0 0;
+}
+
+
+
+
+.btn-purple {
+	background-color: #470a29;
+	border: 2px solid #ffffff;
+	font-size: 9pt;
+
+}
+.btn-purple:hover,
+.btn-purple:focus,
+.btn-purple:active,
+.btn-purple.active {
+	background-color: #31071c;
+	border: 2px solid #ffffff;
+	color: #ffffff;
+}
+.btn-purple.disabled:hover,
+.btn-purple.disabled:focus,
+.btn-purple.disabled:active,
+.btn-purple.disabled.active,
+.btn-purple[disabled]:hover,
+.btn-purple[disabled]:focus,
+.btn-purple[disabled]:active,
+.btn-purple[disabled].active,
+fieldset[disabled] .btn-purple:hover,
+fieldset[disabled] .btn-purple:focus,
+fieldset[disabled] .btn-purple:active,
+fieldset[disabled] .btn-purple.active {
+	background-color: #470a29;
+	border: 2px solid #ffffff;
+}

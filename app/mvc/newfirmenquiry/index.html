@@ -1,0 +1,273 @@
+{{header}}
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<!--- main content -->
+<div>
+	{{page_content}}
+	<br>
+
+
+
+	<form id="frmContact" action="contact" method="post" class="form-horizontal">
+		<div class="col-xs-12 col-lg-8 col-lg-offset-2 col-sm-12  col-md-10 col-md-offset-1">
+
+			<div class="form-group">
+				<label class="col-sm-6 col-xs-12 control-label"><span class="required"></span>Your Name:</label>
+				<div class="col-sm-6 col-xs-12 ">
+					<input class="form-control input-small col-xs-6" autocomplete="on" name="formName" id="formName" type="text" placeholder="Your Name" value="{{formName}}">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-6 col-xs-12 control-label"><span class="required"></span>Company Name:</label>
+				<div class="col-sm-6 col-xs-12 ">
+					<input class="form-control input-small" autocomplete="on" name="formCompanyName" id="formCompanyName" type="text" placeholder="Company Name" value="{{formCompanyName}}">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-6 col-xs-12 control-label"><span class="required"></span>Email:</label>
+				<div class="col-sm-6 col-xs-12 ">
+					<input class="form-control input-small" autocomplete="on" name="formEmail" id="formEmail" type="text" placeholder="Your Email Address" value="{{formEmail}}">
+				</div>
+			</div>
+
+
+
+			<div class="form-group ">
+				<label class="col-sm-6 col-xs-12 control-label"><span class="required"></span>Phone:</label>
+				<div class="col-sm-6 col-xs-12 ">
+					<input class="form-control input-small" autocomplete="on" name="formTelephone" id="formTelephone" type="text" placeholder="Your Telephone Number" value="{{formTelephone}}">
+				</div>
+			</div>
+
+
+			<div class="form-group ">
+				<label class="col-sm-6 col-xs-12 control-label"><span class="required"></span>Where did you hear about us?:</label>
+				<div class="col-sm-6 col-xs-12 ">
+					<select name="formHowFound" id="formHowFound" class="form-control ">
+						<option value=""></option>
+						<option value="APIL Advert">APIL Advert</option>
+						<option value="Eclipse">Eclipse</option>
+						<option value="Google Advert">Google Advert</option>
+						<option value="Gazette Advert">Gazette Advert</option>
+						<option value="Search Engine">Search Engine</option>
+						<option value="Legal & Medical Magazine">Legal & Medical Magazine</option>
+						<option value="Legislation Funding Magazine">Legislation Funding Magazine</option>
+						<option value="Read the Blog">Read the Blog</option>
+						<option value="Recommendation">Recommendation</option>
+						<option value="Solicitors Journal">Solicitors Journal</option>
+						<option value="Taxi Advert">Taxi Advert</option>
+						<option value="Used us in old firm">Used us in old firm</option>
+						<option value="Type Media">Type Media</option>
+					</select>
+				</div>
+			</div>
+
+
+			<div class="form-group ">
+				<label class="col-sm-6 col-xs-12 control-label"><span class="required"></span>Your Message:</label>
+				<div class="col-sm-6 col-xs-12 ">
+					<textarea name="formMessage"  id="formMessage" class="form-control input-small"  rows="10"  placeholder="Your Message" value="{{formMessage}}"></textarea>
+				</div>
+			</div>
+
+
+			<div class="form-group ">
+				<label class="col-sm-6 col-xs-12 control-label"><span class="required"></span>Please tick box:</label>
+				<div class="col-sm-6 col-xs-12 ">
+					<div class="g-recaptcha " data-sitekey="6LcrrFAUAAAAAEUQ15nC1lH7nDW2R-CC31yj_pXv"></div>
+				</div>
+			</div>
+
+
+			<div class="form-group bl-submit-contact-button">
+				<div class="col-sm-6 col-xs-12 ">
+				</div>
+
+				<div class="col-sm-6 col-xs-12 ">
+					<br><br>
+					<button class="btn btn-sm btn-blue bl-submit-contact-button-inside"   type="button"  id="sendContactForm"  name="sendContactForm">Submit&nbsp;&nbsp;<i class="fa fa-envelope fa-lg" aria-hidden="true"></i></button>
+					<br><br><br><br><br><br>
+
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+
+
+
+</div>
+
+
+{{links_string}}
+
+<br>
+
+
+
+
+
+
+
+
+<script>
+
+
+	// validates and submits form - added hotjar
+	function doSendContactForm()
+	{
+		var	bformFullName			=	$("#frmContact").validate().element("#formName");
+		var	bformCompanyName		=	$("#frmContact").validate().element("#formCompanyName");
+		var	bformEmail				=	$("#frmContact").validate().element("#formEmail");
+		var	bformPhone				=	$("#frmContact").validate().element("#formTelephone");
+		var	bformMessage			=	$("#frmContact").validate().element("#formMessage");
+
+
+		var formData 				= 	$("#frmContact").serialize();
+
+		// make sure we at least have
+		if ((bformFullName==true) && (bformCompanyName==true) && (bformEmail==true) && (bformPhone==true) && (bformMessage==true))
+		{
+			$.ajax(
+				{
+					url:		'/app/mvc/contact/doSendContact.php',
+					type:		'POST',
+					cache:		false,
+					async:		true,
+					dataType:	'json',
+					data:
+						{
+							formData : formData,
+						},
+					success:	function(data)
+					{
+						// re-enable button
+						//					$('#sendContactForm').html('Send').prop('disabled',false);
+
+
+						if	(data.returncode == 'error')
+						{
+							// hotjar failing
+							//						hj('formSubmitFailed');
+
+							$.alert({
+								type: 'red',
+								confirmButton: 'Ok',
+								title: 'Warning!',
+								content: data.message,
+							});
+
+
+						}
+						else if (data.returncode == 'success')
+						{
+							// hotjar success
+							//						hj('formSubmitSuccessful');
+
+							window.location.href = '/?pUpdate=contactSent';
+						}
+					},
+					failure:	function()
+					{
+						alert('failure');
+					}
+				}
+
+			)
+
+		}
+	}
+
+
+
+
+
+	// once all page is loaded
+    window.onload = function(e)
+    {
+
+
+
+		$(document).ready(function(){
+
+
+
+			// duplicate presses fix submit
+			$('#sendContactForm').on('click',function()
+			{
+				doSendContactForm();
+
+			});
+
+
+							$('#frmContact').validate(
+							{
+
+
+								rules: {
+
+
+									formName: {
+										minlength: 2,
+										required: true
+									},
+									formCompanyName: {
+										minlength: 2,
+										required: true
+									},
+
+									formMessage: {
+										minlength: 2,
+										required: true
+									},
+									// checks if email is already taken on server
+									formEmail: {
+										email: true,
+										required: true
+									},
+									formTelephone: {
+										minlength: 2,
+										required: true
+									},
+
+								},
+								highlight: function (element) {
+									$(element).closest('.form-group').addClass('has-error');
+								},
+								unhighlight: function (element) {
+									$(element).closest('.form-group').removeClass('has-error');
+								},
+								errorElement: 'span',
+								errorClass: 'help-block',
+								errorPlacement: function (error, element) {
+									if (element.parent('.input-group').length) {
+										error.insertAfter(element.parent());
+									} else {
+										error.insertAfter(element);
+									}
+
+								}
+
+
+
+							});
+
+
+            }
+
+
+
+
+        );
+
+    };
+
+
+</script>
+
+{{footer}}

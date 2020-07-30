@@ -1,0 +1,454 @@
+{{header}}
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<!--- main content -->
+<div>
+	{{page_content}}
+	<br>
+
+
+	<br>
+
+	<form id="frmLoginPage" action="login" method="post" class="form-horizontal">
+
+
+		<div class="col-xs-12 col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1  col-md-8 col-md-offset-2">
+
+			<div class="form-group">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Your Name:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<input class="form-control input-small col-xs-6" autocomplete="on" name="formName" id="formName" type="text" placeholder="Your Name" value="{{formName}}">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Company Name:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<input class="form-control input-small" autocomplete="on" name="formCompanyName" id="formCompanyName" type="text" placeholder="Company Name" value="{{formCompanyName}}">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Email:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<input class="form-control input-small" autocomplete="on" name="formEmail" id="formEmail" type="text" placeholder="Your Email Address" value="{{formEmail}}">
+				</div>
+			</div>
+
+
+
+			<div class="form-group ">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Phone:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<input class="form-control input-small" autocomplete="on" name="formTelephone" id="formTelephone" type="text" placeholder="Your Telephone Number" value="{{formTelephone}}">
+				</div>
+			</div>
+
+
+			<div class="form-group ">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Where did you hear about us?:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<select name="formHowFound" id="formHowFound" class="form-control ">
+						<option value=""></option>
+						<option value="APIL Advert">APIL Advert</option>
+						<option value="Eclipse">Eclipse</option>
+						<option value="Google Advert">Google Advert</option>
+						<option value="Gazette Advert">Gazette Advert</option>
+						<option value="Search Engine">Search Engine</option>
+						<option value="Legal & Medical Magazine">Legal & Medical Magazine</option>
+						<option value="Legislation Funding Magazine">Legislation Funding Magazine</option>
+						<option value="Read the Blog">Read the Blog</option>
+						<option value="Recommendation">Recommendation</option>
+						<option value="Solicitors Journal">Solicitors Journal</option>
+						<option value="Taxi Advert">Taxi Advert</option>
+						<option value="Used us in old firm">Used us in old firm</option>
+						<option value="Type Media">Type Media</option>
+					</select>
+				</div>
+			</div>
+
+
+			<div class="form-group ">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Your Message:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<textarea name="formMessage"  id="formMessage" class="form-control input-small"  rows="10"  placeholder="Your Message" value="{{formMessage}}"></textarea>
+				</div>
+			</div>
+
+
+			<div class="form-group ">
+				<label class="col-sm-5 col-xs-12 control-label"><span class="required"></span>Please tick box:</label>
+				<div class="col-sm-7 col-xs-12 ">
+					<div class="g-recaptcha " data-sitekey="6LcrrFAUAAAAAEUQ15nC1lH7nDW2R-CC31yj_pXv"></div>
+				</div>
+			</div>
+
+
+			<div class="form-group bl-submit-contact-button">
+				<div class="col-sm-5 col-xs-12 ">
+				</div>
+
+				<div class="col-sm-7 col-xs-12 ">
+					<br><br>
+					<button class="btn btn-sm btn-blue bl-submit-contact-button-inside"   type="button"  id="sendContactForm"  name="sendContactForm">Submit&nbsp;&nbsp;<i class="fa fa-envelope fa-lg" aria-hidden="true"></i></button>
+					<br><br><br><br><br><br>
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="container">
+
+
+
+			<br>
+			<br>
+
+			<div class="row">
+				<div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+					<div class="col-md-10 col-sm-12 col-xs-12">
+						<div class="panel panel-default ">
+							<div class="panel-heading fairplane-panel">
+								<h3 class="panel-title">Login</h3>
+							</div>
+
+							<div class="panel-body">
+								<div class="row-fluid ">
+									<div class="login-link">
+										Only solicitors signed to our ATE insurance panel scheme will be permitted to access the secure areas of this site. To become a panel member, click the button to contact us. We will be in touch shortly to discuss the application process.
+										<br><br>
+										Before you can access your details, please <a class="login-link" href="/website_registration">sign up here</a> using the same email address that you used when you originally submitted your claim with us.
+										<br>
+										<hr>
+
+									</div>
+									<!-- split -->
+									<div class="col-sm-7">
+										<div class="form-group col-sm-12">
+											<label class="control-label"><span class="required">*</span>Email Address:</label>
+											<input class="form-control input-small"  name="formEmail" id="formEmail" type="text" placeholder="Email Address" value="{{formEmail}}" >
+										</div>
+										<div class="form-group col-sm-12">
+											<label class="control-label"><span class="required"></span>Password:</label>
+											<input class="form-control" autocomplete="off" name="formPassword" id="formPassword" type="password" value="" placeholder="Password">
+										</div>
+										<div class="form-group col-xs-12">
+											<input class="form-controls" autocomplete="off" type="checkbox" name="formRememberMe" id="formRememberMe" value="1" {{formRememberMe}}>&nbsp; Remember Me
+										</div>
+									</div>
+
+									<!-- split -->
+									<div class="col-sm-5">
+										<div class="col-xs-12 text-center">
+											<br>
+											<br>
+											<button id="submitButton" type="button" class="btn btn-success btn-large" onclick="doLogin();">Login</button>
+											<br>
+											<br>
+											<div align="center">Forgotten your password? <a class="login-link" href="/lost-password/" title="Lost Password">Click here</a></div>
+											<br>
+											<div align="center">Don't have an account? <a class="login-link" href="/website_registration/" title="Register here">Register here</a></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- split -->
+					<div class="col-md-2 hidden-sm hidden-xs" style=" position:absolute;bottom:10px;right:0px;">
+						<img class="hidden-xs"  src="/app/images/website/fred_pointing.png">
+					</div>
+				</div>
+			</div>
+
+			<br>
+			<br>
+
+		</div>
+
+	</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script>
+
+
+		// once all page is loaded
+		window.onload = function(e)
+		{
+
+			$(document).ready(function(){
+
+				$('#frmLoginPage').validate(
+					{
+						rules: {
+
+							formEmail: {
+								required: true,
+								email: true,
+							},
+
+							formPassword: {
+								minlength: 2,
+								required: true
+							}
+						},
+
+						highlight: function(element) {
+							$(element).closest('.form-group').addClass('has-error');
+						},
+						unhighlight: function(element) {
+							$(element).closest('.form-group').removeClass('has-error');
+						},
+						errorElement: 'span',
+						errorClass: 'help-block',
+						errorPlacement: function(error, element) {
+							if(element.parent('.input-group').length) {
+								error.insertAfter(element.parent());
+							} else {
+								error.insertAfter(element);
+							}
+						}
+					});
+
+
+
+
+
+
+
+
+				$('#formRememberMe').click(function () {
+
+					var value	=	"";
+
+					if ($('#formRememberMe').is(":checked"))
+					{
+						value	=	"checked";
+					}
+					else
+					{
+						value	=	"unchecked";
+					}
+
+					var  formEmail				=	$('#formEmail').val();
+					var  formPassword			=	$('#formPassword').val();
+					var  formRememberMe			=	$('#formRememberMe').val();
+					var  value					=	value;
+
+
+
+					$.ajax(
+						{
+							url:		'/app/mvc/register/doRememberMe.php',
+							type:		'GET',
+							cache:		false,
+							async:		true,
+							dataType:	'json',
+							data:
+								{
+									formEmail : formEmail,
+									formRememberMe : formRememberMe,
+									value : value,
+								},
+							success:	function(data)
+							{
+								if (data.returncode == 'success')
+								{
+									//	$('#formEmail').val(data.email);
+								}
+							},
+							failure:	function()
+							{
+								alert('failure');
+							}
+						}
+
+					)
+
+
+
+				});
+
+
+
+
+				// enter keydown
+				$(document).bind('keypress', function(e) {
+					if(e.keyCode==13)
+					{
+						console.log('pressed:'+e);
+						doLogin();
+					}
+				});
+
+
+
+			}); // end document.ready
+
+		}; // end window.onload
+
+
+		// validate and submit
+		function doLogin()
+		{
+			var	bformEmail				=	$("#frmLoginPage").validate().element("#formEmail");
+			var	bformPassword			=	$("#frmLoginPage").validate().element("#formPassword");
+
+			// re-validate these items
+			if (bformPassword && bformEmail )
+			{
+
+				var  formEmail				=	$('#formEmail').val();
+				var  formPassword			=	$('#formPassword').val();
+
+				var value	=	"";
+
+				if ($('#formRememberMe').is(":checked"))
+				{
+					value	=	"checked";
+				}
+				else
+				{
+					value	=	"unchecked";
+				}
+
+
+				var  formRememberMe			=	$('#formRememberMe').val();
+
+
+				$.ajax(
+					{
+						url:		'/app/mvc/register/doLogin.php',
+						type:		'GET',
+						cache:		false,
+						async:		true,
+						dataType:	'json',
+						data:
+							{
+								formEmail : formEmail,
+								formPassword : formPassword,
+								formRememberMe : formRememberMe,
+								value : value,
+							},
+						success:	function(data)
+						{
+							if	(data.returncode == 'error')
+							{
+								$.alert({
+									theme: 'material',
+									animation: 'scale',
+									type: 'red',
+									typeAnimated: 'false',
+									confirmButton: 'Ok',
+									title: 'A problem has occured!',
+									content: data.message,
+								});
+
+
+							}
+							else if (data.returncode == 'success')
+							{
+								window.location.href	=	data.returnurl;
+
+
+							}
+						},
+						failure:	function()
+						{
+							alert('failure');
+						}
+					}
+
+				)
+
+			}
+
+		}
+
+
+
+
+	</script>
+
+
+	{{footer}}

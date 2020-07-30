@@ -1,0 +1,341 @@
+<!-- form validation js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+
+
+<div class="mainAdminPage">
+    <div class="mainAdminFull">
+        <h1>{{page_title}}</h1>
+        <form name="edit_cert_wording" id="edit_cert_wording" method="post" class="formEditor">
+            <fieldset>
+                <legend>Please fill in the fields below:</legend>
+                <p>
+                    <label for="proclaim_code">Proclaim Policy Type</label>
+                    <input name="proclaim_code" id="proclaim_code" placeholder="Code sent by Proclaim" onkeydown="upperCaseF(this)" value="{{proclaim_code}}" class="formInputData" />
+                </p>
+                <p>
+                    <label for="id">Accident Type (Policy Type)</label>
+                    {{select_string}}
+                </p>
+                <p>
+                    <label for="class_cover">Class of Cover</label>
+                    <input type="text" name="class_cover" id="class_cover" placeholder="Cover of Class" value="{{class_cover}}" class="formInputData" />
+                </p>
+                <p>
+                    <label for="wording_bottom">Wording At Bottom</label>
+                    <textarea class="formInputData" name="wording_bottom" id="wording_bottom" rows="15" value="{{wording_bottom}}" ></textarea>
+                </p>
+                <p>
+                    <label for="extra_wording">Extra Certificate Wording</label>
+                    <textarea class="formInputData" name="extra_wording" id="extra_wording" rows="5"  value="{{extra_wording}}"></textarea>
+                </p>
+                <p>
+                    <label for="cert_wording_number">Certificate Wording Number</label>
+                    <input type="text" name="cert_wording_number" id="cert_wording_number" placeholder="Certificate Wording Number" value="{{cert_wording_number}}" class="formInputData" />
+                </p>
+            </fieldset>
+            <br/>
+            <button type="button" class="formButton" name="btnSubmit" id="btnSubmit" onclick="doSubmit();">Submit</button>
+        </form>
+    </div>
+</div>
+
+<script>
+
+    var submitted = false;
+
+    // ready waits for page to load before it executes
+    $(document).ready(function() {
+
+
+
+
+        $('#edit_cert_wording').validate({
+            rules: {
+                proclaim_code: {
+                    required: true,
+                },
+                id: {
+                    required: true,
+                },
+                class_cover:   {
+                    required: true,
+                },
+                wording_bottom:   {
+                    required: true,
+                },
+                extra_wording:   {
+                    required: true,
+                },
+                cert_wording_number:   {
+                    required: true,
+                }
+            },  //end rules
+            messages: {
+                proclaim_code: {
+                    required: 'Required field',
+                },
+                id: {
+                    required: 'Required field',
+                },
+                class_cover: {
+                    required: 'Required field',
+                },
+                wording_bottom: {
+                    required: 'Required field',
+                },
+                extra_wording: {
+                    required: 'Required field',
+                },
+                cert_wording_number: {
+                    required: 'Required field',
+                }
+            },
+            //end messages
+            errorPlacement: function(error, element) {
+                if( element.is(':radio') || element.is(':checkbox')) {
+                    error.appendTo(element.parent());
+                }
+                else {
+                    error.insertAfter(element);
+                }
+            },//end errorPlacement
+
+
+            showErrors: function(errorMap, errorList) {
+
+                this.defaultShowErrors();
+            },
+            invalidHandler: function(form, validator) {
+                submitted = true;
+            },
+            highlight: function(element) {
+                var id_attr = "#" + $( element ).attr("id") + "1";
+                $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+                $(id_attr).removeClass('glyphicon-ok').addClass('glyphicon-remove');
+
+            },
+            unhighlight: function(element) {
+                var id_attr = "#" + $( element ).attr("id") + "1";
+                $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                $(id_attr).removeClass('glyphicon-remove').addClass('glyphicon-ok');
+
+            },
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function(error, element) {
+                if(element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+
+                }
+            }
+        });//end validate
+
+
+
+
+
+// end of ready
+    });
+
+
+
+    // changes the input field to uppercase
+    function upperCaseF(a){
+        setTimeout(function(){
+            a.value = a.value.toUpperCase();
+        }, 1);
+    }
+
+
+    function allLetter(inputtxt)
+    {
+        var letters = /^[A-Za-z]+$/;
+        if(inputtxt.value.match(letters))
+        {
+            return true;
+        }
+        else
+        {
+            alert("message");
+            return false;
+        }
+    }
+
+    // submits the form for processing and updating
+    function doSubmit()
+    {
+
+
+        // validates the variable and also gives a true/false answer.
+        var	bProclaim_code		    =	$("#edit_cert_wording").validate().element("#proclaim_code");
+        var	bDrop_Down_Search		=	$("#edit_cert_wording").validate().element("#id");
+        var	bClass_cover		    =	$("#edit_cert_wording").validate().element("#class_cover");
+        var	bWording_bottom		    =	$("#edit_cert_wording").validate().element("#wording_bottom");
+        var	bExtra_wording		    =	$("#edit_cert_wording").validate().element("#extra_wording");
+        var	bCert_wording_number	=	$("#edit_cert_wording").validate().element("#cert_wording_number");
+
+        // if all fields are filled in, we can proceed to calling the ajax code to save the form
+        if (bProclaim_code && bDrop_Down_Search && bClass_cover && bWording_bottom && bExtra_wording && bCert_wording_number)
+        {
+            // grab the variables from the form
+            var proclaim_code		=	$('#proclaim_code').val();
+            var id			        =	$('#id').val();
+            var class_cover			=	$('#class_cover').val();
+            var wording_bottom		=	$('#wording_bottom').val();
+            var extra_wording		=	$('#extra_wording').val();
+            var cert_wording_number	=	$('#cert_wording_number').val();
+
+            // using ajax, we can call a php script and send it the variables.
+            $.ajax(
+                {
+                    url:		'doSubmitCertificateWording.php',
+                    type:		'POST',
+                    cache:		false,
+                    async:		true,
+                    dataType:	'json',
+                    data:
+                        {
+                            proclaim_code 			:	proclaim_code,
+                            id 		                :	id,
+                            class_cover 			:	class_cover,
+                            wording_bottom			:	wording_bottom,
+                            extra_wording 			:	extra_wording,
+                            cert_wording_number 	:	cert_wording_number,
+                        },
+                    success:	function(data)
+                    {
+                        // what happens if the script send an error code
+                        if	(data.returncode == 'error')
+                        {
+                            // a popup if we have an error from the submit script
+                            $.alert({
+                                theme: 'material',
+                                animation: 'scale',
+                                type: 'red',
+                                typeAnimated: 'true',
+                                confirmButton: 'Ok',
+                                title: 'A problem has occurred!',
+                                content: data.message,
+                            });
+
+
+                        }
+                        // what happens if the script send a success code
+                        else if (data.returncode == 'success')
+                        {
+
+                            $.alert({
+                                theme: 'material',
+                                animation: 'scale',
+                                type: 'green',
+                                typeAnimated: 'true',
+                                confirmButton: 'Ok',
+                                title: 'Success!',
+                                content: data.message,
+                            });
+
+
+                        }
+                    },
+                    failure:	function()
+                    {
+                        alert('failure');
+                    }
+                }
+
+            )
+
+
+        }
+        else
+        {
+            // simple alert popup if fields are not all verified as valid
+            $.alert({
+                backgroundDismiss: true, // this will just close the modal
+                theme: 'material',
+                animation: 'scale',
+                type: 'red',
+                typeAnimated: 'true',
+                confirmButton: 'Ok',
+                title: 'Reminder',
+                content: "Please fill in all required fields",
+            });
+
+        }
+
+    }
+
+    <!-- this function has an alert inside which shows the selected value from the dropdown list -->
+
+
+</script>
+
+<script>
+    // function ddChange uses Ajax to return the values of the input and textareas when the dropdown is selected
+    function ddChange() {
+
+
+
+        // grab the variables from the form
+        var id			=	$('#id').val();
+
+
+        // using ajax, we can call a php script and send it the variables.
+        $.ajax(
+            {
+                // change the URL HERE!!!
+                url:		'doChangeDropdown.php',
+                type:		'POST',
+                cache:		false,
+                async:		true,
+                dataType:	'json',
+                // notice we are passing all the variables
+                data:
+                    {
+                        id : id,
+                    },
+                success:	function(data)
+                {
+                    // what happens if the script send an error code
+                    if	(data.returncode == 'error')
+                    {
+                        // a popup if we have an error from the submit script
+                        $.alert({
+                            theme: 'material',
+                            animation: 'scale',
+                            type: 'red',
+                            typeAnimated: 'true',
+                            confirmButton: 'Ok',
+                            title: 'A problem has occurred!',
+                            content: data.message,
+                        });
+                    }
+                    // what happens if the script send a success code
+                    else if (data.returncode == 'success')
+                    {
+
+                        // put the data you got back into the variables!
+                        $("#proclaim_code").val(data.proclaim_code);
+                        $("#class_cover").val(data.class_cover);
+                        $("#wording_bottom").val(data.wording_bottom);
+                        $("#extra_wording").val(data.extra_wording);
+                        $("#cert_wording_number").val(data.cert_wording_number);
+
+                    }
+                },
+                // if there is a catastrophic error (never seen this happen before)
+                failure:	function()
+                {
+                    alert('failure');
+                }
+            }
+
+        )
+
+
+    }
+
+
+</script>

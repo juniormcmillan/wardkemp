@@ -1,0 +1,32 @@
+{{header}}
+<style>
+	.iframe-container {
+		overflow: hidden;
+		padding-top: 56.25%;
+		position: relative;
+	}
+
+	.iframe-container iframe {
+		border: 0;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+</style>
+</div>
+<!--
+<div style="text-align:center;">
+    <iframe id="iframe" scrolling="yes" seamless="seamless" frameborder="0" align="center" style="text-align: center; height:800px; width:100%; overflow-y:hiddens;"
+            src="{{sign_doc_url}}">
+    </iframe>
+    <br/>
+</div>
+-->
+
+<div class="iframe-container" style="min-height:300px; ">
+	<iframe  src="{{sign_doc_url}}" frameborder="0"></iframe>
+</div>
+
+{{footer}}
