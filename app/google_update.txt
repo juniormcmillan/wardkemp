@@ -269,3 +269,15 @@ mobile:07828931325
 
 2020-07-29 16:03:50|127.0.0.1|http://wardkemp2.co.uk/scripts/update_from_google.php?case_key=W100014&defendant=&Type-Code=HD&google_lead_id=3671186512894815&company_id=&connex=Yes&address1=&address2=&town=&postcode=&title=&forename=&surname=Nora%20OBrien&email=roseoftraleeforever%40hotmail.co.uk&mobile=07828931325|FOUND USER via lead_id:3671186512894815
 2020-07-29 16:03:56	 sendConnex() case_key:W100014,name:Nora OBrien connex_sent:Yes
+2020-07-30 8:23:14|127.0.0.1|http://wardkemp2.co.uk/scripts/update_from_google.php?case_key=W100014&defendant=&Type-Code=HD&google_lead_id=3671186512894815&company_id=&connex=Yes&address1=&address2=&town=&postcode=&title=&forename=&surname=Nora%20OBrien&email=roseoftraleeforever%40hotmail.co.uk&mobile=07828931325|Ok: case_key: W100014
+email:roseoftraleeforever@hotmail.co.uk
+address1:
+address2:
+town:
+postcode:
+title:
+forename:
+surname:Nora OBrien
+typecode:HD
+mobile:07828931325
+

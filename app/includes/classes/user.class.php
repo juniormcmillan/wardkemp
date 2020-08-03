@@ -434,14 +434,22 @@ AddCommentOnly("sendConnex() case_key:$case_key,name:$name connex_sent:$connex_s
 				{
 					AddCommentOnly("sendConnex() case_key:$case_key, Connex has been sent");
 					# set field
-					$gMysql->update("update ppi_user set connex_sent='Yes' where case_key='$case_key'",__FILE__,__LINE__);
+					$gMysql->update("update ppi_user set connex_sent='yes' where case_key='$case_key'",__FILE__,__LINE__);
 				}
 				else
 				{
 					AddCommentOnly("sendConnex() case_key:$case_key, FAILED:". $result2->message . "");
 				}
 			}
+			else
+			{
+				AddCommentOnly("sendConnex() case_key:$case_key, ALREADY SENT");
+			}
 		}
+		else
+		{
 
+			AddCommentOnly("couldn't find in database");
+		}
 	}
 }

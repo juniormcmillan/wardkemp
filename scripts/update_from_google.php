@@ -35,7 +35,7 @@ $invalid_characters 	=	array("$", "%", "#", "<", ">", "|",",","'","'");
 # check for variables
 $google_lead_id		= GetVariableString('google_lead_id',$_GET,"");
 $company_id			= GetVariableString('company_id',$_GET,"");
-$connex				= GetVariableString('connex',$_GET,"");
+$connex				= strtolower(GetVariableString('connex',$_GET,""));
 $case_key			= GetVariableString('case_key',$_GET,"");
 $address1			= str_replace($invalid_characters, "",GetVariableString('address1',$_GET,""));
 $address2			= str_replace($invalid_characters, "",GetVariableString('address2',$_GET,""));
@@ -47,6 +47,24 @@ $surname			= ucfirst(str_replace($invalid_characters, "",GetVariableString('surn
 $email				= GetVariableString('email',$_GET,"");
 $mobile				= GetVariableString('mobile',$_GET,"");
 $type_code			= GetVariableString('Type-Code',$_GET,"");
+
+
+
+# if first numbers are 44, then delete first two numbers
+$first_two 				=	substr($mobile, 0, 2);
+if($first_two == "44")
+{
+	$mobile	=		substr($mobile, 2);
+}
+
+$first_one 				=	substr($mobile, 0, 1);
+
+if($first_one != "0")
+{
+	$mobile	=		"0".$mobile;
+}
+
+
 
 
 AddComment("Ok: case_key: $case_key
@@ -68,14 +86,14 @@ $gUser	=	new User_Class();
 # now add the order_id
 if (($data = $gUser->getUserViaLeadID($google_lead_id)) != NULL)
 {
-	AddComment("FOUND USER via lead_id:$google_lead_id");
+	AddCommentOnly("FOUND USER via lead_id:$google_lead_id");
 
 	# update details from proclaim - we may have some adjustments to name etc, so accept this
 	$gUser->updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile);
 }
 else
 {
-	AddComment("CANNOT FIND LEAD ID CASE_KEY:$case_key, lead_id:$google_lead_id");
+	AddCommentOnly("CANNOT FIND LEAD ID CASE_KEY:$case_key, lead_id:$google_lead_id");
 	# need to create from scratch
 	if (!empty($google_lead_id))
 	{
@@ -85,7 +103,7 @@ AddComment("Creating new... LEAD iD:$google_lead_id CASE KEY:$case_key  ");
 	}
 	else if ((!empty($case_key)) && (!empty($email)))
 	{
-		AddComment("******** LAST RESORT - CREATING CASE CASE_KEY:$case_key, lead_id:$google_lead_id ");
+		AddCommentOnly("******** LAST RESORT - CREATING CASE CASE_KEY:$case_key, lead_id:$google_lead_id ");
 		$gUser->createUser($email,$title,$forename,$surname,$mobile,$case_key);
 		$gUser->updateUserDetails($case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$defendant,$type_code);
 	}
@@ -94,11 +112,15 @@ AddComment("Creating new... LEAD iD:$google_lead_id CASE KEY:$case_key  ");
 
 
 # send a connex
-if ($connex == "Yes")
+if ($connex == "yes")
 {
 	$gUser->sendConnex($case_key);
 }
 
+AddCommentOnly("");
+AddCommentOnly("");
+AddCommentOnly("");
+AddCommentOnly("");
 
 
 

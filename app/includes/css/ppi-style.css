@@ -581,7 +581,7 @@ html, body {
 .list-unstyled a:hover
 {
 	color: #ffffff;
-	background-color: #6f2e50;
+	background-color: #ff0000;
 }
 
 /* base link color for megamenu */
@@ -641,7 +641,7 @@ html, body {
 
 .navbar.navbar-default
 {
-	background-color: #6f2e50;
+	background-color: #e9e9e9;
 	border: 0;
 	-webkit-box-shadow: none;
 	box-shadow: none;
@@ -1110,14 +1110,14 @@ a.ppi-box-read-more:link , a.ppi-box-read-more:hover ,  a.ppi-box-read-more:focu
 	.navbar-collapse .navbar-nav > .open > a:hover,
 	.navbar-collapse .navbar-nav > .open > a:focus {
 		color: #ffffff;
-		background-color: #4f1e30;
+		background-color: #e9e9e9;
 	}
 
 
 	/* color of fully opened menu */
 	.navbar-default .navbar-nav > li > .dropdown-menu {
 
-		background-color: #3c3c3c;
+		background-color: #e9e9e9;
 
 	}
 
@@ -1126,14 +1126,14 @@ a.ppi-box-read-more:link , a.ppi-box-read-more:hover ,  a.ppi-box-read-more:focu
 	/* color of hover on highest level of navbar */
 	.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
 
-		color: #bbbbbb;
-		background-color: #3c3c3c;
+		color: #ffffff;
+		background-color: #cccccc;
 	}
 
 	/* color of fully opened menu */
 	.navbar-default .navbar-nav > li > .dropdown-menu {
 
-		background-color: #3c3c3c;
+		background-color: #e9e9e9;
 		color: #bbbbbb;
 
 	}
@@ -1141,7 +1141,7 @@ a.ppi-box-read-more:link , a.ppi-box-read-more:hover ,  a.ppi-box-read-more:focu
 	/* color of text/links in STANDARD submenu */
 	.navbar-default .navbar-nav > li > .dropdown-menu > li > a
 	{
-		color: #bbbbbb !important;
+		color: #3c3c3c !important;
 	}
 
 
@@ -1149,14 +1149,14 @@ a.ppi-box-read-more:link , a.ppi-box-read-more:hover ,  a.ppi-box-read-more:focu
 	/* default color for navbar links */
 	.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
 		color: #ffffff !important;
-		background-color: #3c3c3c;
+		background-color: #e9e9e9;
 	}
 
 
 
 	/* navbar */
 	.navbar-collapse{
-		background-color: #3c3c3c;
+		background-color: #e9e9e9;
 		color: #ffffff;
 		text-decoration:none;
 	}
