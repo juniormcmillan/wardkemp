@@ -142,6 +142,7 @@
 .ppi-site-footer, .page-wrap:after
 {
 	/*	min-height: 400px; */
+
 	font-size:9pt;
 }
 
@@ -192,8 +193,8 @@
 
 .ppi-top-area
 {
-	background-color:#ff2e50;
-	color:#ffffff;
+	background-color:#ffffff;
+	color:#ff00ff;
 
 
 }
@@ -521,7 +522,7 @@ html, body {
 
 
 /* top level navbar font size and padding*/
-.navbar-default .navbar-nav > li > a
+.navbar-static-top .navbar-default .navbar-nav > li > a
 {
 	font-size: 10pt;
 	padding-left: 10px;
@@ -530,20 +531,20 @@ html, body {
 
 
 /* color of hover on highest level of navbar */
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+.navbar-static-top .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
 
 	color: #000000;
 }
 
 /* color of fully opened menu */
-.navbar-default .navbar-nav > li > .dropdown-menu {
+.navbar-static-top .navbar-default .navbar-nav > li > .dropdown-menu {
 
 	background-color: #e8e8e8;
 
 }
 
 /* color of text/links in STANDARD submenu */
-.navbar-default .navbar-nav > li > .dropdown-menu > li > a
+.navbar-static-top .navbar-default .navbar-nav > li > .dropdown-menu > li > a
 {
 
 	color: #000000;
@@ -553,9 +554,9 @@ html, body {
 }
 
 /* color of HOVER/selected text/links in STANDARD submenu */
-.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+.navbar-static-top .navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
 
-.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus
+.navbar-static-top .navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus
 {
 	color: #ffffff;
 
@@ -639,7 +640,7 @@ html, body {
 
 /* navbar when on mobile with hamburger*/
 
-.navbar.navbar-default
+.navbar-static-top .navbar .navbar-default
 {
 	background-color: #e9e9e9;
 	border: 0;
@@ -652,7 +653,7 @@ html, body {
 
 
 /* we may just need this for mobile!  as padding pushes down the menu*/
-.navbar.navbar-default .navbar-collapse
+.navbar-static-top .navbar .navbar-default .navbar-collapse
 {
 	border: 0;
 	-webkit-box-shadow: none;
@@ -692,10 +693,10 @@ html, body {
 
 
 /* when we shrink to hamburger - the line that can appear across the screen */
-.navbar-fairplane .navbar-collapse,
-.navbar-fairplane .navbar-form
+.navbar-ppi .navbar-collapse,
+.navbar-ppi .navbar-form
 {
-
+	color: #ff00ff;
 }
 
 
@@ -998,6 +999,16 @@ a.ppi-box-read-more:link , a.ppi-box-read-more:hover ,  a.ppi-box-read-more:focu
 	font-weight: bold;
 }
 
+
+
+.ppi-mobile-navbar-toggle
+{
+	margin-top:15px;
+}
+
+
+
+
 /* this is for desktop*/
 @media(min-width:1200px)
 {
@@ -1110,12 +1121,12 @@ a.ppi-box-read-more:link , a.ppi-box-read-more:hover ,  a.ppi-box-read-more:focu
 	.navbar-collapse .navbar-nav > .open > a:hover,
 	.navbar-collapse .navbar-nav > .open > a:focus {
 		color: #ffffff;
-		background-color: #e9e9e9;
+		background-color: #ffff00;
 	}
 
 
 	/* color of fully opened menu */
-	.navbar-default .navbar-nav > li > .dropdown-menu {
+	.navbar-static-top .navbar-default .navbar-nav > li > .dropdown-menu {
 
 		background-color: #e9e9e9;
 
@@ -1124,31 +1135,31 @@ a.ppi-box-read-more:link , a.ppi-box-read-more:hover ,  a.ppi-box-read-more:focu
 
 
 	/* color of hover on highest level of navbar */
-	.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+	.navbar-static-top .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
 
-		color: #ffffff;
-		background-color: #cccccc;
+		color: #000000;
+		background-color: #e9e9e9;
 	}
 
 	/* color of fully opened menu */
-	.navbar-default .navbar-nav > li > .dropdown-menu {
+	.navbar-static-top .navbar-default .navbar-nav > li > .dropdown-menu {
 
-		background-color: #e9e9e9;
-		color: #bbbbbb;
+		background-color: #ffffff;
+		color: #e9e9e9;
 
 	}
 
 	/* color of text/links in STANDARD submenu */
-	.navbar-default .navbar-nav > li > .dropdown-menu > li > a
+	.navbar-static-top .navbar-default .navbar-nav > li > .dropdown-menu > li > a
 	{
-		color: #3c3c3c !important;
+		color: #000000 !important;
 	}
 
 
 
 	/* default color for navbar links */
-	.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
-		color: #ffffff !important;
+	.navbar-static-top .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+		color: #3c3c3c !important;
 		background-color: #e9e9e9;
 	}
 
@@ -1156,9 +1167,8 @@ a.ppi-box-read-more:link , a.ppi-box-read-more:hover ,  a.ppi-box-read-more:focu
 
 	/* navbar */
 	.navbar-collapse{
-		background-color: #e9e9e9;
-		color: #ffffff;
-		text-decoration:none;
+		background-color: #ffffff;
+		color: #000000;
 	}
 
 
@@ -1173,7 +1183,7 @@ a.ppi-box-read-more:link , a.ppi-box-read-more:hover ,  a.ppi-box-read-more:focu
 
 
 	/* we may just need this for mobile!  as padding pushes down the menu items to bottom of screen*/
-	.navbar.navbar-default .navbar-collapse
+	.navbar .navbar-default .navbar-collapse .navbar-static-top
 	{
 		border: 0;
 		-webkit-box-shadow: none;
@@ -1255,12 +1265,38 @@ a.ppi-box-read-more:link , a.ppi-box-read-more:hover ,  a.ppi-box-read-more:focu
 	}
 
 
+
+
+	.ppi-website-navbar-separate .navbar-right {
+		float: right;
+		padding-right: 15px;
+	}
+	.ppi-website-navbar-separate  .nav.navbar-nav.navbar-right li {
+		float: right;
+	}
+	.ppi-website-navbar-separate  .nav.navbar-nav.navbar-right li > a {
+		padding:8px 5px;
+	}
+	.ppi-website-navbar-separate  .navbar-toggle {
+		float: left;
+	}
+	.ppi-website-navbar-separate .navbar-header {
+		float: left;
+		width: auto!important;
+		padding-left:25px;
+	}
+	.ppi-website-navbar-separate  .navbar-collapse {
+		clear: both;
+		float: none;
+	}
+
+
+
 	.navbar-header {
 		float: none;
 	}
 	.navbar-left,.navbar-right {
 		float: none !important;
-		position: relative;
 	}
 	.navbar-toggle {
 		display: block;
@@ -1276,6 +1312,14 @@ a.ppi-box-read-more:link , a.ppi-box-read-more:hover ,  a.ppi-box-read-more:focu
 	.navbar-collapse.collapse {
 		display: none!important;
 	}
+
+	.navbar-nav {
+		float: none!important;
+		margin-top: 7.5px;
+	}
+
+
+
 	.navbar-nav>li {
 		float: none;
 	}
@@ -1910,9 +1954,49 @@ fieldset[disabled] .btn-blue.active {
 	padding:10px;
 }
 
+.navbar {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	background-image:none	 !important;
+	background-color: transparent !important;
+	border:0px;
+
+}
+
+/* on mobile */
+.ppi-website-navbar-menu .navbar-nav > li > a:hover {
+	background-color: #eeeeee;
+	background-image: none;
+	color: #000000;
+}
+
+
+
+
+/* for mobile */
+.ppi-website-navbar-menu  .navbar-nav > li > .dropdown-menu > li > a:hover
+{
+	background-image:none	 !important;
+	background-color: #eeeeee;
+	color: #ffC3DF;
+}
+/* mobile item within dropdown */
+.ppi-website-navbar-menu .navbar-nav > li > .dropdown-menu > li > a
+{
+	background-image:none	 !important;
+	background-color: #ffffff;
+	color: #00000f;
+
+}
+
+
+
+
 .ppi-website-navbar-menu .navbar-brand {
 	/*position: relative;*/
-
+	position: relative;
+	z-index: 1;
 }
 
 

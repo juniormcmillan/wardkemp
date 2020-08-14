@@ -204,13 +204,13 @@ class User_Class
 
 
 	# updates a lead
-	public function updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile)
+	public function updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign)
 	{
 		global $gMysql;
 		# only do this if case_key is empty too
 		$gMysql->update("update ppi_user set 
 		
-		connex='$connex',case_key='$case_key',address1='$address1',address2='$address2',town='$town',postcode='$postcode',title='$title',forename='$forename',surname='$surname',email='$email',type_code='$type_code',mobile='$mobile',last_updated=NOW() 
+		connex='$connex',case_key='$case_key',address1='$address1',address2='$address2',town='$town',postcode='$postcode',title='$title',forename='$forename',surname='$surname',email='$email',type_code='$type_code',mobile='$mobile',campaign='$campaign',last_updated=NOW() 
 		
 		where google_lead_id='$google_lead_id' and google_lead_id !='' ",__FILE__,__LINE__);
 	}
@@ -351,12 +351,14 @@ class User_Class
 
 
 	# sends lead via connex
-	public function sendConnex($case_key)
+	public function sendConnex($case_key,$data_list_id)
 	{
 		global $gMysql;
 
+
+		settype($data_list_id, "integer");
+
 		# dialable leads id 2008
-		$data_list_id			=	2008;
 		$username 				=	"FairPlaneNew";
 		$password 				=	"32574nq6b85n7eib";
 		$token					=	"vgRIxpt9t2klwrbBbzRjHykSh3EPuuZT3K6OgXyjJkZGVL4JYl";
@@ -365,11 +367,12 @@ class User_Class
 		if (($data = $this->getUserViaCaseKey($case_key)) != NULL)
 		{
 			$phone				=	$data['mobile'];
+			# this MUST have a value
 			$type_code			=	$data['type_code'];
 			$name				=	$data['surname'];
 			$email				=	$data['email'];
 			$connex_sent		=	$data['connex_sent'];
-AddCommentOnly("sendConnex() case_key:$case_key,name:$name connex_sent:$connex_sent");
+AddCommentOnly("sendConnex() case_key:$case_key,name:$name connex_sent:$connex_sent , data_list_id:$data_list_id");
 
 			if ($connex_sent == "")
 			{
@@ -438,18 +441,18 @@ AddCommentOnly("sendConnex() case_key:$case_key,name:$name connex_sent:$connex_s
 				}
 				else
 				{
-					AddCommentOnly("sendConnex() case_key:$case_key, FAILED:". $result2->message . "");
+					AddCommentOnly("sendConnex() case_key:$case_key, FAILED:". $result2->message . " data_list_id:$data_list_id");
 				}
 			}
 			else
 			{
-				AddCommentOnly("sendConnex() case_key:$case_key, ALREADY SENT");
+				AddCommentOnly("sendConnex() case_key:$case_key, ALREADY SENT data_list_id:$data_list_id");
 			}
 		}
 		else
 		{
 
-			AddCommentOnly("couldn't find in database");
+			AddCommentOnly("couldn't find in database data_list_id:$data_list_id");
 		}
 	}
 }

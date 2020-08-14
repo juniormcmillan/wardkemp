@@ -116,13 +116,13 @@ class Page_Controller extends Base_Controller
 		$canonical						=	WEBSITE_CANONICAL	.	$this->pattern;
 
 
-		$login_link						=	"<a href='#' onclick='showLoginForm();' class='btn btn-sm btn-blue '>Account Login&nbsp;&nbsp;<i class='fa fa-user-circle fa-lg' aria-hidden='true'></i></a>";
+		$login_link						=	"<a href='#' onclick='showLoginForm();' class='btn btn-sm btn-blue '  style='z-index:99; float:right;'>Account Login&nbsp;&nbsp;<i class='fa fa-user-circle fa-lg' aria-hidden='true'></i></a>";
 		# login check
 		if (isset($_SESSION['user']['id']))
 		{
 			if ($_SESSION['user']['id'] != '')
 			{
-				$login_link			=	"<a href='/secure_client_area' class='btn btn-sm btn-success'>My Account &nbsp;&nbsp;<i class='fa fa-user-circle fa-lg' aria-hidden='true'></i></a>";
+				$login_link			=	"<a href='/secure_client_area' class='btn btn-sm btn-success'  style='z-index:99; float:right;'>My Account &nbsp;&nbsp;<i class='fa fa-user-circle fa-lg' aria-hidden='true'></i></a>";
 			}
 		}
 

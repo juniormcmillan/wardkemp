@@ -495,6 +495,31 @@ $route_map             = array
 
 
 
+	array(
+		# url
+		'pattern' 		=>	'clientcare/cfa',
+		# passed params - these are hardcoded for the route
+		'passed_params'	=>	array(
+			'header'	=>	'header-short.html',
+			'footer'	=>	'footer_homepage.html',
+			'template' 	=> 'index_cfa.html',
+			'page_title'			=> 'Ward Kemp',
+			'meta_title'			=> 'Ward Kemp',
+			'meta_desc'				=> 'Conditional Fee Agreement',
+			'meta_kw'				=> 'Conditional Fee Agreement',
+			'content'				=> '',
+
+		),
+		# parameters list to extract from url
+		'params_to_extract' 		=> array(''),
+		# routing data
+		'method'		=>	'',
+		'controller'	=>	'clientcare',
+		'action'		=>	'render',
+
+	),
+
+
 
 
 	array(

@@ -282,6 +282,8 @@ class Clientcare_Controller extends Page_Controller
 		# creates the navigation
 		$navbar_clientcare	=	$this->createNavBar();
 
+		$this->getData();
+
 		# check the user
 		$gUser	=	new User_Class();
 		# now add the order_id
@@ -339,6 +341,8 @@ class Clientcare_Controller extends Page_Controller
 			"{{title}}"			=>	$this->title,
 			"{{forename}}"		=>	$this->forename,
 			"{{surname}}"		=>	$this->surname,
+			"{{full_name}}"		=>	$this->full_name,
+			"{{address}}"		=>	$this->address,
 			"{{navbar_clientcare}}"		=>	$navbar_clientcare,
 
 			"{{code}}"					=>	$this->policy_type,
@@ -447,50 +451,26 @@ class Clientcare_Controller extends Page_Controller
         global $gMysql;
 
         # we have passed through the case_key from the database here we are going to ask for all (*) of the items from
-        # the table fp_flight_master_db_flight_info where the case_key is
         if (($data = $gMysql->queryRow("SELECT * FROM ppi_user WHERE case_key='$this->case_key'  ", __FILE__, __LINE__)) != NULL)
 		{
 	        # else the variable $this->forename is equal to the data from the database under $data['forename'] (** this is data in the database **) etc ...
-            $this->forename = $data['forename'];
-            $this->surname = $data['surname'];
-			$this->address = $data['address'];
-			$this->city 	= $data['city'];
-			$this->postcode = $data['postcode'];
-			$this->flight_date = $data['flight_date'];
-            $this->flight_id = $data['flight_id'];
-            # exploded flight_id_array separated by '_' (e.g. 	BA_940_20150518_LHR_DUS  )
+			$this->title	 	= $data['title'];
+			$this->forename 	= $data['forename'];
+            $this->surname 		= $data['surname'];
 
-            # $flight_number     = BA
-            # $airline_code      = 940
-            # $dep_airport_code  = LHR
-            # $arr_airport_code  = DUS
-            # $flight_date       = 20150518
+            $this->full_name	=	$this->forename	." ".$this->surname;
 
-            $this->flight_id_array = explode('_', $this->flight_id, 5);
+			$this->address1		= $data['address1'];
+			$this->address2		= $data['address2'];
+			$this->town 		= $data['town'];
+			$this->postcode 	= $data['postcode'];
 
-            $this->airline_code = $this->flight_id_array[0];
-            $this->flight_number = $this->flight_id_array[1];
-            $this->flight_date = date("jS F, Y",	strtotime($this->flight_id_array[2]));
-            $this->dep_airport_code = $this->flight_id_array[3];
-            $this->arr_airport_code = $this->flight_id_array[4];
-
-
-
-            # then we search inside the tables
-            # we want airline name so we look inside fp_airlines where name is and we grab code is equal to $airline_code
-            # again we want the departure airport name so we go inside fp_airports where codeis equal to $dep_airport_code
-            # and finally we want the arrival airport name so we go inside fp_airports where codeis equal to $arr_airport_code
-            $this->airline_name = $gMysql->queryItem("SELECT name FROM fp_airlines WHERE code='$this->airline_code'  ", __FILE__, __LINE__);
-            $this->dep_airport_name = $gMysql->queryItem("SELECT name FROM fp_airports WHERE code='$this->dep_airport_code'  ", __FILE__, __LINE__);
-            $this->arr_airport_name = $gMysql->queryItem("SELECT name FROM fp_airports WHERE code='$this->arr_airport_code'  ", __FILE__, __LINE__);
-
-
-            # lets the function that called this know we have the data - not returning anything is the same as returning 'false'
-            return true;
-
-
-
-
+			$this->address		=	$this->address1 . ", ";
+			if ($this->address2)
+				$this->address	.=	$this->address2 . ", ";
+			if ($this->town)
+				$this->address	.=	$this->town . ", ";
+			$this->address	.=	$this->postcode;
         }
 
     }
@@ -841,6 +821,7 @@ class Clientcare_Controller extends Page_Controller
 			array(	"name" => "Agreement", 																		"link" =>	"clientcare/agreement"						),
 			array(	"name" => "Your claim", 																	"link" =>	"clientcare/your-claim"					),
 			array(	"name" => "Our charges (No Win No Fee Agreements)", 										"link" =>	"clientcare/our-charges"						),
+			array(	"name" => "Conditional Fee Agreement", 														"link" =>	"clientcare/cfa"						),
 			array(	"name" => "Protecting yourself financially (ATE expense Insurance)", 						"link" =>	"clientcare/ate-insurance"					),
 #			array(	"name" => "IPID", 								"link" =>	"clientcare/ipid"							),
 			array(	"name" => "Regulatory status and complaints", 												"link" =>	"clientcare/regulatory-status"							),
