@@ -13,9 +13,40 @@
 
 	<span style=""><h2>Introduction</h2></span><br>
 
+
 		Dear {{title}} {{surname}}<br><br>
 
-		{{client_text}}
+		We are pleased to advise that having considered the information you have provided our Legal Partner, {{solicitor_name}}, believe that you have a reasonable chance of succeeding in your claim and are therefore happy to offer to act for you by way of a no win no fee agreement.
+		<br><br>
+		In the circumstances {{solicitor_name}} have asked us to provide you with the following information setting out the terms on which they are happy to act:
+		<br><br>
+		<ul>
+			<li>Conditional Fee Agreement (No win no fee agreement)
+			</li>
+			<li>Protecting yourself financially (ATE Legal Expense Insurance)
+			</li>
+			<li>Insurance Product Information Document (IPID)
+			</li>
+			<li>Client Care Information
+			</li>
+			<li>Form of Authority (for your signature)
+			</li>
+		</ul>
+		<br>
+			We are sorry that it is rather lengthy, but it needs to cover a number of practical matters as well as dealing with various regulatory issues which cannot be avoided.
+		<br>
+		<br>
+		Please read it carefully and let us know if anything is unclear. If you choose to proceed we will email a copy to you for your records.
+		<br>
+		<br>
+		If you are happy for {{solicitor_name}} to act for you on the basis of these terms then you will need to confirm this by completing the electronic form of authority at the end of this pack. Please note that [NAME OF SOLICITOR] will not be able to start any work on your claim until this form of authority is completed.
+		<br>
+		<br>
+		Finally, to remind you we are introducing you to {{solicitor_name}} on the basis of the terms set out in the Client Information Pack we provided you with when you first contacted us (please click here if you would like to view this again [LINK TO CLIENT CARE INFO (FULL TERMS AND CONDITIONS)]).
+
+
+
+
 
 		<div class="text-center col-xs-12 ">
 			<br><br>
@@ -33,88 +64,6 @@
 
 <script>
 
-	// signature popup
-	function signaturePreCheck()
-	{
-		var case_key		=	"{{case_key}}";
-		var	email			=	"{{email}}";
-		var	code			=	"{{code}}";
-
-		$.confirm({
-			type: 'red',
-			title: 'Important!',
-			content: 'I confirm that I have read the following:<br><br>' +
-			'a)	<a href="/clientcare/agreement/?case_key={{case_key}}&email={{email}}&code={{code}}#2_3">Damage Based Agreement ("DBA")</a><br>'+
-			'b)	<a href="/clientcare/agreement/?case_key={{case_key}}&email={{email}}&code={{code}}#2_5">Conditional Fee Agreement ("CFA")</a><br>'+
-			'c)	<a href="/clientcare/agreement/?case_key={{case_key}}&email={{email}}&code={{code}}#3_6">ATE legal expense insurance policy</a><br>',
-
-			buttons: {
-				OK: {
-					text: 'OK',
-					btnClass: 'btn-success',
-					keys: ['enter', 'shift','esc'],
-					action: function()
-					{
-
-						$.ajax(
-							{
-								url:		'/app/mvc/clientcare/doPreSet.php',
-								type:		'POST',
-								cache:		false,
-								async:		true,
-								dataType:	'json',
-								data:
-									{
-										case_key : case_key,	email : email,	code	:	code
-									},
-								success:	function(data)
-								{
-									// we also need to not continue if the form has already been signed
-									if (data.returncode == 'success')
-									{
-										// if we have a link to go to, lets jump to it
-										if (data.uri)
-										{
-											window.location.href = '/'+data.uri;
-										}
-										// this would indicate we have finished all signatures
-										else
-										{
-											$.alert({
-												type: 'green',
-												confirmButton: 'Ok',
-												title: 'Thank You!',
-												content: data.message,
-											});
-										}
-									}
-								},
-								failure:	function()
-								{
-									alert('failure');
-								}
-							}
-
-						)
-
-
-
-
-					}
-				},
-
-
-				CANCEL: {
-					text: 'CANCEL',
-				}
-
-			}
-
-		});
-
-
-
-	}
 
 
 

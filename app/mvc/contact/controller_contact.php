@@ -28,6 +28,7 @@ one idea is that the controller/view could be spawned after initial dbase mappin
 
  */
 
+require_once($_SERVER["DOCUMENT_ROOT"]	.	"/../codelibrary/includes/php/PapApi.class.php");
 
 
 class Contact_Controller extends Page_Controller
@@ -143,6 +144,29 @@ class Contact_Controller extends Page_Controller
 
 
 
+	# constructor
+	public function __construct($route,$view_name)
+	{
+
+
+		# if we need to have a pupdate or blank page, we use a _blank page with TITLE and MESSAGE
+		parent::__construct($route,$view_name);
+
+
+
+
+		$papCookie	=	GetVariableString('PAPVisitorId',$_COOKIE);
+
+		$a_aid		=	GetVariableString('a_aid',$_COOKIE,0);
+
+
+AddComment("a_aid:$a_aid");
+
+
+
+	}
+
+
 
 
 
@@ -150,6 +174,8 @@ class Contact_Controller extends Page_Controller
 	# login just has the menu as per most outside pages
 	public function render()
 	{
+
+
 
 
 

@@ -108,6 +108,22 @@
 	font-weight: 700;
 }
 
+
+.ppi-homepage-titles2
+{
+	margin-left:0px;
+	margin-right:0px;
+	padding-left:0px;
+	padding-right:0px;
+	padding-top:0px;
+	padding-bottom:10px;
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-size: 16pt;
+	font-weight: 700;
+}
+
+
+
 /* bordering of the blog*/
 .ppi-blog-section
 {
@@ -361,6 +377,10 @@
 {
 	padding-top:8px;
 	padding-bottom:8px;
+	border-radius: 15px;
+	-moz-border-radius:	15px;
+	-webkit-border-radius: 15px;
+	background-color:	#08c705;
 }
 
 
@@ -1893,16 +1913,16 @@ h4 {line-height: 1.3em;}
 
 
 .btn-blue {
-	background-color: #3c8fca;
-	border-color: #3c8fca;
+	background-color: #37b8d8;
+	border-color: #37b8d8;
 	color:	#ffffff;
 }
 .btn-blue:hover,
 .btn-blue:focus,
 .btn-blue:active,
 .btn-blue.active {
-	background-color: #3382ba;
-	border-color: #2d74a6;
+	background-color: #37b8d8;
+	border-color: #cccccc;
 	color:	#ffffff;
 }
 .btn-blue.disabled:hover,
@@ -1917,9 +1937,17 @@ fieldset[disabled] .btn-blue:hover,
 fieldset[disabled] .btn-blue:focus,
 fieldset[disabled] .btn-blue:active,
 fieldset[disabled] .btn-blue.active {
-	background-color: #3c8fca;
-	border-color: #3c8fca;
+	background-color: #37b8d8;
+	border-color: #37b8d8;
 }
+
+
+
+
+
+
+
+
 
 
 .vertical-menu {

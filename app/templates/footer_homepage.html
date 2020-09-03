@@ -160,9 +160,121 @@
 
 
 
+	// signature popup
+	function signaturePreCheck()
+	{
+		var case_key		=	"{{case_key}}";
+		var	email			=	"{{email}}";
+		var	code			=	"{{code}}";
+
+		$.confirm({
+			type: 'red',
+			title: 'Important!',
+			content: 'I confirm that I have read the following:<br><br>' +
+			'a)	<a href="/clientcare/cfa/?case_key={{case_key}}&email={{email}}&code={{code}}">Conditional Fee Agreement ("CFA")</a><br>'+
+			'b)	<a href="/clientcare/ate-insurance/?case_key={{case_key}}&email={{email}}&code={{code}}">ATE legal expense insurance policy</a><br>'+
+			'c)	<a href="/clientcare/ipid/?case_key={{case_key}}&email={{email}}&code={{code}}">IPID</a><br>',
+
+			buttons: {
+				OK: {
+					text: 'OK',
+					btnClass: 'btn-success',
+					keys: ['enter', 'shift','esc'],
+					action: function()
+					{
+
+						$.ajax(
+							{
+								url:		'/app/mvc/clientcare/doPreSet.php',
+								type:		'POST',
+								cache:		false,
+								async:		true,
+								dataType:	'json',
+								data:
+									{
+										case_key : case_key,	email : email,	code	:	code,
+									},
+								success:	function(data)
+								{
+									// we also need to not continue if the form has already been signed
+									if (data.returncode == 'success')
+									{
+										// if we have a link to go to, lets jump to it
+										if (data.uri)
+										{
+											window.location.href = '/'+data.uri;
+										}
+										// this would indicate we have finished all signatures
+										else
+										{
+											$.alert({
+												type: 'green',
+												confirmButton: 'Ok',
+												title: 'Thank You!',
+												content: data.message,
+											});
+										}
+									}
+								},
+								failure:	function()
+								{
+									alert('failure');
+								}
+							}
+
+						)
+
+
+
+
+					}
+				},
+
+
+				CANCEL: {
+					text: 'CANCEL',
+				}
+
+			}
+
+		});
+	}
 
 </script>
 
+
+
+
+<script type="text/javascript"><!--
+document.write(decodeURI("%3Cscript id='pap_x2s6df8d' src='" + (("https:" == document.location.protocol) ? "https://" : "http://") + "network.fairplane.co.uk/scripts/trackjs.js' type='text/javascript'%3E%3C/script%3E"));//-->
+</script>
+
+
+
+<script id="pap_x2s6df8d" src="http://network.fairplane.co.uk/scripts/salejs.php" type="text/javascript">
+</script>
+<script type="text/javascript">
+	PostAffTracker.setAccountId('default1');
+	PostAffTracker.writeCookieToLink('id_field', 'papCookie');
+</script>
+
+
+
+
+<script type="text/javascript">
+
+
+	PostAffTracker.setAccountId('default1');
+	try
+	{
+		PostAffTracker.track();
+	}
+	catch (err)
+	{
+		alert('error');
+	}
+
+</script>
 
 
 

@@ -125,8 +125,7 @@ $gPolicyText	=
 			Many thanks",
 			),
 			"damage-upload"	=>	array(
-				"client_text" => "HOUSING DISREPAIR DAMAGE - We are required to carry out various identity checks when dealing with claims and so we need two pieces of ID from you before we can proceed any further.<br><br>
-			The first is a photo ID e.g. the photo page from your passport or a driving licence. The second item is a household bill with your name on it which is less than 3 months old. You can take a photo of these if you like and upload the two documents below where indicated. We will keep them secure on our system and will not share them with anyone else.<br><br><br><br>
+				"client_text" => "HOUSING DISREPAIR DAMAGE - Please upload photos of the damage.<br><br><br><br>
 			Many thanks",
 			),
 

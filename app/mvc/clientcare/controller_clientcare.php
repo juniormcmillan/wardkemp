@@ -273,6 +273,115 @@ class Clientcare_Controller extends Page_Controller
 
 
 
+	# related to the authority
+	public function clientCare()
+	{
+		if	(isset($this->params['completed']))
+		{
+			# no header / footer version
+			$this->displayDoneIframe();
+		}
+		else
+		{
+
+			# variable GetVariableString from table names - passes pid
+			# here we are grabbing the proclaim_id variable and passing it through the post
+			# so that we can use it in the next line of code.
+			$this->email		=	strtolower(GetVariableString('email',$this->params));
+			$this->case_key		=	GetVariableString('case_key',$this->params);
+			$this->show			= 	GetVariableString('show',$this->params);
+
+			# check the user
+			$gUser	=	new User_Class();
+			# now add the order_id
+			if (($data = $gUser->getUser($this->case_key,$this->email)) == NULL)
+			{
+				# we should go to success page, or homepage with a popup
+				gotoURL("/?pUpdate=noClaimRecord");
+			}
+			else
+			{
+
+				$this->title	=	ucfirst(strtolower($data['title']));
+				$this->forename	=	ucfirst(strtolower($data['forename']));
+				$this->surname	=	ucfirst(strtolower($data['surname']));
+
+
+				# date
+				$d    = date('d');
+				$m    = date('m');
+				$y    = date('y');
+				$date = $d . $m . $y;
+
+				$this->filename = "DS" . $this->case_key . "_" . $date . "S.pdf";
+
+/*				# decide if we need to build a new pdf, sign it or exit
+				if($this->isCreated() == true)
+				{
+					# if we have not signed it, we should display it and get it signed
+					if(($this->isSigned() == true) && ($this->show != 'yes'))
+					{
+						$this->displayDone();
+					}
+					# this will show the pdf from within the iframe
+					else
+					{
+						$this->displayPDF();
+					}
+				}
+				else
+*/				{
+
+					$client		=	new DigiSignerClient('aadd887d-fdfc-425c-b19b-550e49203e33');
+					$request 	=	new SignatureRequest;
+
+					$template = Document::withID('82c76a82-b5c2-4706-a60c-c752db2a7117');
+					$template->setTitle('Form Of Authority - '.$this->case_key);
+					$request->addDocument($template);
+
+
+
+
+					# this is within the iframe though
+					$request->setRedirectAfterSigningToUrl("http://www.wardkemp.uk/clientcare/?case_key=".$this->case_key."&email=".$this->email."&reload=yes");   // HERE YOU DEFINE THE REDIRECT URL
+
+
+					$signer = new Signer('cedric@boxlegal.co.uk');
+					$signer->setRole('Signer 1');
+					$template->addSigner($signer);
+
+
+
+
+					$signatureRequest = $client->sendSignatureRequest($request);
+					$document = $signatureRequest->getDocuments();
+					$document = $document[0];
+					$signer = $document->getSigners();
+					$signer = $signer[0];
+
+					$this->document_id  =   $document->getId();
+					$this->sign_doc_url =   $signer->getSignDocumentUrl();
+
+
+					# insert pdf digisigner details into database
+					$this->insertPDF();
+					# display of the PDF from within the Digisigner system in an iframe
+					$this->displayPDF();
+				}
+			}
+
+
+			$this->render();
+		}
+	}
+
+
+
+
+
+
+
+
 
 
 
@@ -818,16 +927,16 @@ class Clientcare_Controller extends Page_Controller
 		$menu	=	array(
 
 			array(	"name" => "Introduction", 																	"link" =>	"clientcare/introduction"					),
-			array(	"name" => "Agreement", 																		"link" =>	"clientcare/agreement"						),
-			array(	"name" => "Your claim", 																	"link" =>	"clientcare/your-claim"					),
-			array(	"name" => "Our charges (No Win No Fee Agreements)", 										"link" =>	"clientcare/our-charges"						),
+#			array(	"name" => "Your claim", 																	"link" =>	"clientcare/your-claim"					),
+#			array(	"name" => "Our charges (No Win No Fee Agreements)", 										"link" =>	"clientcare/our-charges"						),
 			array(	"name" => "Conditional Fee Agreement", 														"link" =>	"clientcare/cfa"						),
 			array(	"name" => "Protecting yourself financially (ATE expense Insurance)", 						"link" =>	"clientcare/ate-insurance"					),
-#			array(	"name" => "IPID", 								"link" =>	"clientcare/ipid"							),
-			array(	"name" => "Regulatory status and complaints", 												"link" =>	"clientcare/regulatory-status"							),
-			array(	"name" => "Financial Interests ",									 						"link" =>	"clientcare/financial-interests"			),
-			array(	"name" => "Form of Authority", 																"link" =>	"clientcare/authority",					"cc"		=> 	"yes" ),
-			array(	"name" => "DSAR", 																			"link" =>	"clientcare/dsar",						"dsar"		=>	"yes"	),
+			array(	"name" => "IPID", 								"link" =>	"clientcare/ipid"							),
+#			array(	"name" => "Regulatory status and complaints", 												"link" =>	"clientcare/regulatory-status"							),
+#			array(	"name" => "Financial Interests ",									 						"link" =>	"clientcare/financial-interests"			),
+			array(	"name" => "Client Care", 																	"link" =>	"clientcare/sign",						"cc"		=> 	"yes" ),
+#			array(	"name" => "Form of Authority", 																"link" =>	"clientcare/authority",					"cc"		=> 	"yes" ),
+#			array(	"name" => "DSAR", 																			"link" =>	"clientcare/dsar",						"dsar"		=>	"yes"	),
 		);
 
 

@@ -1,0 +1,558 @@
+{{header}}
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<!--- main content -->
+<div>
+	{{page_content}}
+
+
+	<!-- second section -->
+	<div class="hidden-xs container-fluid ppi-hp-darker "  style="">
+		<div class="ppi-website-container container">
+			<div class="col-lg-12 col-lg-offset-0" style="padding: 10px 10px 30px 10px;">
+				<h2 class="ppi-homepage-titles ">
+					Put your claim in our hands
+				</h2>
+				With many years of claims management experience, you can be confident that both you and your claim will be dealt with quickly and professionally.
+				<br><br>
+				Our assessment process will quickly let us know if you have a valid claim, and if that's found to be the case, we will seek to ensure that your property is repaired and you receive the maximum
+				amount of compensation available, as quickly as possible.
+				<br><br><br>
+				<div class="col-sm-6 col-sm-offset-3">
+					<span style="padding:20px;"><i class="fa fa-lg fa-plus-circle" style="color:#37b8d8;padding-right:10px;" aria-hidden="true"></i><span class="wk-plus" >We provide a FREE online claim assessment<br><br></span></span>
+					<span style="padding:20px;"><i class="fa fa-lg fa-plus-circle" style="color:#37b8d8;padding-right:10px;" aria-hidden="true"></i><span class="wk-plus" >We ensure all necessary repairs are made to your home<br><br></span></span>
+					<span style="padding:20px;"><i class="fa fa-lg fa-plus-circle" style="color:#37b8d8;padding-right:10px;" aria-hidden="true"></i><span class="wk-plus" >We will obtain the maximum amount of compensation available to you<br><br><br></span></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- check section -->
+	<div class=" container-fluid ppi-hp-blue "  style="">
+		<div class="ppi-website-container container">
+			<div class="col-lg-12 col-lg-offset-0" style="padding: 10px 10px 30px 10px;">
+				<h2 class="ppi-homepage-titles2">
+					Check Your Claim Now
+				</h2>
+				<div class="col-sm-8 col-xs-12" style="padding:0px;">
+					If you're living in a Council or Housing Association home and have an urgent need for repairs which are not being carried out, claim now and you could potentially get your problems fixed and also receive up to £10,000 in compensation.
+					<br><br>
+				</div>
+				<div class="hidden-xs col-sm-3 pull-right">
+					<button class="btn-block btn btn-sm btn-success ppi-submit-contact-button-inside box-shadow--4dp"   type="button"  onclick="goToByScroll('top');">CHECK MY CLAIM!</button>
+				</div>
+				<div class="hidden-sm hidden-md hidden-lg col-xs-12 ">
+					<button class="btn-block btn btn-sm btn-success ppi-submit-contact-button-inside box-shadow--4dp"   type="button"  onclick="goToByScroll('bot');">CHECK MY CLAIM!</button>
+					<br><br>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- second section -->
+	<div class=" container-fluid ppi-hp-lighter"  style="">
+		<div class="ppi-website-container container">
+			<div class="col-lg-12 col-lg-offset-0" style="padding: 10px 10px 30px 10px;">
+				<h2 class="ppi-homepage-titles ">
+					What damages / problems can you claim for?
+				</h2>
+				People just like you have claimed for over £35 million in compensation from Councils and Housing Associations after being made to live in unreasonably poor living conditions.
+				<br><br>
+
+				<b> You can claim if you have suffered any of the following in your home.</b>
+			</div>
+
+
+		<div style="clear:both;padding:0px;"></div>
+
+
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+				<div style="margin:0 auto;" class="text-center">
+					<img class="img-responsives bl-inside " src="/app/images/problems-plaster.jpg">
+					<div class="" style="padding-top:10px;padding-bottom:20px;">
+						Blown or damaged plaster
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<div style="margin:0 auto;" class="text-center">
+					<img class="img-responsives bl-inside" src="/app/images/problems-electrical.jpg">
+					<div class="" style="padding-top:10px;padding-bottom:20px;">
+					Electrical Problems
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<div style="margin:0 auto;" class="text-center">
+					<img class="img-responsives bl-inside" src="/app/images/problems-roof.jpg">
+					<div class="" style="padding-top:10px;padding-bottom:20px;">
+						Leaks in Roof
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<div style="margin:0 auto;" class="text-center">
+					<img class="img-responsives bl-inside" src="/app/images/problems-windows.jpg">
+					<div class="" style="padding-top:10px;padding-bottom:20px;">
+					Damaged Windows Or Doors
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<div style="margin:0 auto;" class="text-center">
+					<img class="img-responsives bl-inside" src="/app/images/problems-boiler.jpg">
+					<div class="" style="padding-top:10px;padding-bottom:20px;">
+						Problems with Boiler/Heating
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<div style="margin:0 auto;" class="text-center">
+					<img class="img-responsives bl-inside" src="/app/images/problems-infestation.jpg">
+					<div class="" style="padding-top:10px;padding-bottom:20px;">
+						Infestations
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 " >
+				<div style="margin:0 auto;" class="text-center">
+					<img class="img-responsives bl-inside "   src="/app/images/problems-cracks.jpg">
+					<div class="" style="padding-top:10px;padding-bottom:20px;">
+						Major Cracks in Walls
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<div style="margin:0 auto;" class="text-center">
+					<img class="img-responsives bl-inside" src="/app/images/problems-mould.jpg">
+					<div class="" style="padding-top:10px;padding-bottom:20px;">
+						Significant Damp or Mould
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<div style="margin:0 auto;" class="text-center">
+					<img class="img-responsives bl-inside" src="/app/images/problems-floorboards.jpg">
+					<div class="" style="padding-top:10px;padding-bottom:20px;">
+						Damaged Floorboards
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+		<!-- check section -->
+		<div class=" container-fluid ppi-hp-blue "  style="">
+			<div class="ppi-website-container container">
+				<div class="col-lg-12 col-lg-offset-0" style="padding: 10px 10px 30px 10px;">
+					<h2 class="ppi-homepage-titles2">
+						Check Your Claim Now
+					</h2>
+					<div class="col-sm-8 col-xs-12" style="padding:0px;">
+						If you're living in a Council or Housing Association home and have an urgent need for repairs which are not being carried out, claim now and you could potentially get your problems fixed and also receive up to £10,000 in compensation.
+						<br><br>
+					</div>
+					<div class="hidden-xs col-sm-3 pull-right">
+						<button class="btn-block btn btn-sm btn-success ppi-submit-contact-button-inside box-shadow--4dp"   type="button"  onclick="goToByScroll('top');">CHECK MY CLAIM!</button>
+					</div>
+					<div class="hidden-sm hidden-md hidden-lg col-xs-12 ">
+						<button class="btn-block btn btn-sm btn-success ppi-submit-contact-button-inside box-shadow--4dp"   type="button"  onclick="goToByScroll('bot');">CHECK MY CLAIM!</button>
+						<br><br>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- second section -->
+		<div class=" container-fluid ppi-hp-darker "  style="">
+			<div class="ppi-website-container container">
+				<div class="col-lg-12 col-lg-offset-0" style="padding: 10px 10px 30px 10px;">
+					<h2 class="ppi-homepage-titles ">
+						Here's How It Works...
+					</h2>
+					If you're living in a Council or Housing Association home and have an urgent need for repairs which are not being carried out, claim now and you could potentially get your problems fixed and also receive up to £10,000 in compensation,
+					<br><br>
+
+					<div class="col-lg-6 col-xs-12 wk-np">
+						<div class="col-sm-8 wk-np">
+							<div class="wk-lp-title">1. Complete the short form</div>
+							Enter your name, email address and phone number to get started with your claim.
+							<br>
+							<br>
+						</div>
+						<div class="hidden-xs col-sm-4 wk-np">
+							<img class="img-responsives wk-img " src="/app/images/affiliate-icon-form.png">
+						</div>
+					</div>
+
+
+					<div class="col-lg-6 col-xs-12  wk-np">
+						<div class="col-xs-8 wk-np">
+							<div class="wk-lp-title">2. Initial Online Assessment</div>
+							Enter your name, email address and phone number to get started with your claim.
+							<br>
+							<br>
+						</div>
+						<div class="hidden-xs col-sm-4 wk-np">
+							<img class="img-responsives wk-img" src="/app/images/affiliate-icon-solicitor.png">
+						</div>
+					</div>
+
+
+					<div class="col-lg-6 col-xs-12  wk-np">
+						<div class="col-xs-8 wk-np">
+							<div class="wk-lp-title">3. Home Survey Assessment</div>
+							Enter your name, email address and phone number to get started with your claim.
+							<br>
+							<br>
+						</div>
+						<div class="hidden-xs col-sm-4 wk-np">
+							<img class="img-responsives wk-img" src="/app/images/affiliate-icon-home.png">
+							<br>
+							<br>
+						</div>
+					</div>
+
+
+
+					<div class="col-lg-6 col-xs-12  wk-np">
+						<div class="col-xs-8 wk-np">
+							<div class="wk-lp-title">4. Our Legal Expert Takes Your Case</div>
+							Enter your name, email address and phone number to get started with your claim.
+						</div>
+						<div class="hidden-xs col-sm-4 wk-np">
+							<img class="img-responsives wk-img" src="/app/images/affiliate-icon-expert.png">
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+	</div>
+
+
+
+</div>
+
+
+
+
+
+<style>
+
+.wk-lp-title
+{
+	font-size: 16px;
+	font-weight:bold;
+	line-height: 35px;
+}
+.wk-np
+{
+	padding:0px;
+}
+
+.wk-img
+{
+	padding-left:10px;
+	padding-right:30px;
+	padding-bottom:20px;
+}
+
+.wk-plus
+{
+	font-weight:bold;
+	font-size:14px;
+}
+</style>
+
+
+
+
+
+<script>
+
+	// validates and submits form - added hotjar
+	function doSendContactForm()
+	{
+		var	bformFullName			=	$("#frmContact").validate().element("#formName");
+		var	bformEmail				=	$("#frmContact").validate().element("#formEmail");
+		var	bformPhone				=	$("#frmContact").validate().element("#formTelephone");
+
+
+		var formData 				= 	$("#frmContact").serialize();
+
+		// make sure we at least have
+		if ((bformFullName==true)  && (bformEmail==true) && (bformPhone==true))
+		{
+			$.ajax(
+				{
+					url:		'/app/mvc/contact/doSendClaim.php',
+					type:		'POST',
+					cache:		false,
+					async:		true,
+					dataType:	'json',
+					data:
+						{
+							formData : formData,
+						},
+					success:	function(data)
+					{
+						// re-enable button
+						//					$('#sendContactForm').html('Send').prop('disabled',false);
+
+
+						if	(data.returncode == 'error')
+						{
+							// hotjar failing
+							//						hj('formSubmitFailed');
+
+							$.alert({
+								type: 'red',
+								confirmButton: 'Ok',
+								title: 'Warning!',
+								content: data.message,
+							});
+
+
+						}
+						else if (data.returncode == 'success')
+						{
+							// hotjar success
+							//						hj('formSubmitSuccessful');
+
+							window.location.href = '/?pUpdate=contactSent';
+						}
+					},
+					failure:	function()
+					{
+						alert('failure');
+					}
+				}
+
+			)
+
+		}
+	}
+
+
+
+	// validates and submits form - added hotjar
+	function doSendContactForm2()
+	{
+		var	bformFullName			=	$("#frmContact2").validate().element("#formName");
+		var	bformEmail				=	$("#frmContact2").validate().element("#formEmail");
+		var	bformPhone				=	$("#frmContact2").validate().element("#formTelephone");
+
+
+		var formData 				= 	$("#frmContact2").serialize();
+
+		// make sure we at least have
+		if ((bformFullName==true)  && (bformEmail==true) && (bformPhone==true))
+		{
+			$.ajax(
+				{
+					url:		'/app/mvc/contact/doSendClaim.php',
+					type:		'POST',
+					cache:		false,
+					async:		true,
+					dataType:	'json',
+					data:
+						{
+							formData : formData,
+						},
+					success:	function(data)
+					{
+						// re-enable button
+						//					$('#sendContactForm').html('Send').prop('disabled',false);
+
+
+						if	(data.returncode == 'error')
+						{
+							// hotjar failing
+							//						hj('formSubmitFailed');
+
+							$.alert({
+								type: 'red',
+								confirmButton: 'Ok',
+								title: 'Warning!',
+								content: data.message,
+							});
+
+
+						}
+						else if (data.returncode == 'success')
+						{
+							// hotjar success
+							//						hj('formSubmitSuccessful');
+
+							window.location.href = '/?pUpdate=contactSent';
+						}
+					},
+					failure:	function()
+					{
+						alert('failure');
+					}
+				}
+
+			)
+
+		}
+	}
+
+
+	// once all page is loaded
+    window.onload = function(e)
+    {
+
+
+
+		$(document).ready(function(){
+
+
+
+			// duplicate presses fix submit
+			$('#sendForm').on('click',function()
+			{
+				doSendContactForm();
+
+			});
+
+
+			// duplicate presses fix submit
+			$('#sendForm2').on('click',function()
+			{
+				doSendContactForm2();
+
+			});
+
+
+				$('#frmContact').validate(
+					{
+
+
+						rules: {
+
+
+							formName: {
+								minlength: 2,
+								required: true
+							},
+							formEmail: {
+								email: true,
+								required: true
+							},
+							formTelephone: {
+								minlength: 2,
+								required: true
+							},
+
+						},
+						highlight: function (element) {
+							$(element).closest('.form-group').addClass('has-error');
+						},
+						unhighlight: function (element) {
+							$(element).closest('.form-group').removeClass('has-error');
+						},
+						errorElement: 'span',
+						errorClass: 'help-block',
+						errorPlacement: function (error, element) {
+							if (element.parent('.input-group').length) {
+								error.insertAfter(element.parent());
+							} else {
+								error.insertAfter(element);
+							}
+
+						}
+
+
+
+					});
+
+
+
+
+
+				$('#frmContact2').validate(
+					{
+
+
+						rules: {
+
+
+							formName2: {
+								minlength: 2,
+								required: true
+							},
+							formEmail2: {
+								email: true,
+								required: true
+							},
+							formTelephone2: {
+								minlength: 2,
+								required: true
+							},
+
+						},
+						highlight: function (element) {
+							$(element).closest('.form-group').addClass('has-error');
+						},
+						unhighlight: function (element) {
+							$(element).closest('.form-group').removeClass('has-error');
+						},
+						errorElement: 'span',
+						errorClass: 'help-block',
+						errorPlacement: function (error, element) {
+							if (element.parent('.input-group').length) {
+								error.insertAfter(element.parent());
+							} else {
+								error.insertAfter(element);
+							}
+
+						}
+
+
+
+					});
+
+
+			}
+
+
+
+
+        );
+
+    };
+
+
+</script>
+
+{{footer}}

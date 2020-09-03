@@ -30,9 +30,11 @@ else
 {
 	# go through each link
 	$menu	=	array(
-		array(	"name" => "Our charges (No Win No Fee Agreements)", 										"link" =>	"clientcare/our-charges"						),
+		array(	"name" => "Conditional Fee Agreement", 														"link" =>	"clientcare/cfa"						),
 		array(	"name" => "Protecting yourself financially (ATE expense Insurance)", 						"link" =>	"clientcare/ate-insurance"					),
-		array(	"name" => "Financial Interests ",									 						"link" =>	"clientcare/financial-interests"			),
+		array(	"name" => "IPID", 								"link" =>	"clientcare/ipid"							),
+
+
 	);
 
 	foreach	($menu as $menu_item)
@@ -47,12 +49,9 @@ else
 	# check if we have signed the document
 	if ($gUser->isClientCareSigned($case_key,$email) == false)
 	{
-		$uri	=	"clientcare/authority/?case_key=$case_key&email=$email&code=$code";
+		$uri	=	"clientcare/sign/?case_key=$case_key&email=$email&code=$code";
 	}
-	else if ($gUser->isDsarSigned($case_key,$email) == false)
-	{
-		$uri	=	"clientcare/dsar/?case_key=$case_key&email=$email&code=$code";
-	}
+
 }
 
 

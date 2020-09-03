@@ -83,17 +83,17 @@ class User_Class
 	{
 		global $gMysql;
 
-		if	(($data	=	$gMysql->queryRow("select * from ppi_user where case_key='$case_key' and email='$email'",__FILE__,__LINE__)))
+		if	(($data	=	$gMysql->queryRow("select * from ppi_user where case_key='$case_key' and email like '%$email%'",__FILE__,__LINE__)))
 		{
 			return $data;
 		}
 		# catchall if the server has not sent the case_key data across
-		else if ( (!empty($case_key)) && ($data	=	$gMysql->queryRow("select * from ppi_user where case_key='' and email='$email'",__FILE__,__LINE__)) )
+		else if ( (!empty($case_key)) && ($data	=	$gMysql->queryRow("select * from ppi_user where case_key='' and email like '%$email%'",__FILE__,__LINE__)) )
 		{
 			# only do this if case_key is empty too
 			$gMysql->update("update ppi_user set case_key='$case_key',last_updated=NOW() where email='$email'",__FILE__,__LINE__);
 
-			if	(($data	=	$gMysql->queryRow("select * from ppi_user where case_key='$case_key' and email='$email'",__FILE__,__LINE__)))
+			if	(($data	=	$gMysql->queryRow("select * from ppi_user where case_key='$case_key' and email ='$email'",__FILE__,__LINE__)))
 			{
 				return $data;
 			}
@@ -204,13 +204,13 @@ class User_Class
 
 
 	# updates a lead
-	public function updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign)
+	public function updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign,$defendant)
 	{
 		global $gMysql;
 		# only do this if case_key is empty too
 		$gMysql->update("update ppi_user set 
 		
-		connex='$connex',case_key='$case_key',address1='$address1',address2='$address2',town='$town',postcode='$postcode',title='$title',forename='$forename',surname='$surname',email='$email',type_code='$type_code',mobile='$mobile',campaign='$campaign',last_updated=NOW() 
+		connex='$connex',case_key='$case_key',address1='$address1',address2='$address2',town='$town',postcode='$postcode',title='$title',forename='$forename',surname='$surname',email='$email',type_code='$type_code',mobile='$mobile',campaign='$campaign',defendant='$defendant', last_updated=NOW() 
 		
 		where google_lead_id='$google_lead_id' and google_lead_id !='' ",__FILE__,__LINE__);
 	}

@@ -378,6 +378,35 @@ $route_map             = array
 
 
 
+	array(
+		# url
+		'pattern' 		=>	'hd2',
+		# passed params - these are hardcoded for the route
+		'passed_params'	=>	array(
+			'header'	=>	'header-hd.html',
+			'footer'	=>	'footer_homepage.html',
+			'template' 	=> 'index-hd.html',
+			'page_title'			=> 'Ward Kemp',
+			'meta_title'			=> 'Ward Kemp',
+			'meta_description'		=> 'Housing Disrepair',
+			'meta_kw'				=> 'Housing Disrepair',
+			'content'				=> '',
+
+		),
+		# parameters list to extract from url
+		'params_to_extract' 		=> array(''),
+		# routing data
+		'method'		=>	'',
+		'controller'	=>	'contact',
+		'action'		=>	'render',
+
+	),
+
+
+
+
+
+
 
 
 
@@ -405,6 +434,8 @@ $route_map             = array
 		'controller'	=>	'page',
 		'action'		=>	'render',
 	),
+
+
 
 
 
@@ -516,6 +547,60 @@ $route_map             = array
 		'method'		=>	'',
 		'controller'	=>	'clientcare',
 		'action'		=>	'render',
+
+	),
+
+
+
+
+	array(
+		# url
+		'pattern' 		=>	'clientcare/ipid',
+		# passed params - these are hardcoded for the route
+		'passed_params'	=>	array(
+			'header'	=>	'header-short.html',
+			'footer'	=>	'footer_homepage.html',
+			'template' 	=> 'index_ipid.html',
+			'page_title'			=> 'Ward Kemp',
+			'meta_title'			=> 'Ward Kemp',
+			'meta_desc'				=> 'IPID',
+			'meta_kw'				=> 'IPID',
+			'content'				=> '',
+
+		),
+		# parameters list to extract from url
+		'params_to_extract' 		=> array(''),
+		# routing data
+		'method'		=>	'',
+		'controller'	=>	'clientcare',
+		'action'		=>	'render',
+
+	),
+
+
+
+
+	array(
+		# url
+		'pattern' 		=>	'clientcare/sign',
+		# passed params - these are hardcoded for the route
+		'passed_params'	=>	array(
+			'header'	=>	'header-short.html',
+			'footer'	=>	'footer_homepage.html',
+			'template' 	=> 'index.html',
+			'page_title'			=> 'Ward Kemp',
+			'meta_title'			=> 'Ward Kemp',
+			'meta_desc'				=> 'Client Care',
+			'meta_kw'				=> 'Client Care',
+			'content'				=> '',
+
+		),
+		# parameters list to extract from url
+		'params_to_extract' 		=> array(''),
+		# routing data
+		'method'		=>	'',
+		'controller'	=>	'clientcare',
+		'action'		=>	'clientCare',
 
 	),
 

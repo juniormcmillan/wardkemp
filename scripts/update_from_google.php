@@ -48,6 +48,7 @@ $email				= GetVariableString('email',$_GET,"");
 $mobile				= GetVariableString('mobile',$_GET,"");
 $type_code			= GetVariableString('Type-Code',$_GET,"");
 $campaign			= GetVariable('campaign',$_GET,"");
+$defendant			= GetVariableString('defendant',$_GET,"");
 
 
 
@@ -80,6 +81,7 @@ surname:$surname
 typecode:$type_code
 mobile:$mobile
 campaign:$campaign
+defendant:$defendant
 ");
 
 
@@ -91,7 +93,7 @@ if (($data = $gUser->getUserViaLeadID($google_lead_id)) != NULL)
 	AddCommentOnly("FOUND USER via lead_id:$google_lead_id");
 
 	# update details from proclaim - we may have some adjustments to name etc, so accept this
-	$gUser->updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign);
+	$gUser->updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign,$defendant);
 }
 else
 {
@@ -101,7 +103,7 @@ else
 	{
 AddComment("Creating new... LEAD iD:$google_lead_id CASE KEY:$case_key  ");
 		$gUser->createLead($google_lead_id,$email,"$forename $surname",$mobile,$case_key);
-		$gUser->updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign);
+		$gUser->updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign,$defendant);
 	}
 	else if ((!empty($case_key)) && (!empty($email)))
 	{
@@ -130,7 +132,15 @@ AddCommentOnly("setting campaign to 2008");
 
 	$gUser->sendConnex($case_key,$campaign);
 }
+else
+{
+	AddCommentOnly("NO for connex");
 
+}
+AddCommentOnly("");
+AddCommentOnly("");
+AddCommentOnly("");
+AddCommentOnly("");
 AddCommentOnly("");
 AddCommentOnly("");
 AddCommentOnly("");
