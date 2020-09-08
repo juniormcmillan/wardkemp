@@ -34,7 +34,7 @@ if (($data = $gUser->getUser($case_key,$email)) != NULL)
 	$api_key			=	REBRANDLY_API;
 
 
-	$destination	= "https://www.ppisolicitors.co.uk/clientcare/introduction/?case_key=$case_key&email=$email";
+	$destination	= "http://www.wardkemp.uk/clientcare/introduction/?case_key=$case_key&email=$email&code=HD";
 
 	$domain_data["fullName"] 	= "pw1.uk";
 	$post_data["destination"]	= $destination;
@@ -51,12 +51,13 @@ if (($data = $gUser->getUser($case_key,$email)) != NULL)
 	curl_close($ch);
 	$response	=	json_decode($result, true);
 	$link		=	$response["shortUrl"];
+	$link_id	=	$response["id"];
 
 
 	# lets update the database with the link
 # ALTER TABLE `ppi_user` ADD `link` TINYTEXT NOT NULL AFTER `email`;
 
-	$gUser->updateLink($case_key,$link);
+	$gUser->updateLink($case_key,$link,$link_id);
 
 
 
@@ -84,8 +85,8 @@ if (($data = $gUser->getUser($case_key,$email)) != NULL)
 
 
 
-	AddComment("Created link:$link");
-
+	AddCommentOnly("Created link:$link");
+	AddCommentOnly("");
 
 	$xml    =  "<?xml version='1.0' encoding='UTF-8'?><LinkMatrixResponse><Link>$link</Link></LinkMatrixResponse>";
 	header ("Content-Type:text/xml");

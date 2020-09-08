@@ -44,24 +44,24 @@
 
 
 </style>
-
 <div class="container-fluid" style="min-height:600px;padding:0px;margin:0px;">
 
-
-
-
-	<div class="col-lg-3 col-xs-12 col-sm-12">
-	{{navbar_clientcare}}
+	<div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+		{{navbar_clientcare}}
 	</div>
 
-	<div class="col-lg-9 col-xs-12 col-sm-12" style="">
+	<div class="col-lg-9 col-md-9 col-xs-12 col-sm-12" style="">
+
+
 
 		<div  >
 
-			<div class="ppi-please-read col-sm-12">
-				<span class="pull-right"><button class="btn  btn-purple  ppi-please-read-button"   type="button"  id="gotoBottom" data-target="#acceptPage">JUMP TO BOTTOM&nbsp;&nbsp;<i class="fa fa-arrow-circle-down fa-lg" aria-hidden="true"></i></button></span>
-				Please read the contents of this page and indicate you have done so by clicking the accept button at the bottom of the page
-			</div>
+			<!--
+					<div class="ppi-please-read col-sm-12">
+						<span class="pull-right"><button class="btn  btn-purple  ppi-please-read-button"   type="button"  id="gotoBottom" data-target="#acceptPage">JUMP TO BOTTOM&nbsp;&nbsp;<i class="fa fa-arrow-circle-down fa-lg" aria-hidden="true"></i></button></span>
+						Please read the contents of this page and indicate you have done so by clicking the accept button at the bottom of the page
+					</div>
+		-->
 			<div style="clear:both;"><br></div>
 		</div>
 
@@ -93,7 +93,7 @@
 
 		<div class="ppi-agreement ppi-bolder">
 
-			<h2 class="text-center">CONDITIONAL FEE AGREEMENT WITH DRISCOLL KINGSTON</h2>
+			<h2 class="text-center">Conditional Fee Agreement (No win no fee agreement)</h2>
 
 			<span class="ppi-bold">Your Name:</span> {{full_name}}<br><br>
 
@@ -102,7 +102,7 @@
 
 			This agreement is a binding legal contract between you and your solicitor/s. Before you sign, please read everything carefully. This agreement must be read in conjunction with the Schedules and the Law Society Conditions attached.
 <br><br><br>
-			<span class="ppi-bold">We, Driscoll Kingston Solicitors, hereinafter called “the solicitors”<br><br>
+			<span class="ppi-bold">We, {{company_name}}, hereinafter called “the solicitors”<br><br>
 				You, <span style="text-decoration:underline;text-decoration-style:dotted; text-underline-position: under;margin:20px;">&nbsp;&nbsp;&nbsp;&nbsp;{{full_name}}&nbsp;&nbsp;&nbsp;&nbsp;</span><br><br>
 			What is covered by this agreement</span><br><br>
 
@@ -617,24 +617,6 @@
 
 
 
-
-
-
-		<div class="text-center col-xs-12 " style="padding:0px;">
-
-			<span class="form-check ppi-confirm-checkbox checkbox">
-				<input type="checkbox" name="checkBox" id="checkBox"> <span class="label-text">Tick box to accept all above terms.</span>
-			</span>
-
-
-			<br><br>
-
-			<button disabled="disabled" class="btn  btn-success "   type="button"  id="acceptPage"  name="acceptPage">Accept</button>
-
-		</div>
-
-
-	</div>
 
 
 

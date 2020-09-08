@@ -83,12 +83,12 @@ class User_Class
 	{
 		global $gMysql;
 
-		if	(($data	=	$gMysql->queryRow("select * from ppi_user where case_key='$case_key' and email like '%$email%'",__FILE__,__LINE__)))
+		if	(($data	=	$gMysql->queryRow("select * from ppi_user where case_key='$case_key' and email ='$email' and email !='' ",__FILE__,__LINE__)))
 		{
 			return $data;
 		}
 		# catchall if the server has not sent the case_key data across
-		else if ( (!empty($case_key)) && ($data	=	$gMysql->queryRow("select * from ppi_user where case_key='' and email like '%$email%'",__FILE__,__LINE__)) )
+		else if ( (!empty($case_key)) && ($data	=	$gMysql->queryRow("select * from ppi_user where case_key='' ' and email ='$email' and email !=''",__FILE__,__LINE__)) )
 		{
 			# only do this if case_key is empty too
 			$gMysql->update("update ppi_user set case_key='$case_key',last_updated=NOW() where email='$email'",__FILE__,__LINE__);
@@ -178,41 +178,39 @@ class User_Class
 
 
 	# updates link
-	public function updateLink($case_key,$link)
+	public function updateLink($case_key,$link,$link_id)
 	{
 		global $gMysql;
 		# only do this if case_key is empty too
-		$gMysql->update("update ppi_user set link='$link' where case_key='$case_key' ",__FILE__,__LINE__);
+		$gMysql->update("update ppi_user set link='$link',link_id='$link_id' where case_key='$case_key' ",__FILE__,__LINE__);
 	}
 
 
-
-
 	# updates claimant details with case_key and also address details. multiple claims over time could be an issue if the same email address is used. (use proclaim id or postcode somehow)
-	public function updateUserDetails($case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$defendant,$google_lead_id,$type_code)
+	public function updateUserDetails($case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$defendant,$google_lead_id,$type_code,$company,$solicitor_name)
 	{
 		global $gMysql;
 		# only do this if case_key is empty too
 		$gMysql->update("update ppi_user set 
 		
-		address1='$address1',address2='$address2',town='$town',postcode='$postcode',title='$title',forename='$forename',surname='$surname',defendant='$defendant',google_lead_id='$google_lead_id',type_code='$type_code',last_updated=NOW() 
+		address1='$address1',address2='$address2',town='$town',postcode='$postcode',title='$title',forename='$forename',surname='$surname',defendant='$defendant',google_lead_id='$google_lead_id',type_code='$type_code',company_id='$company',solicitor_name='$solicitor_name',last_updated=NOW() 
 		
-		where email='$email' and case_key='$case_key' ",__FILE__,__LINE__);
+		where (case_key='$case_key' and case_key !='') ",__FILE__,__LINE__);
 	}
 
 
 
 
 	# updates a lead
-	public function updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign,$defendant)
+	public function updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign,$defendant,$company,$solicitor_name)
 	{
 		global $gMysql;
 		# only do this if case_key is empty too
 		$gMysql->update("update ppi_user set 
 		
-		connex='$connex',case_key='$case_key',address1='$address1',address2='$address2',town='$town',postcode='$postcode',title='$title',forename='$forename',surname='$surname',email='$email',type_code='$type_code',mobile='$mobile',campaign='$campaign',defendant='$defendant', last_updated=NOW() 
+		connex='$connex',case_key='$case_key',address1='$address1',address2='$address2',town='$town',postcode='$postcode',title='$title',forename='$forename',surname='$surname',email='$email',type_code='$type_code',mobile='$mobile',campaign='$campaign',defendant='$defendant',company_id='$company',solicitor_name='$solicitor_name', last_updated=NOW() 
 		
-		where google_lead_id='$google_lead_id' and google_lead_id !='' ",__FILE__,__LINE__);
+		where (google_lead_id='$google_lead_id' and google_lead_id !='') ",__FILE__,__LINE__);
 	}
 
 
@@ -403,7 +401,7 @@ AddCommentOnly("sendConnex() case_key:$case_key,name:$name connex_sent:$connex_s
 				$jsonData = array(
 					'token' 			=> $token,
 					'comments' 			=> '',
-					'source_code' 		=> $type_code,
+					'source_code' 		=> $case_key,
 					'title' 			=> '',
 					'first_name' 		=> '',
 					'last_name' 		=> $name,

@@ -320,6 +320,33 @@ $route_map             = array
 
 	array(
 		# url
+		'pattern' 		=>	'damage-upload2',
+		# passed params - these are hardcoded for the route
+		'passed_params'	=>	array(
+			'header'	=>	'header-short.html',
+			'footer'	=>	'footer_homepage.html',
+			'template' 	=> 'index-damage.html',
+			'page_title'			=> 'Ward Kemp',
+			'meta_title'			=> 'Ward Kemp',
+			'meta_desc'				=> 'Upload Your ID',
+			'meta_kw'				=> 'Upload Your ID',
+			'content'				=> '',
+
+		),
+		# parameters list to extract from url
+		'params_to_extract' 		=> array(''),
+		# routing data
+		'method'		=>	'',
+		'controller'	=>	'iduploaddamage',
+		'action'		=>	'render',
+
+	),
+
+
+
+
+	array(
+		# url
 		'pattern' 		=>	'offer-upload',
 		# passed params - these are hardcoded for the route
 		'passed_params'	=>	array(
@@ -467,6 +494,32 @@ $route_map             = array
 
 
 
+	array(
+		# url
+		'pattern' 		=>	'documents',
+		# passed params - these are hardcoded for the route
+		'passed_params'	=>	array(
+			'header'	=>	'header-shorter.html',
+			'footer'	=>	'footer_homepage.html',
+			'template' 	=> 'introduction.html',
+			'page_title'			=> 'Client Care Introduction',
+			'meta_title'			=> 'Client Care Introduction',
+			'meta_desc'				=> 'Client Care Introduction',
+			'meta_kw'				=> 'Client Care Introduction',
+			'content'				=> '',
+
+		),
+		# parameters list to extract from url
+		'params_to_extract' 		=> array(''),
+		# routing data
+		'method'		=>	'',
+		'controller'	=>	'clientcare',
+		'action'		=>	'render',
+
+	),
+
+
+
 
 
 	array(
@@ -501,16 +554,14 @@ $route_map             = array
 
 	array(
 		# url
-		'pattern' 		=>	'statement',
+		'pattern' 		=>	'clientcare/introduction',
 		# passed params - these are hardcoded for the route
 		'passed_params'	=>	array(
-			'header'	=>	'header-short.html',
-			'footer'	=>	'footer_homepage.html',
-			'template' 	=> 'index_statement.html',
-			'page_title'			=> 'Ward Kemp',
-			'meta_title'			=> 'Ward Kemp',
-			'meta_desc'				=> 'Client Statement',
-			'meta_kw'				=> 'Client Statement',
+			'header'	=>	'header-shorter.html',
+			'footer'	=>	'footer_basic.html',
+			'template' 	=> 'introduction.html',
+			'page_title'			=> 'Client Care Introduction',
+			'meta_title'			=> 'Client Care Introduction',
 			'content'				=> '',
 
 		),
@@ -519,25 +570,23 @@ $route_map             = array
 		# routing data
 		'method'		=>	'',
 		'controller'	=>	'clientcare',
-		'action'		=>	'client_statement',
+		'action'		=>	'render',
 
 	),
 
 
-
-
 	array(
 		# url
-		'pattern' 		=>	'clientcare/cfa',
+		'pattern' 		=>	'clientcare/letter',
 		# passed params - these are hardcoded for the route
 		'passed_params'	=>	array(
-			'header'	=>	'header-short.html',
-			'footer'	=>	'footer_homepage.html',
-			'template' 	=> 'index_cfa.html',
-			'page_title'			=> 'Ward Kemp',
-			'meta_title'			=> 'Ward Kemp',
-			'meta_desc'				=> 'Conditional Fee Agreement',
-			'meta_kw'				=> 'Conditional Fee Agreement',
+			'header'	=>	'header-shorter.html',
+			'footer'	=>	'footer_basic.html',
+			'template' 	=> 'index_clientcare.html',
+			'page_title'			=> 'Client Care Letter',
+			'meta_title'			=> 'Client Care Letter',
+			'meta_desc'				=> 'Client Care Letter',
+			'meta_kw'				=> 'Client Care Letter',
 			'content'				=> '',
 
 		),
@@ -555,15 +604,64 @@ $route_map             = array
 
 	array(
 		# url
+		'pattern' 		=>	'clientcare/cfa',
+		# passed params - these are hardcoded for the route
+		'passed_params'	=>	array(
+			'header'	=>	'header-shorter.html',
+			'footer'	=>	'footer_basic.html',
+			'template' 	=> 'index_cfa.html',
+			'page_title'			=> 'CFA Agreement',
+			'meta_title'			=> 'CFA Agreement',
+			'meta_desc'				=> 'Conditional Fee Agreement',
+			'meta_kw'				=> 'Conditional Fee Agreement',
+			'content'				=> '',
+
+		),
+		# parameters list to extract from url
+		'params_to_extract' 		=> array(''),
+		# routing data
+		'method'		=>	'',
+		'controller'	=>	'clientcare',
+		'action'		=>	'render',
+
+	),
+
+
+
+	array(
+		# url
+		'pattern' 		=>	'clientcare/ate-insurance',
+		# passed params - these are hardcoded for the route
+		'passed_params'	=>	array(
+			'header'	=>	'header-shorter.html',
+			'footer'	=>	'footer_basic.html',
+			'template' 	=> 'index_ate-insurance.html',
+			'page_title'			=> 'ATE Insurance',
+			'meta_title'			=> 'ATE Insurance',
+			'content'				=> '',
+
+		),
+		# parameters list to extract from url
+		'params_to_extract' 		=> array(''),
+		# routing data
+		'method'		=>	'',
+		'controller'	=>	'clientcare',
+		'action'		=>	'render',
+
+	),
+
+
+	array(
+		# url
 		'pattern' 		=>	'clientcare/ipid',
 		# passed params - these are hardcoded for the route
 		'passed_params'	=>	array(
-			'header'	=>	'header-short.html',
-			'footer'	=>	'footer_homepage.html',
+			'header'	=>	'header-shorter.html',
+			'footer'	=>	'footer_basic.html',
 			'template' 	=> 'index_ipid.html',
-			'page_title'			=> 'Ward Kemp',
-			'meta_title'			=> 'Ward Kemp',
-			'meta_desc'				=> 'IPID',
+			'page_title'			=> 'Insurance Product Information Document (IPID)',
+			'meta_title'			=> 'Insurance Product Information Document (IPID)',
+			'meta_desc'				=> 'Insurance',
 			'meta_kw'				=> 'IPID',
 			'content'				=> '',
 
@@ -585,8 +683,8 @@ $route_map             = array
 		'pattern' 		=>	'clientcare/sign',
 		# passed params - these are hardcoded for the route
 		'passed_params'	=>	array(
-			'header'	=>	'header-short.html',
-			'footer'	=>	'footer_homepage.html',
+			'header'	=>	'header-shorter.html',
+			'footer'	=>	'footer_basic.html',
 			'template' 	=> 'index.html',
 			'page_title'			=> 'Ward Kemp',
 			'meta_title'			=> 'Ward Kemp',
@@ -600,7 +698,7 @@ $route_map             = array
 		# routing data
 		'method'		=>	'',
 		'controller'	=>	'clientcare',
-		'action'		=>	'clientCare',
+		'action'		=>	'authority',
 
 	),
 

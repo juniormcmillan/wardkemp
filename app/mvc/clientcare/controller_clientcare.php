@@ -75,6 +75,8 @@ class Clientcare_Controller extends Page_Controller
 	public 	$pSolicitor;
 	public 	$logo;
 
+	public 	$company_id;
+	public 	$company_name;
 
 
 # constructor
@@ -93,10 +95,33 @@ class Clientcare_Controller extends Page_Controller
 		# now add the order_id
 		if (($data = $gUser->getUser($this->case_key,$this->email)) == NULL)
 		{
-			# we should go to success page, or homepage with a popup
-			gotoURL("/?pUpdate=noClaimRecord");
+			if	(isset($this->params['completed']))
+			{
+				# no header / footer version
+				$this->displayDoneIframe();
+				return;
+
+			}
+			else
+			{
+				# we should go to success page, or homepage with a popup
+				gotoURL("/?pUpdate=noClaimRecord");
+			}
 		}
 
+		# get company_id
+		$this->company_id		=	strtoupper($data['company_id']);
+
+		/* TEMP */
+		if (empty($this->company_id))
+		{
+			$this->company_id		=	"DRISCOLL";
+		}
+
+		# grab the solicitor name
+		$gMysql->setDB("boxlegal");
+		$this->company_name		= $gMysql->QueryItem("SELECT name FROM solicitor where code='$this->company_id'", __FILE__, __LINE__);
+		$gMysql->setDB("wardkemp");
 
 		# base level text about the case type
 		$this->policy_type		=	GetVariableString('code',$this->params);
@@ -115,8 +140,6 @@ class Clientcare_Controller extends Page_Controller
 
 
 
-
-
 		$this->title	=	ucfirst(strtolower($data['title']));
 		$this->forename	=	ucfirst(strtolower($data['forename']));
 		$this->surname	=	ucfirst(strtolower($data['surname']));
@@ -132,38 +155,6 @@ class Clientcare_Controller extends Page_Controller
 	}
 
 
-
-	# sets out questions to be asked that forms the client statement
-	public function client_statement()
-	{
-		# check the user
-		$gUser	=	new User_Class();
-		# now the questions
-		$questions_string	= $gUser->getUserStatementData($this->case_key);
-
-
-		//AddComment("Render Function Called by $this->refcode  and $this->childname ($this->userBrowserName, $this->userBrowserVer)");
-		# we can push all these pre-filled tags onto the page
-		$tags	=	array(
-
-			"{{email}}"				=>	$this->email,
-			"{{case_key}}"			=>	$this->case_key,
-			"{{questions_string}}"	=>	$questions_string,
-
-			"{{title}}"				=>	$this->title,
-			"{{forename}}"			=>	$this->forename,
-			"{{surname}}"			=>	$this->surname,
-
-			"{{code}}"					=>	$this->policy_type,
-			"{{client_text}}"			=>	$this->client_text,
-			"{{logo}}"					=>	$this->logo,
-
-		);
-
-		$this->appendTags($tags);
-
-		parent::render();
-	}
 
 
 	# related to the authority
@@ -224,42 +215,16 @@ class Clientcare_Controller extends Page_Controller
 				}
 				else
 				{
-
-					$client		=	new DigiSignerClient('aadd887d-fdfc-425c-b19b-550e49203e33');
-					$request 	=	new SignatureRequest;
-
-					$template = Document::withID('839f923b-5eea-4435-acfd-9b713040731b');
-					$template->setTitle('Form Of Authority - '.$this->case_key);
-					$request->addDocument($template);
-
-
-
-
-					# this is within the iframe though
-					$request->setRedirectAfterSigningToUrl("https://www.ppisolicitors.co.uk/clientcare/dsar?case_key=".$this->case_key."&email=".$this->email."&reload=yes");   // HERE YOU DEFINE THE REDIRECT URL
-
-
-					$signer = new Signer('cedric@boxlegal.co.uk');
-					$signer->setRole('Signer 1');
-					$template->addSigner($signer);
-
-
-
-
-					$signatureRequest = $client->sendSignatureRequest($request);
-					$document = $signatureRequest->getDocuments();
-					$document = $document[0];
-					$signer = $document->getSigners();
-					$signer = $signer[0];
-
-					$this->document_id  =   $document->getId();
-					$this->sign_doc_url =   $signer->getSignDocumentUrl();
-
-
+					# creates the pdf document and places copy on server
+					$pdf	    =	$this->createPDF();
+					# uploads pdf to digisigner repository
+					$uPdf	    =	$this->uploadPDF();
 					# insert pdf digisigner details into database
 					$this->insertPDF();
 					# display of the PDF from within the Digisigner system in an iframe
 					$this->displayPDF();
+
+
 				}
 			}
 
@@ -457,6 +422,9 @@ class Clientcare_Controller extends Page_Controller
 			"{{code}}"					=>	$this->policy_type,
 			"{{client_text}}"			=>	$this->client_text,
 			"{{logo}}"					=>	$this->logo,
+			"{{company_name}}"					=>	$this->company_name,
+
+
 
 
 		);
@@ -603,18 +571,15 @@ class Clientcare_Controller extends Page_Controller
         $document->setSubject('Please, sign my sample document!');
         $signer 	= new Signer($this->signer_email);
         $signer->setRole('signer_role');
-        $field 		= new Field(0, array(98,425,535,455), Field::TYPE_SIGNATURE);
+        $field 		= new Field(0, array(98,485,535,525), Field::TYPE_SIGNATURE);
         $signer->addField($field);
-
-#  		$field2 	= new Field(0, array(485,193,545,215), Field::TYPE_DATE);
-#		$signer->addField($field2);
 
         $document->addSigner($signer);
         $request->addDocument($document);
 
 		# this is within the iframe though
-#		$request->setRedirectAfterSigningToUrl("https://www.ppisolicitors.co.uk/clientcare/dsar?case_key=".$this->case_key."&email=".$this->email."&completed=true");   // HERE YOU DEFINE THE REDIRECT URL
-		$request->setRedirectAfterSigningToUrl("https://www.ppisolicitors.co.uk/clientcare/dsar/?case_key=&email=&completed=true");   // HERE YOU DEFINE THE REDIRECT URL
+		$request->setRedirectAfterSigningToUrl("https://www.ppisolicitors.co.uk/clientcare/dsar?case_key=".$this->case_key."&email=".$this->email."&completed=true");   // HERE YOU DEFINE THE REDIRECT URL
+#		$request->setRedirectAfterSigningToUrl("http://www.wardkemp.uk/clientcare/introduction?case_key=&email=&completed=true");   // HERE YOU DEFINE THE REDIRECT URL
 
         $signatureRequest = $client->sendSignatureRequest($request);
         $document = $signatureRequest->getDocuments();
@@ -637,7 +602,8 @@ class Clientcare_Controller extends Page_Controller
     {
         $this->clientcare_fullname = $this->forename . " " . $this->surname;
 
-		$full_address	=	$this->address	.	", "	.	$this->city	.	", "	.	$this->postcode;
+		$name_of_solicitor	=	$this->company_name;
+
 
         $today_date = date('jS F, Y');
 
@@ -664,7 +630,7 @@ class Clientcare_Controller extends Page_Controller
         $oMulticell->SetStyle( "size", $oPdf->getDefaultFontName(), "BI", 9, "0,0,120" );
         $oMulticell->SetStyle( "smallest", $oPdf->getDefaultFontName(), "", 8, "0,0,0" );
 
-        $oPdf->SetCreator("Fairplane");
+        $oPdf->SetCreator("WardKemp");
         $oPdf->SetFont('Arial', 'B', 20);
 
 
@@ -673,173 +639,101 @@ class Clientcare_Controller extends Page_Controller
 
         $oPdf->SetXY(10,10);
         $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 16, "0,0,0" );
-        $oMulticell->MultiCell(200, 8, '<p>Data Subject Access Request Authorisation</p>', 0, "C", false);
+        $oMulticell->MultiCell(200, 8, '<p>Form Of Authority</p>', 0, "C", false);
 
 
         $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
 
-        // 1st section
-        $oPdf->SetXY(20, 28);
-        $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
-        $oMulticell->MultiCell(200, 4,
-            '<p>This authority relates to:</p>'
-            , 0, "J", false);
 
-        $oPdf->SetXY(20, 35);
+        $oPdf->SetXY(20, 30);
         $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
         $oMulticell->MultiCell(200, 4,
-            '<p>1.    All information, documents and data held in relation to flight number ' .$this->airline_code.$this->flight_number . ' from ' . $this->dep_airport_name . '</p>'
+            '<p>I confirm I have read the '. $name_of_solicitor.' client care pack, including: </p>'
             , 0, "J", false);
 
 
-		$oPdf->SetXY(20, 40);
+		$oPdf->SetXY(25, 40);
 
 		$oMulticell->MultiCell(200, 4,
-			'<p>to ' . $this->arr_airport_name . ' on the ' . $this->flight_date . ' and operated by ' . $this->airline_name . '</p>'
+			'<p>1.  Conditional Fee Agreement (No win no fee agreement)</p>'
 			, 0, "J", false);
 
 
 
-		$oPdf->SetXY(20, 45);
+		$oPdf->SetXY(25, 45);
         $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
         $oMulticell->MultiCell(200, 4,
-            '<p>or any other airline or flight operator including booking reference. </p>'
+            '<p>2.  Protecting Yourself Financially (ATE Legal Expense Insurance)</p>'
             , 0, "J", false);
 
-        $oPdf->SetXY(20, 55);
-        $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
-        $oMulticell->MultiCell(200, 4,
-            '<p>2.   All information, documents and data held by '. $this->airline_name .' or any other airline or flight operator in  </p>'
-            , 0, "J", false);
 
-        $oPdf->SetXY(20, 60);
+
+		$oPdf->SetXY(25, 50);
+		$oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
+		$oMulticell->MultiCell(200, 4,
+			'<p>3. Insurance Product Information Document (IPID)</p>'
+			, 0, "J", false);
+
+
+
+
+		$oPdf->SetXY(25, 55);
         $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
         $oMulticell->MultiCell(200, 4,
-            '<p>relation to flights on which I have travelled which were booked with them, such data to include Flight Number, </p>'
+            '<p>4. Client Care Information</p>'
             , 0, "J", false);
 
         $oPdf->SetXY(20, 65);
         $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
-        $oMulticell->SetStyle( "b", $oPdf->getDefaultFontName(), "b", 10, "0,0,0" );
-        $oMulticell->MultiCell(200, 4,
-            '<p>Flight Date, Departure Airport and Arrival Airport and booking references, for the 6 years immediately preceding </p>'
+        $oMulticell->MultiCell(175, 4,
+            "<p>I instruct Ward Kemp to refer my case to ". $name_of_solicitor." and to pass them my contact details, having read Ward Kemp's terms and conditions and in particular the section titled Financial Interests.
+
+I would like ". $name_of_solicitor." to act on my behalf and help me pursue my claim for damages on the basis of the CFA, with the protection from legal costs as provided by the ATE legal expense insurance policy.
+
+In the event that my claim is successful, I irrevocably authorise ". $name_of_solicitor." to have any damages recovered paid to them and for them to deduct the agreed charges, in accordance with the CFA and for them to further deduct the ATE legal expense insurance premium, where appropriate, and pay this to the insurer on my behalf.
+  
+</p>"
             , 0, "J", false);
 
-        $oPdf->SetXY(20, 70);
-        $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
-        $oMulticell->SetStyle( "b", $oPdf->getDefaultFontName(), "b", 10, "0,0,0" );
-        $oMulticell->MultiCell(200, 4,
-            '<p>the date of this authority, the above being defined as (&#34;My Data&#34;). </p>'
-            , 0, "J", false);
-
-        // 2nd section
-        $oPdf->SetXY(20, 83);
-        $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
-        $oMulticell->MultiCell(200, 4,
-            '<p>I hereby: </p>'
-            , 0, "J", false);
-
-        $oPdf->SetXY(20, 90);
-        $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
-        $oMulticell->MultiCell(200, 4,
-            '<p>A)   Authorise my solicitor FairPlane UK Limited of ' . $this->firm_address . ' to request</p>'
-            , 0, "J", false);
-
-        $oPdf->SetXY(20, 95);
-        $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
-        $oMulticell->MultiCell(200, 4,
-            '<p>disclosure of My Data (under General Data Protection Regulation 2016/679 or otherwise) held by</p>'
-            , 0, "J", false);
-
-        $oPdf->SetXY(20, 100);
-        $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
-        $oMulticell->MultiCell(200, 4,
-            '<p>'. $this->airline_name . ' or any other airline or flight operator, and </p>'
-            , 0, "J", false);
-
-        $oPdf->SetXY(20, 105);
-        $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
-        $oMulticell->MultiCell(200, 4,
-            '<p>B)   authorise '. $this->airline_name .' or any other airline or flight operator to supply My Data </p>'
-            , 0, "J", false);
-
-        $oPdf->SetXY(20, 110);
-        $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
-        $oMulticell->SetStyle( "b", $oPdf->getDefaultFontName(), "b", 10, "0,0,0" );
-        $oMulticell->MultiCell(200, 4,
-            '<p>directly to FairPlane UK Limited, and</p>'
-            , 0, "J", false);
-
-        $oPdf->SetXY(20, 115);
-        $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
-        $oMulticell->SetStyle( "b", $oPdf->getDefaultFontName(), "b", 10, "0,0,0" );
-        $oMulticell->MultiCell(200, 4,
-            '<p>C)   authorise Fairplane UK Limited to receive My Data directly from the organisation to whom the above </p>'
-            , 0, "J", false);
-
-        $oPdf->SetXY(20, 120);
-        $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
-        $oMulticell->SetStyle( "b", $oPdf->getDefaultFontName(), "b", 10, "0,0,0" );
-        $oMulticell->MultiCell(200, 4,
-            '<p>request is made.</p>'
-            , 0, "J", false);
 
         // Sign section
-        $oPdf->SetXY(20, 144);
+        $oPdf->SetXY(20, 124);
         $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
         $oMulticell->SetStyle( "b", $oPdf->getDefaultFontName(), "b", 10, "0,0,0" );
         $oMulticell->MultiCell(200, 4,
             '<p><b>Signed:  </b></p>'
             , 0, "J", false);
 
-        $oPdf->SetXY(34, 145);
+        $oPdf->SetXY(34, 125);
         $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
         $oMulticell->SetStyle( "b", $oPdf->getDefaultFontName(), "b", 10, "0,0,0" );
         $oMulticell->MultiCell(200, 4,
             '<p><b>..............................................................................................................................................................</b></p>'
             , 0, "J", false);
 
-        $oPdf->SetXY(20, 154);
+        $oPdf->SetXY(20, 134);
         $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
         $oMulticell->SetStyle( "b", $oPdf->getDefaultFontName(), "b", 10, "0,0,0" );
         $oMulticell->MultiCell(200, 4,
             '<p><b>Name:  ' . $this->clientcare_fullname .  '</b></p>'
             , 0, "J", false);
 
-        $oPdf->SetXY(31, 155);
+        $oPdf->SetXY(31, 135);
         $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
         $oMulticell->SetStyle( "b", $oPdf->getDefaultFontName(), "b", 10, "0,0,0" );
         $oMulticell->MultiCell(200, 4,
             '<p><b>.................................................................................................................................................................</b></p>'
             , 0, "J", false);
 
-
-        $oPdf->SetXY(20, 165);
+        $oPdf->SetXY(20, 145);
         $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
         $oMulticell->SetStyle( "b", $oPdf->getDefaultFontName(), "b", 10, "0,0,0" );
         $oMulticell->MultiCell(200, 4,
-            '<p><b>Address:  ' . $full_address . '</b></p>'
+            '<p><b>Date:  ' . $today_date . '</b></p>'
             , 0, "J", false);
 
 
-        $oPdf->SetXY(36, 166);
-        $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
-        $oMulticell->SetStyle( "b", $oPdf->getDefaultFontName(), "b", 10, "0,0,0" );
-        $oMulticell->MultiCell(200, 4,
-            '<p><b>............................................................................................................................................................</b></p>'
-            , 0, "J", false);
-
-
-
-        $oPdf->SetXY(20, 175);
-        $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
-        $oMulticell->SetStyle( "b", $oPdf->getDefaultFontName(), "b", 10, "0,0,0" );
-        $oMulticell->MultiCell(200, 4,
-            '<p><b>Dated:  ' . $today_date . '</b></p>'
-            , 0, "J", false);
-
-
-        $oPdf->SetXY(31, 176);
+        $oPdf->SetXY(31, 146);
         $oMulticell->SetStyle( "p", $oPdf->getDefaultFontName(), "", 10, "0,0,0" );
         $oMulticell->SetStyle( "b", $oPdf->getDefaultFontName(), "b", 10, "0,0,0" );
         $oMulticell->MultiCell(200, 4,
@@ -861,13 +755,7 @@ class Clientcare_Controller extends Page_Controller
         # we can push all these pre-filled tags onto the page
         $tags	=	array(
 
-            "{{flight_number}}"			=>	$this->flight_number,
-            "{{dep_airport_code}}"		=>	$this->dep_airport_code,
-            "{{arr_airport_code}}"		=>	$this->arr_airport_code,
-            "{{airline_name}}"			=>	$this->airline_name,
-            "{{flight_date}}"			=>	$this->flight_date,
-            "{{dep_airport_name}}"		=>	$this->dep_airport_name,
-            "{{arr_airport_name}}"		=>	$this->arr_airport_name,
+             "{{arr_airport_name}}"		=>	$this->arr_airport_name,
 
         );
 
@@ -877,8 +765,8 @@ class Clientcare_Controller extends Page_Controller
 
 
      # send the pdf to the browser
-    /* $oPdf->Output();
-     exit;*/
+		/* $oPdf->Output();
+		 exit;*/
 
 
 
@@ -929,12 +817,13 @@ class Clientcare_Controller extends Page_Controller
 			array(	"name" => "Introduction", 																	"link" =>	"clientcare/introduction"					),
 #			array(	"name" => "Your claim", 																	"link" =>	"clientcare/your-claim"					),
 #			array(	"name" => "Our charges (No Win No Fee Agreements)", 										"link" =>	"clientcare/our-charges"						),
-			array(	"name" => "Conditional Fee Agreement", 														"link" =>	"clientcare/cfa"						),
-			array(	"name" => "Protecting yourself financially (ATE expense Insurance)", 						"link" =>	"clientcare/ate-insurance"					),
-			array(	"name" => "IPID", 								"link" =>	"clientcare/ipid"							),
+			array(	"name" => "Client Care Letter", 															"link" =>	"clientcare/letter",										),
+			array(	"name" => "Conditional Fee Agreement (No win no fee agreement)", 							"link" =>	"clientcare/cfa"										),
+			array(	"name" => "Protecting Yourself Financially (ATE Legal Expense Insurance)", 						"link" =>	"clientcare/ate-insurance"								),
+			array(	"name" => "Insurance Product Information Document (IPID)", 									"link" =>	"clientcare/ipid"										),
 #			array(	"name" => "Regulatory status and complaints", 												"link" =>	"clientcare/regulatory-status"							),
-#			array(	"name" => "Financial Interests ",									 						"link" =>	"clientcare/financial-interests"			),
-			array(	"name" => "Client Care", 																	"link" =>	"clientcare/sign",						"cc"		=> 	"yes" ),
+#			array(	"name" => "Financial Interests ",									 						"link" =>	"clientcare/financial-interests"						),
+			array(	"name" => "Sign Client Authority Letter", 																	"link" =>	"clientcare/sign",						"cc"		=> 	"yes" ),
 #			array(	"name" => "Form of Authority", 																"link" =>	"clientcare/authority",					"cc"		=> 	"yes" ),
 #			array(	"name" => "DSAR", 																			"link" =>	"clientcare/dsar",						"dsar"		=>	"yes"	),
 		);
@@ -960,9 +849,24 @@ class Clientcare_Controller extends Page_Controller
 
 
 
+/*
+ *
+ *
+ *
+ <ul class="nav nav-pills nav-stacked col-md-3">
+    <li><a href="#a" data-toggle="tab">1</a></li>
+    <li><a href="#b" data-toggle="tab">2</a></li>
+    <li><a href="#c" data-toggle="tab">3</a></li>
+</ul>
+ *
+ * */
+
+
+
+
 		$string	=	"
-	<div class='ppi-website-navbar collapse navbar-collapse' id='bs-example-navbar-collapse-1' style='text-align:left;padding:0px;margin:0px;background-color:#f2f2f1;padding-bottom:10px;'>
-		<ul class='nav nav-stacked vertical-menu'>";
+<div style='text-align:left;padding:0px;margin:0px;background-color:#f2f2f1;padding-bottom:10px;'>
+		<ul class='nav nav-stacked nav-pills'>";
 
 	
 		foreach ($menu as $menu_item)
@@ -976,7 +880,7 @@ class Clientcare_Controller extends Page_Controller
 			}
 			else
 			{
-				$active_class	=	"";
+				$active_class	=	"normal";
 
 			}
 
