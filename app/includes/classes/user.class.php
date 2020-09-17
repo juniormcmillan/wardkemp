@@ -88,7 +88,7 @@ class User_Class
 			return $data;
 		}
 		# catchall if the server has not sent the case_key data across
-		else if ( (!empty($case_key)) && ($data	=	$gMysql->queryRow("select * from ppi_user where case_key='' ' and email ='$email' and email !=''",__FILE__,__LINE__)) )
+		else if ( (!empty($case_key)) && ($data	=	$gMysql->queryRow("select * from ppi_user where case_key='' and email ='$email' and email !=''",__FILE__,__LINE__)) )
 		{
 			# only do this if case_key is empty too
 			$gMysql->update("update ppi_user set case_key='$case_key',last_updated=NOW() where email='$email'",__FILE__,__LINE__);

@@ -11,6 +11,7 @@ $returnCode				=	"success";
 # this is the return array with all the commands
 $returnArray			=	array();
 
+$invalid_characters 	=	array("$", "%", "#", "<", ">", "|","'",'"',"'");
 
 # grab the basic details
 $email					=	str_replace($invalid_characters, "", $_POST['email']);

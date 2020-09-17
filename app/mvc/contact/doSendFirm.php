@@ -120,7 +120,7 @@ $response_string = (json_decode($curl_response));
 $email	=	"website@wardkemp.co.uk";
 $subject =	"New $formWho Enquiry";
 
-#sendEmailLocal("Ward Kemp Website", $email, "kirsten@boxlegal.co.uk", $subject, nl2br($htmlMessage));
+sendEmailLocal("Ward Kemp Website", $email, "kirsten@boxlegal.co.uk", $subject, nl2br($htmlMessage));
 sendEmailLocal("Ward Kemp Website", $email, "cedric@boxlegal.co.uk", $subject, nl2br($htmlMessage));
 
 

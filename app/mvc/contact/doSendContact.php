@@ -124,7 +124,8 @@ $response_string = (json_decode($curl_response));
 
 $subject 	=	"New Client Claim Contact";
 $email		=	"website@wardkemp.co.uk";
-#sendEmailLocal("Ward Kemp Website", $email, "kirsten@boxlegal.co.uk", $subject, nl2br($htmlMessage));
+sendEmailLocal("Ward Kemp Website", $email, "kirsten@boxlegal.co.uk", $subject, nl2br($htmlMessage));
+sendEmailLocal("Ward Kemp Website", $email, "hannah@fairplane.co.uk", $subject, nl2br($htmlMessage));
 sendEmailLocal("Ward Kemp Website", $email, "cedric@boxlegal.co.uk", $subject, nl2br($htmlMessage));
 
 

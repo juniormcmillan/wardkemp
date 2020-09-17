@@ -164,8 +164,8 @@ $htmlMessage	=	str_replace('\r\n', "\r\n",$htmlMessage);
 $subject 	=	"Registration from Ward Kemp Website";
 $email		=	"website@wardkemp.uk";
 
-sendEmailLocal("Registration from Ward Website", $email, "cedric@boxlegal.co.uk", $subject, nl2br($htmlMessage));
-
+sendEmailLocal("Claim from Ward Website", $email, "cedric@boxlegal.co.uk", $subject, nl2br($htmlMessage));
+sendEmailLocal("Claim from Ward Website", $email, "hannah@fairplane.co.uk", $subject, nl2br($htmlMessage));
 
 
 

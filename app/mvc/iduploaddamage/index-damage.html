@@ -102,47 +102,52 @@
 	<div class="container-fluid ppi-website-container " >
 
 
+		<div id="myProgressText">
 		Progress
+		</div>
 		<div id="myProgress">
 			<div id="myBar"></div>
 		</div>
 		<br>
 
-		<div class="container-fluid  " >
 
-
-		<span class="cmd-rental-deposit-rights-large">Hi {{forename}},</span>
+		<span class="">Hi {{forename}},</span>
 		<br><br>
-		{{client_text}}
-
-			{{KITCHEN - Please upload pictures of damage from here}}
-
+		<div id="myProgressInfo">
+		</div>
+		<br>
+		Select some pictures of the damage then progress to the next room by clicking on one of the buttons below.
 		<br><br>
 
+		<br>
+		<br>
 
 
 
 
 
-			<form id="frmContact" action="" method="post"  class="form-horizontal" onsubmit="return false;">
 
 
-		<div class="col-xs-12  cmd-recap" name="questions" id="questions">
-			<div id="q3" style="padding:0px; margin:-20px;">
+
+		<form id="frmContact" action="" method="post"  class="form-horizontal" onsubmit="return false;">
 
 
-				<div class="table table-bordered  files" id="previews">
+
+			<div class="col-xs-12">
+
+
+
+				<div id="q3" style="padding:0px; margin:-20px;">
+
+
+				<div class="table table-bordered  files" id="previews"  style="border:0px solid red;">
 
 					<div id="template" class="file-row   col-xs-12" >
 
-						<div class="col-xs-12 col-sm-2 " >
+						<div class="col-xs-12 col-sm-3 " >
 							<span class="previews"><img data-dz-thumbnail /></span>
 						</div>
-						<div class="col-xs-12 col-sm-4 " >
-							<p><b>Description</b></p>
-							<input id="description" name="description" class="description" type="text" placeholder="Description"  style="box-sizing: border-box; width:100%;">
-						</div>
-						<div class="col-xs-9 col-sm-3 ">
+						<div class="col-xs-9 col-sm-5 ">
 							<p><b>File Name</b></p>
 							<p class="name" title="name" style="font-size:12px;" data-dz-name></p>
 							<strong class="error text-danger" data-dz-errormessage></strong>
@@ -155,7 +160,7 @@
 							</button>
 						</div>
 
-						<div class="col-xs-12 col-sm-2 " >
+						<div class="col-xs-12 col-sm-3 " >
 							<p class="size" data-dz-size></p>
 							<div class="progress  active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
 								<div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
@@ -180,11 +185,26 @@
 
 
 
-				<div id="actions" style="padding:0px;margin:0px;">
-					<div class="col-xs-12 center-block text-center" style="display:inline;padding:0px;margin:0px;">
+				<div id="actions" style="padding:0px; margin:0px;" >
+
+					<div class="form-group col-xs-12">
+						<label for="description">Enter some notes below about this room</label>
+						<textarea class="form-control" id="description"  name="description" rows="4" placeholder="Write some notes here..."></textarea>
+					</div>
+
+
+					<div class="col-xs-12 center-block text-center" style="display:inline;">
 						<!-- The fileinput-button span is used to style the file input field as button -->
 
-						<div  class="col-lg-12" st>
+
+						<div  class="col-lg-12">
+
+							<button id="previous" type="button" class="btn btn-primary" style="display:none; margin:5px;margin-right:30px;" onclick="previousArea()">
+								<span class="fa fa-arrow-left fa-lg" aria-hidden="true"></span>
+								Go Back
+							</button>
+
+
 							<button type="button" class="btn btn-blue fileinput-button" style="margin:5px;">
 								<span class="fa fa-plus fa-lg" aria-hidden="true"></span>
 								Select Files...
@@ -195,8 +215,8 @@
 								Send Files
 							</button>
 							&nbsp;&nbsp;&nbsp;&nbsp;
-							<button type="button" class="btn btn-primary"  style="margin:5px;">
-								No Problems In This Area
+							<button type="button" class="btn btn-primary"  style="margin:5px;" onclick="nextArea()">
+								No Problems In This Room
 								<span class="fa fa-arrow-right fa-lg" aria-hidden="true"></span>
 							</button>
 
@@ -212,11 +232,7 @@
 		</form>
 	</div>
 
-	</div>
 </div>
-
-
-
 
 
 
@@ -224,13 +240,26 @@
 
 <script>
 
+// current room
+var	room	=	1;
+var	code	=	"";
+var obj = {
+
+	1	:	{ name: 'Kitchen',			code: 'K', description : 'Please upload pictures of <b>KITCHEN</b> damage. Feel free to include some notes below.'},
+	2	:	{ name: 'Bathroom(s)',		code: 'B', description : 'Please upload pictures of <b>BATHROOM</b> damage. Feel free to include some notes below.'},
+	3	:	{ name: 'Bedroom(s)',		code: 'D', description : 'Please upload pictures of <b>BEDROOM</b> damage. Feel free to include some notes below.'},
+	4	:	{ name: 'Living Room',		code: 'L', description : 'Please upload pictures of <b>LIVING ROOM</b> damage. Feel free to include some notes below.'},
+	5	:	{ name: 'Hallway/Other',	code: 'H', description : 'Please upload pictures of <b>HALLWAY</b> damage. Feel free to include some notes below.'},
+	6	:	{ name: 'External',			code: 'E', description : 'Please upload pictures of <b>EXTERNAL</b> damage. Feel free to include some notes below.'},
+
+};
 
 	// once all page is loaded
 	window.onload = function(e)
 	{
 
-
-
+		// initial area
+		setAreas(room);
 
 
 	// Get the template HTML and remove it from the document
@@ -244,7 +273,7 @@
 
 
 	var myDropzone = new Dropzone("div#dropzone", { // Make the whole body a dropzone
-			url: "/app/mvc/iduploaddamage/doUploadID.php", // Set the url
+			url: "/app/mvc/iduploaddamage/doUpload.php", // Set the url
 		 	parallelUploads: 5,
 		 	autoProcessQueue: true,
 		    previewTemplate: previewTemplate,
@@ -296,15 +325,13 @@ myDropzone.on("addedfile", function(file) {
 		formData.append('case_key', '{{case_key}}');
 		formData.append('email', '{{email}}');
 
-		// Get and pass description field data
-//		var str = file.previewElement.querySelector("#description").value;
-//		formData.append("description", str);
 
 		formData.append('description', $('#description').val());
+		formData.append('room', room);
+		formData.append('code', code);
 		formData.append('file.filename', $('#'+file.filename+'').val());
 
 
-//		formData.append('description[]','description[]',file._captionBox.value);
 
 
 	});
@@ -332,9 +359,7 @@ myDropzone.on("addedfile", function(file) {
 	// Hide the total progress bar when nothing's uploading anymore
 	myDropzone.on("queuecomplete", function(progress) {
 
-
-		// update to save all other data
-		window.location.href = "/?pUpdate=filesUploaded"
+		nextArea();
 
 
 
@@ -447,6 +472,89 @@ myDropzone.on("addedfile", function(file) {
 
 
 	};
+
+
+
+function previousArea()
+{
+	// total number of rooms
+	var total_rooms		=	Object.keys(obj).length;
+
+	if (room > 1)
+	{
+		room--;
+
+		setAreas(room);
+
+		if (room == 1)
+		{
+			$('#previous').hide();
+		}
+		else
+		{
+			$('#previous').show();
+		}
+	}
+
+
+
+}
+/*
+This goes to the next section, or exits
+
+*/
+function nextArea()
+{
+
+	// total number of rooms
+	var total_rooms		=	Object.keys(obj).length;
+
+	if (room >= total_rooms)
+	{
+
+		// update to save all other data
+		window.location.href = "/?pUpdate=filesUploaded"
+
+	}
+	else
+	{
+		room++;
+	}
+
+	setAreas(room);
+
+	$('#previous').show();
+
+}
+
+
+/*
+This will set the percentage bar, the correct text based on the index
+*/
+function setAreas(index)
+{
+
+	if (index in obj )
+	{
+		// total number of rooms
+		var total_rooms		=	Object.keys(obj).length;
+
+		// percentage across the progress bar
+		var	pc				=	Math.round((100		/	total_rooms) * (index -0));
+
+		$('#myBar').width(pc+'%');
+		$('#myProgressText').html( 'Room ('+index+'/'+total_rooms+')  '+pc+'%' );
+		$('#myProgressInfo').html( obj[index].description );
+		$('#description').val(" ");
+
+		// store the code
+		code	=	 obj[index].code;
+
+	}
+}
+
+
+
 
 </script>
 

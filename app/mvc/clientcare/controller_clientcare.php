@@ -158,6 +158,123 @@ class Clientcare_Controller extends Page_Controller
 
 
 	# related to the authority
+	public function cfa()
+	{
+		global $gMysql;
+
+		if	(isset($this->params['completed']))
+		{
+			# no header / footer version
+			$this->displayDoneIframe();
+		}
+		else
+		{
+
+			# variable GetVariableString from table names - passes pid
+			# here we are grabbing the proclaim_id variable and passing it through the post
+			# so that we can use it in the next line of code.
+			$this->email		=	strtolower(GetVariableString('email',$this->params));
+			$this->case_key		=	GetVariableString('case_key',$this->params);
+			$this->show			= 	GetVariableString('show',$this->params);
+
+			# check the user
+			$gUser	=	new User_Class();
+			# now add the order_id
+			if (($data = $gUser->getUser($this->case_key,$this->email)) == NULL)
+			{
+				# we should go to success page, or homepage with a popup
+				gotoURL("/?pUpdate=noClaimRecord");
+			}
+			else
+			{
+
+				$this->title	=	ucfirst(strtolower($data['title']));
+				$this->forename	=	ucfirst(strtolower($data['forename']));
+				$this->surname	=	ucfirst(strtolower($data['surname']));
+
+
+				# date
+				$d    = date('d');
+				$m    = date('m');
+				$y    = date('y');
+				$date = $d . $m . $y;
+
+				$this->filename = "DS" . $this->case_key . "_" . $date . "S.pdf";
+
+				/*				# decide if we need to build a new pdf, sign it or exit
+								if($this->isCreated() == true)
+								{
+									# if we have not signed it, we should display it and get it signed
+									if(($this->isSigned() == true) && ($this->show != 'yes'))
+									{
+										$this->displayDone();
+									}
+									# this will show the pdf from within the iframe
+									else
+									{
+										$this->displayPDF();
+									}
+								}
+								else
+				*/				{
+
+				$client		=	new DigiSignerClient('aadd887d-fdfc-425c-b19b-550e49203e33');
+				$request 	=	new SignatureRequest;
+
+				# cfa document
+				$template = Document::withID('4b1d95a0-724d-4d73-b81a-39e40a75a2cf');
+				$template->setTitle('CFA - '.$this->case_key);
+				$request->addDocument($template);
+
+
+				# this is within the iframe though
+				$request->setRedirectAfterSigningToUrl("http://www.wardkemp.uk/clientcare/?case_key=".$this->case_key."&email=".$this->email."&reload=yes");   // HERE YOU DEFINE THE REDIRECT URL
+
+
+				$signer = new Signer('cedric@boxlegal.co.uk');
+				$signer->setRole('Signer 1');
+				$template->addSigner($signer);
+
+
+				$signatureRequest = $client->sendSignatureRequest($request);
+				$document = $signatureRequest->getDocuments();
+				$document = $document[0];
+				$signer = $document->getSigners();
+				$signer = $signer[0];
+
+				$this->document_id  =   $document->getId();
+				$this->sign_doc_url =   $signer->getSignDocumentUrl();
+
+
+				# insert pdf digisigner details into database
+				$gMysql->update("update  ppi_user set cfa_signed='', cfa_document_id='$this->document_id', cfa_sign_doc_url='$this->sign_doc_url', cfa_created_date=NOW() where case_key='$this->case_key'", __FILE__, __LINE__);
+
+				# display of the PDF from within the Digisigner system in an iframe
+				if  (($data = $gMysql->QueryRow("SELECT * FROM ppi_user where case_key='$this->case_key'", __FILE__, __LINE__)) != NULL)
+				{
+					$cachebuster			= 	rand(0,100000);
+					$this->document_id      =   $data['cfa_document_id'];
+					$this->sign_doc_url     =   $data['cfa_sign_doc_url'] . "&embedded=true&cachebuster=$cachebuster";
+
+					$this->appendTags(array	("{{meta_title}}" 			=>	"Ward Kemp"));
+					$this->appendTags(array	("{{sign_doc_url}}" 		=>	$this->sign_doc_url));
+				}
+
+			}
+			}
+
+			$this->render();
+		}
+	}
+
+
+
+
+
+
+
+
+	# related to the authority
 	public function authority()
 	{
 		if	(isset($this->params['completed']))
@@ -382,16 +499,7 @@ class Clientcare_Controller extends Page_Controller
 		# check if we have signed the document
 		if ($gUser->isClientCareSigned($this->case_key,$this->email) == true)
 		{
-			$signature_string	=	"
-
-<button class='btn  btn-success text-block'   type='button'  id='signClientAuthority'  name='signClientAuthority' onclick='signaturePreCheck();'>Sign DSAR Letter&nbsp;&nbsp;<i class='fas fa-file-signature fa-lg' aria-hidden='true'></i></button>	
-
-		";
-
-		}
-		else if ($gUser->isDsarSigned($this->case_key,$this->email) == true)
-		{
-			$signature_string	=	"";
+				$signature_string	=	"";
 		}
 
 
@@ -814,18 +922,14 @@ In the event that my claim is successful, I irrevocably authorise ". $name_of_so
 
 		$menu	=	array(
 
-			array(	"name" => "Introduction", 																	"link" =>	"clientcare/introduction"					),
-#			array(	"name" => "Your claim", 																	"link" =>	"clientcare/your-claim"					),
-#			array(	"name" => "Our charges (No Win No Fee Agreements)", 										"link" =>	"clientcare/our-charges"						),
-			array(	"name" => "Client Care Letter", 															"link" =>	"clientcare/letter",										),
-			array(	"name" => "Conditional Fee Agreement (No win no fee agreement)", 							"link" =>	"clientcare/cfa"										),
-			array(	"name" => "Protecting Yourself Financially (ATE Legal Expense Insurance)", 						"link" =>	"clientcare/ate-insurance"								),
-			array(	"name" => "Insurance Product Information Document (IPID)", 									"link" =>	"clientcare/ipid"										),
-#			array(	"name" => "Regulatory status and complaints", 												"link" =>	"clientcare/regulatory-status"							),
-#			array(	"name" => "Financial Interests ",									 						"link" =>	"clientcare/financial-interests"						),
-			array(	"name" => "Sign Client Authority Letter", 																	"link" =>	"clientcare/sign",						"cc"		=> 	"yes" ),
-#			array(	"name" => "Form of Authority", 																"link" =>	"clientcare/authority",					"cc"		=> 	"yes" ),
-#			array(	"name" => "DSAR", 																			"link" =>	"clientcare/dsar",						"dsar"		=>	"yes"	),
+			array(	"name" => "Introduction", 														"link" =>	"clientcare/introduction"					),
+			array(	"name" => "Client Care Letter", 												"link" =>	"clientcare/letter",										),
+			array(	"name" => "Protecting Yourself Financially (ATE Legal Expense Insurance)", 		"link" =>	"clientcare/ate-insurance"								),
+			array(	"name" => "Insurance Product Information Document (IPID)", 						"link" =>	"clientcare/ipid"										),
+			array(	"name" => "Conditional Fee Agreement (No win no fee agreement)", 				"link" =>	"clientcare/cfa",						"cc"		=> 	"yes"		),
+			array(	"name" => "Instruction to Act Form of Authority", 								"link" =>	"clientcare/sign",						"cc"		=> 	"yes" ),
+			array(	"name" => "Form of Authority instructing your Landlord ", 						"link" =>	"clientcare/landlord",						"cc"		=> 	"yes" ),
+#			array(	"name" => "DSAR", 																"link" =>	"clientcare/dsar",						"dsar"		=>	"yes"	),
 		);
 
 
@@ -887,27 +991,21 @@ In the event that my claim is successful, I irrevocably authorise ". $name_of_so
 			# green bar for CC if not signed
 			if (isset($menu_item['cc']))
 			{
+				$icon	="";
 				# not signed
 				if ($bCCSigned == false)
 				{
 					$active_class	=	"sign";
+
+					$icon	=		"<i class='fas fa-file-signature fa-lg' aria-hidden='true' ></i>";
 				}
-				$string	.=	"<li class='$active_class'  onclick='signaturePreCheck();' data-email='$email' data-case_key='$case_key' style='cursor:pointer;'><a class='precheck' >$name</a></li>";
-			}
-			# we have signed the CC
-			else if (isset($menu_item['dsar']))
-			{
-				# CC not signed, so skip this row
-				if ($bCCSigned == false)
+				else
 				{
 					continue;
 				}
-				if ($bDSARSigned == false)
-				{
-					$active_class	=	"sign";
-				}
-				$string	.=	"<li class='$active_class'  onclick='signaturePreCheck();' data-email='$email' data-case_key='$case_key' style='cursor:pointer;'><a class='precheck' >$name</a></li>";
+				$string	.=	"<li class='$active_class'  onclick='signaturePreCheck();' data-email='$email' data-case_key='$case_key' style='cursor:pointer;'><a class='precheck' >$icon $name </a></li>";
 			}
+
 			else
 			{
 				$string	.=	"<li class='$active_class'><a href='/$link?case_key=$case_key&email=$email&code=$code'>$name</a></li>";
@@ -958,23 +1056,6 @@ In the event that my claim is successful, I irrevocably authorise ". $name_of_so
 
 
 
-
-
-
-
-
-
-
-
-
-	# login just has the menu as per most outside pages
-	public function renderFinancial()
-	{
-
-		$this->client_text				=	$this->pPolicyText['client-care']['financial-interests'];
-
-		$this->render();
-	}
 
 
 

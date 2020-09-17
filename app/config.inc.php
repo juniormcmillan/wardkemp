@@ -295,41 +295,13 @@ $route_map             = array
 		'pattern' 		=>	'damage-upload',
 		# passed params - these are hardcoded for the route
 		'passed_params'	=>	array(
-			'header'	=>	'header-short.html',
-			'footer'	=>	'footer_homepage.html',
-			'template' 	=> 'index.html',
-			'page_title'			=> 'Ward Kemp',
-			'meta_title'			=> 'Ward Kemp',
-			'meta_desc'				=> 'Upload Your ID',
-			'meta_kw'				=> 'Upload Your ID',
-			'content'				=> '',
-
-		),
-		# parameters list to extract from url
-		'params_to_extract' 		=> array(''),
-		# routing data
-		'method'		=>	'',
-		'controller'	=>	'iduploaddamage',
-		'action'		=>	'render',
-
-	),
-
-
-
-
-
-	array(
-		# url
-		'pattern' 		=>	'damage-upload2',
-		# passed params - these are hardcoded for the route
-		'passed_params'	=>	array(
-			'header'	=>	'header-short.html',
-			'footer'	=>	'footer_homepage.html',
+			'header'	=>	'header-shorter.html',
+			'footer'	=>	'footer_basic.html',
 			'template' 	=> 'index-damage.html',
-			'page_title'			=> 'Ward Kemp',
-			'meta_title'			=> 'Ward Kemp',
-			'meta_desc'				=> 'Upload Your ID',
-			'meta_kw'				=> 'Upload Your ID',
+			'page_title'			=> 'Upload Your Damage Photos',
+			'meta_title'			=> 'Upload Your Damage Photos',
+			'meta_desc'				=> 'Upload Your Damage Photos',
+			'meta_kw'				=> 'Upload Your Damage Photos',
 			'content'				=> '',
 
 		),
@@ -433,6 +405,33 @@ $route_map             = array
 
 
 
+
+
+
+
+	array(
+		# url
+		'pattern' 		=>	'affiliate',
+		# passed params - these are hardcoded for the route
+		'passed_params'	=>	array(
+			'header'	=>	'header-affiliate.html',
+			'footer'	=>	'footer_basic.html',
+			'template' 	=> 'affiliate.html',
+			'page_title'			=> 'Ward Kemp',
+			'meta_title'			=> 'Ward Kemp',
+			'meta_description'		=> 'Housing Disrepair',
+			'meta_kw'				=> 'Housing Disrepair',
+			'content'				=> '',
+
+		),
+		# parameters list to extract from url
+		'params_to_extract' 		=> array(''),
+		# routing data
+		'method'		=>	'',
+		'controller'	=>	'page',
+		'action'		=>	'render',
+
+	),
 
 
 

@@ -34,7 +34,7 @@ if (($data = $gUser->getUser($case_key,$email)) != NULL)
 	$api_key			=	REBRANDLY_API;
 
 
-	$destination	= "http://www.wardkemp.uk/clientcare/introduction/?case_key=$case_key&email=$email&code=HD";
+	$destination	= "http://www.wardkemp.uk/clientcare/introduction/?case_key=$case_key&email=$email";
 
 	$domain_data["fullName"] 	= "pw1.uk";
 	$post_data["destination"]	= $destination;
