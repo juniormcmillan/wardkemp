@@ -549,6 +549,28 @@ $route_map             = array
 
 
 
+	array(
+		# url
+		'pattern' 		=>	'clientcare',
+		# passed params - these are hardcoded for the route
+		'passed_params'	=>	array(
+			'header'	=>	'header-shorter.html',
+			'footer'	=>	'footer_basic.html',
+			'template' 	=> 'introduction.html',
+			'page_title'			=> 'Client Care Introduction',
+			'meta_title'			=> 'Client Care Introduction',
+			'content'				=> '',
+
+		),
+		# parameters list to extract from url
+		'params_to_extract' 		=> array(''),
+		# routing data
+		'method'		=>	'',
+		'controller'	=>	'clientcare',
+		'action'		=>	'nothing',
+
+	),
+
 
 
 	array(
@@ -601,18 +623,18 @@ $route_map             = array
 
 
 
+
+
 	array(
 		# url
-		'pattern' 		=>	'clientcare/cfa',
+		'pattern' 		=>	'clientcare/terms',
 		# passed params - these are hardcoded for the route
 		'passed_params'	=>	array(
 			'header'	=>	'header-shorter.html',
 			'footer'	=>	'footer_basic.html',
-			'template' 	=> 'index_cfa.html',
-			'page_title'			=> 'CFA Agreement',
-			'meta_title'			=> 'CFA Agreement',
-			'meta_desc'				=> 'Conditional Fee Agreement',
-			'meta_kw'				=> 'Conditional Fee Agreement',
+			'template' 	=> 'terms.html',
+			'page_title'			=> 'Terms & Conditions',
+			'meta_title'			=> 'Terms & Conditions',
 			'content'				=> '',
 
 		),
@@ -624,6 +646,85 @@ $route_map             = array
 		'action'		=>	'render',
 
 	),
+
+
+
+
+	array(
+		# url
+		'pattern' 		=>	'clientcare/cfa',
+		# passed params - these are hardcoded for the route
+		'passed_params'	=>	array(
+			'header'	=>	'header-shorter.html',
+			'footer'	=>	'footer_basic.html',
+			'template' 	=> 'index.html',
+			'page_title'			=> 'CFA Agreement',
+			'meta_title'			=> 'CFA Agreement',
+			'content'				=> '',
+
+		),
+		# parameters list to extract from url
+		'params_to_extract' 		=> array(''),
+		# routing data
+		'method'		=>	'',
+		'controller'	=>	'clientcare',
+		'action'		=>	'cfa',
+
+	),
+
+
+
+	array(
+		# url
+		'pattern' 		=>	'clientcare/instructions',
+		# passed params - these are hardcoded for the route
+		'passed_params'	=>	array(
+			'header'	=>	'header-shorter.html',
+			'footer'	=>	'footer_basic.html',
+			'template' 	=> 'index.html',
+			'page_title'			=> 'Instructions To Act',
+			'meta_title'			=> 'Instructions To Act',
+			'content'				=> '',
+
+		),
+		# parameters list to extract from url
+		'params_to_extract' 		=> array(''),
+		# routing data
+		'method'		=>	'',
+		'controller'	=>	'clientcare',
+		'action'		=>	'instructionsToAct',
+
+	),
+
+
+
+
+	array(
+		# url
+		'pattern' 		=>	'clientcare/landlord',
+		# passed params - these are hardcoded for the route
+		'passed_params'	=>	array(
+			'header'	=>	'header-shorter.html',
+			'footer'	=>	'footer_basic.html',
+			'template' 	=> 'index.html',
+			'page_title'			=> 'Landlord',
+			'meta_title'			=> 'Landlord',
+			'content'				=> '',
+
+		),
+		# parameters list to extract from url
+		'params_to_extract' 		=> array(''),
+		# routing data
+		'method'		=>	'',
+		'controller'	=>	'clientcare',
+		'action'		=>	'landlord',
+
+	),
+
+
+
+
+
 
 
 

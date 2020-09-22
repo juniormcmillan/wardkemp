@@ -241,6 +241,19 @@ class User_Class
 	}
 
 
+	# has user accepted
+	public function isSigned($case_key,$email,$var_signed)
+	{
+		global $gMysql;
+
+		if (($val = $gMysql->queryRow("select * from ppi_user where email='$email' and case_key='$case_key' and $var_signed ='yes'",__FILE__,__LINE__)) != NULL)
+		{
+			return true;
+		}
+	}
+
+
+
 	# has user accepted clientcare
 	public function isClientCareSigned($case_key,$email)
 	{

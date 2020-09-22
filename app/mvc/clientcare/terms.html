@@ -1,0 +1,172 @@
+{{header}}
+<!--- main content -->
+<style>
+	.embed-responsive {
+		position: relative;
+		display: block;
+		height: 0;
+		padding: 0;
+		overflow: hidden;
+	}
+</style>
+<div class="container-fluid" style="min-height:600px;padding:0px;margin:0px;">
+
+	<div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+		{{navbar_clientcare}}
+	</div>
+
+	<div class="col-lg-9 col-md-9 col-xs-12 col-sm-12" style="">
+
+
+		<div  >
+			<h2 class="text-center">
+				{{page_title}}
+			</h2>
+			<!--
+						<div class="ppi-please-read col-sm-12">
+							<span class="pull-right"><button class="btn  btn-purple  ppi-please-read-button"   type="button"  id="gotoBottom" data-target="#acceptPage">JUMP TO BOTTOM&nbsp;&nbsp;<i class="fa fa-arrow-circle-down fa-lg" aria-hidden="true"></i></button></span>
+							Please read the contents of this page and indicate you have done so by clicking the accept button at the bottom of the page
+						</div>
+			-->
+			<div style="clear:both;"><br></div>
+		</div>
+
+
+
+		<div class="embed-responsive" style="min-height:2600px;padding-bottom: 141.42%;">
+			<object class="embed-responsive-item" data="/app/images/clientcare/Terms.pdf" type="application/pdf" internalinstanceid="9" title="">
+			</object>
+		</div>
+
+
+
+	</div>
+
+
+	<div class="text-center col-xs-12 " style="padding:0px;">
+
+
+
+	</div>
+
+
+
+
+</div>
+
+
+<script>
+
+
+	window.onload = function(e)
+	{
+
+		$(document).ready(function()
+		{
+
+			// go to the bottom
+			$('#gotoBottom').click(function(e)
+			{
+				var jump = $(this).attr('data-target');
+
+
+				var new_position = $(jump).offset();
+				$('html, body').stop().animate({ scrollTop: new_position.top }, 500);
+				e.preventDefault();
+			});
+
+
+
+			// if we have been accepted, then disable this part
+			var  accepted	=	"{{accepted}}";
+
+
+			// if we have been accepted, then disable this part
+			if (accepted=="accepted")
+			{
+				$('#checkBox').prop('checked',true);
+				$('#checkBox').prop('disabled',true);
+				$('#checkBox').prop('title','You have confirmed already that you have read this');
+
+				$('#acceptPage').prop('disabled', false);
+				$('#acceptPage').html('Continue');
+				$('#acceptPage').prop('title','You have confirmed already that you have read this');
+
+				$('#acceptPage').click(function(e)
+				{
+					var case_key		=	"{{case_key}}";
+					var	email			=	"{{email}}";
+
+					window.location.href = '/clientcare/introduction/?case_key='+case_key+'&email='+email+'';
+
+				});
+			}
+			else
+			{
+				// checkbox toggle
+				$('#checkBox').click(function(e)
+				{
+					// disable button checkbox toggle
+					$('#acceptPage').prop('disabled', function(i, v) { return !v; });
+				});
+				// submission of this page , but if we have already accepted, we do not need to submit again
+				$('#acceptPage').click(function(e)
+				{
+					var case_key		=	"{{case_key}}";
+					var	email			=	"{{email}}";
+					var	uri				=	"{{uri}}";
+
+					$.ajax(
+						{
+							url:		'/app/mvc/clientcare/doAccept.php',
+							type:		'POST',
+							cache:		false,
+							async:		true,
+							dataType:	'json',
+							data:
+								{
+									case_key : case_key,	email : email,	uri : uri,
+								},
+							success:	function(data)
+							{
+
+								if	(data.returncode == 'error')
+								{
+
+									$.alert({
+										type: 'red',
+										confirmButton: 'Ok',
+										title: 'Warning!',
+										content: data.message,
+									});
+								}
+								else if (data.returncode == 'success')
+								{
+									window.location.href = '/clientcare/introduction/?case_key='+case_key+'&email='+email+'';
+								}
+							},
+							failure:	function()
+							{
+								alert('failure');
+							}
+						}
+
+					)
+
+					e.preventDefault();
+				});
+
+			}
+
+		});
+	}
+
+
+
+
+
+</script>
+
+
+
+{{footer}}
