@@ -58,11 +58,11 @@ $htmlMessage = "
 $htmlMessage	=	str_replace('\r\n', "\r\n",$htmlMessage);
 
 
-$subject 	=	"No Offer Letter - PPI Solicitors Website";
-$email		=	"website@ppisolicitors.co.uk";
+$subject 	=	"No Offer Letter - Ward Kemp Website";
+$email		=	"website@wardkemp.co.uk";
 
-sendEmailLocal("PPI Solicitors Offer Letter", $email, "cedric@ppisolicitors.co.uk", $subject, nl2br($htmlMessage));
-sendEmailLocal("PPI Solicitors Offer Letter", $email, "team@ppisolicitors.co.uk", $subject, nl2br($htmlMessage));
+sendEmailLocal("Ward Kemp Offer Letter", $email, "cedric@wardkemp.uk", $subject, nl2br($htmlMessage));
+sendEmailLocal("Ward Kemp Offer Letter", $email, "team@wardkemp.uk", $subject, nl2br($htmlMessage));
 
 
 

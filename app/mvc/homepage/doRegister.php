@@ -125,10 +125,10 @@ $htmlMessage = "
 $htmlMessage	=	str_replace('\r\n', "\r\n",$htmlMessage);
 
 
-$subject 	=	"Enquiry from PPI Solicitors Website";
-$email		=	"website@ppisolicitors.co.uk";
+$subject 	=	"Enquiry from Ward Kemp Website";
+$email		=	"website@wardkemp.uk";
 
-sendEmailLocal("PPI Solicitors Website", $email, "cedric@ppisolicitors.co.uk", $subject, nl2br($htmlMessage));
+sendEmailLocal("Ward Kemp Website", $email, "cedric@wardkemp.uk", $subject, nl2br($htmlMessage));
 
 
 

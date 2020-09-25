@@ -801,7 +801,7 @@ AddComment("done");
 	{
 		$this->template									=	"iframe.html";
 		$this->appendTags(array	("{{meta_title}}" 		=>	"COMPLETED"));
-		$this->appendTags(array	("{{page_title}}" 		=>	"PPI Solicitors"));
+		$this->appendTags(array	("{{page_title}}" 		=>	"Ward Kemp"));
 
 		$this->appendTags(array	("{{blank_message}}" 	=>	"Thank You. We will now continue to the next form to sign..."));
 
@@ -819,7 +819,7 @@ AddComment("done");
 	{
 		$this->template									=	"iframe.html";
 		$this->appendTags(array	("{{meta_title}}" 		=>	"COMPLETED"));
-		$this->appendTags(array	("{{page_title}}" 		=>	"PPI Solicitors"));
+		$this->appendTags(array	("{{page_title}}" 		=>	"Ward Kemp"));
 		$this->appendTags(array	("{{blank_message}}" 	=>	"Thank You. We will now continue to progress your claim. We will update you in due course."));
 	}
 

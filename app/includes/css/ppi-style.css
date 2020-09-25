@@ -235,8 +235,16 @@
 	padding:0px;
 }
 
+.affiliate-top-info-bar
+{
+	width:100%;
+	text-align:right; padding:10px;margin:0px;
 
-/* phone number, email and search bar */
+
+	color:#000000;
+}
+
+	/* phone number, email and search bar */
 .ppi-top-info-bar
 {
 	width:100%;
