@@ -383,7 +383,7 @@ $route_map             = array
 		# passed params - these are hardcoded for the route
 		'passed_params'	=>	array(
 			'header'	=>	'header-hd.html',
-			'footer'	=>	'footer_homepage.html',
+			'footer'	=>	'footer_basic.html',
 			'template' 	=> 'index-hd.html',
 			'page_title'			=> 'Ward Kemp',
 			'meta_title'			=> 'Ward Kemp',

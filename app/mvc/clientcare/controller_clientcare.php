@@ -282,7 +282,7 @@ AddComment("er?");
 
 
 					# this is within the iframe though
-					$request->setRedirectAfterSigningToUrl("http://www.wardkemp.uk/clientcare/instructions?case_key=".$this->case_key."&email=".$this->email."&reload=yes&page=instructions");   // HERE YOU DEFINE THE REDIRECT URL
+					$request->setRedirectAfterSigningToUrl("https://www.wardkemp.uk/clientcare/instructions?case_key=".$this->case_key."&email=".$this->email."&reload=yes&page=instructions");   // HERE YOU DEFINE THE REDIRECT URL
 
 
 					$signer = new Signer('cedric@boxlegal.co.uk');
@@ -448,7 +448,7 @@ AddComment("done");
 
 
 					# this is within the iframe though
-					$request->setRedirectAfterSigningToUrl("http://www.wardkemp.uk/clientcare/landlord?case_key=".$this->case_key."&email=".$this->email."&reload=yes&page=landlord");   // HERE YOU DEFINE THE REDIRECT URL
+					$request->setRedirectAfterSigningToUrl("https://www.wardkemp.uk/clientcare/landlord?case_key=".$this->case_key."&email=".$this->email."&reload=yes&page=landlord");   // HERE YOU DEFINE THE REDIRECT URL
 
 
 					$signer = new Signer('cedric@boxlegal.co.uk');
@@ -623,7 +623,7 @@ AddComment("done");
 
 
 					# this is within the iframe though
-					$request->setRedirectAfterSigningToUrl("http://www.wardkemp.uk/clientcare/?completed=yes");   // HERE YOU DEFINE THE REDIRECT URL
+					$request->setRedirectAfterSigningToUrl("https://www.wardkemp.uk/clientcare/?completed=yes");   // HERE YOU DEFINE THE REDIRECT URL
 
 
 					$signer = new Signer('cedric@boxlegal.co.uk');
