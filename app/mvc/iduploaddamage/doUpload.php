@@ -72,7 +72,14 @@ else
 
 		$date 						=	date("dmYHis");
 		$random 					=	rand(1,1000);
-		$file 						=	$prefix."_".	$date ."_".	 $random . ".csv";
+
+
+		# blank these for now
+		$date						=	"";
+		$random						=	"";
+
+
+		$file 						=	$prefix."_".	$case_key . ".csv";
 		$fd 						=	fopen("$server_location$file", "w+") or die ("<br><b>Error creating file</b><br>");
 		$fout 						= 	fwrite($fd, $data);
 		fclose($fd);
@@ -101,7 +108,7 @@ else
 		$backupPath 	=	"../../../files_backup/damage/";
 
 		# get the new name
-		$new_name		=	$prefix . $case_key .  "_" . $date	. "." .$fileType;
+		$new_name		=	$prefix . $case_key .  "." .$fileType;
 
 
 		$backup_name	=	$backupPath. $new_name;

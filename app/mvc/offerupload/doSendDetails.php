@@ -62,7 +62,7 @@ $subject 	=	"No Offer Letter - Ward Kemp Website";
 $email		=	"website@wardkemp.co.uk";
 
 sendEmailLocal("Ward Kemp Offer Letter", $email, "cedric@wardkemp.uk", $subject, nl2br($htmlMessage));
-sendEmailLocal("Ward Kemp Offer Letter", $email, "team@wardkemp.uk", $subject, nl2br($htmlMessage));
+sendEmailLocal("Ward Kemp Offer Letter", $email, "team@wardkemp.co.uk", $subject, nl2br($htmlMessage));
 
 
 

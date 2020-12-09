@@ -67,9 +67,11 @@ if	(($data =	json_decode(getPutContents(), true)) != NULL)
 #	doCheckWardKempClientCare($document_id);
 #	doCheckWardKempLandlord($document_id);
 
+	doCheckWardKempMobile($document_id);
 	doCheckWardKempCFA($document_id);
 	doCheckWardKempLandlord($document_id);
 	doCheckWardKempInstruction($document_id);
+	doCheckWardKemp($document_id);
 
 }
 else
@@ -761,6 +763,78 @@ function doCheckWardKempCFA($document_id)
 
 
 
+
+
+# Mobile = C5 this will need to sent the file to a specific folder
+function doCheckWardKempMobile($document_id)
+{
+	global $gMysql;
+
+	AddComment("doCheckWardKempMobile starting ($document_id) ");
+
+	$gMysql->setDB("wardkemp");
+
+
+	# grab data about document
+	$data		=	$gMysql->queryRow("select * from  ppi_user where mobile_document_id='$document_id'", __FILE__, __LINE__);
+	if	(!empty($data))
+	{
+		$case_key	=	$data['case_key'];
+
+		AddComment("doCheckWardKempMobile CASE_KEY:$case_key  ($document_id) ");
+
+		$name		=	"C5" . $data['case_key']	.	"_"	.		date('d')	.	date('m')	.	date('y').	"S.pdf";
+
+		$filename	=	$_SERVER["DOCUMENT_ROOT"]	.	"/files/signed-clientcare-ppi/"	.	$name;
+
+
+
+		$today		=	GetTimeStamp();
+		# now, we can set that it was signed
+		$gMysql->update("update ppi_user set mobile_signed='yes', mobile_signed_date='$today' where mobile_document_id='$document_id'", __FILE__, __LINE__);
+
+		AddComment("doCheckWardKempMobile ($document_id) NAME:$name DONE IT!");
+
+		# grab signed document
+		$client = new DigiSignerClient('aadd887d-fdfc-425c-b19b-550e49203e33');
+		$client->getDocument($document_id, $filename);
+
+
+		AddComment("doCheckWardKempMobile CASE_KEY:$case_key  Stored initial file");
+
+
+
+		$server_location	=	$_SERVER["DOCUMENT_ROOT"].	"/files/signed-clientcare-ppi/";
+
+		$ftp_dest_folder	=	"public_html/files/clientcare/";
+
+
+		# send externally for backup
+		send_ftp_(WARDKEMP_FTP_SERVER,WARDKEMP_FTP_USERNAME,WARDKEMP_FTP_PASSWORD,$name,$server_location,$ftp_dest_folder);
+
+
+
+		$today		=	GetTimeStamp();
+		# now, we can set that it was signed
+		$gMysql->update("update ppi_user set mobile_signed='yes', mobile_signed_date='$today' where mobile_document_id='$document_id'", __FILE__, __LINE__);
+
+		AddComment("doCheckWardKempMobile ($document_id) NAME:$name DONE IT!");
+
+		# now for the backup
+		$ftp_dest_folder	=	"public_html/files_backup/clientcare/";
+		# send externally for backup
+		send_ftp_(WARDKEMP_FTP_SERVER,WARDKEMP_FTP_USERNAME,WARDKEMP_FTP_PASSWORD,$name,$server_location,$ftp_dest_folder);
+
+
+
+		echo "DIGISIGNER_EVENT_ACCEPTED";
+		exit;
+	}
+
+	AddComment("doCheckWardKempMobile ($document_id) FAILED");
+
+
+}
 
 
 

@@ -112,6 +112,17 @@ class User_Class
 		}
 	}
 
+	#
+	public function getUserViaEmail($email)
+	{
+		global $gMysql;
+
+		if	(($data	=	$gMysql->queryRow("select * from ppi_user where email='$email' and email !='' ",__FILE__,__LINE__)))
+		{
+			return $data;
+		}
+	}
+
 
 
 	#
@@ -132,23 +143,27 @@ class User_Class
 
 	# add / update
 	# creates a claim dbase item and stores case_key if passed
-	public function createUser($email,$title,$forename,$surname,$mobile,$case_key="")
+	public function createUser($email,$title,$forename,$surname,$mobile,$case_key="",$order_id="",$google_lead_id="")
 	{
 		global $gMysql;
 
+		if ($this->getUserViaEmail($email) == true)
+		{
+			$gMysql->update("update ppi_user set case_key='$case_key',order_id='$order_id',google_lead_id='$google_lead_id', last_updated=NOW() where email='$email'",__FILE__,__LINE__);
+		}
 
-		if ($this->getUserViaCaseKey($case_key) == false)
+		else if ($this->getUserViaCaseKey($case_key) == false)
 		{
 			$gMysql->insert("insert into ppi_user 
 		
-		(id,case_key,email,title,forename,surname,mobile,added,last_updated) VALUES 
-		(0,'$case_key','$email','$title','$forename','$surname','$mobile',NOW(),NOW())",__FILE__,__LINE__);
+		(id,case_key,email,title,forename,surname,mobile,order_id,google_lead_id,added,last_updated) VALUES 
+		(0,'$case_key','$email','$title','$forename','$surname','$mobile','$order_id','$google_lead_id',NOW(),NOW())",__FILE__,__LINE__);
 
 		}
 		else
 		{
 			# only do this if case_key is empty too - eg. a brand new client that needs data filled out
-			$gMysql->update("update ppi_user set case_key='$case_key', last_updated=NOW() where email='$email' and case_key='' ",__FILE__,__LINE__);
+			$gMysql->update("update ppi_user set case_key='$case_key',order_id='$order_id',google_lead_id='$google_lead_id', last_updated=NOW() where email='$email' and case_key='' ",__FILE__,__LINE__);
 		}
 
 	}
@@ -187,13 +202,13 @@ class User_Class
 
 
 	# updates claimant details with case_key and also address details. multiple claims over time could be an issue if the same email address is used. (use proclaim id or postcode somehow)
-	public function updateUserDetails($case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$defendant,$google_lead_id,$type_code,$company,$solicitor_name)
+	public function updateUserDetails($case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$defendant,$google_lead_id,$type_code,$company,$solicitor_name,$dob)
 	{
 		global $gMysql;
 		# only do this if case_key is empty too
 		$gMysql->update("update ppi_user set 
 		
-		address1='$address1',address2='$address2',town='$town',postcode='$postcode',title='$title',forename='$forename',surname='$surname',defendant='$defendant',google_lead_id='$google_lead_id',type_code='$type_code',company_id='$company',solicitor_name='$solicitor_name',last_updated=NOW() 
+		dob='$dob',address1='$address1',address2='$address2',town='$town',postcode='$postcode',title='$title',forename='$forename',surname='$surname',defendant='$defendant',google_lead_id='$google_lead_id',type_code='$type_code',company_id='$company',solicitor_name='$solicitor_name',last_updated=NOW() 
 		
 		where (case_key='$case_key' and case_key !='') ",__FILE__,__LINE__);
 	}
@@ -202,13 +217,13 @@ class User_Class
 
 
 	# updates a lead
-	public function updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign,$defendant,$company,$solicitor_name)
+	public function updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign,$defendant,$company,$solicitor_name,$dob)
 	{
 		global $gMysql;
 		# only do this if case_key is empty too
 		$gMysql->update("update ppi_user set 
 		
-		connex='$connex',case_key='$case_key',address1='$address1',address2='$address2',town='$town',postcode='$postcode',title='$title',forename='$forename',surname='$surname',email='$email',type_code='$type_code',mobile='$mobile',campaign='$campaign',defendant='$defendant',company_id='$company',solicitor_name='$solicitor_name', last_updated=NOW() 
+		dob='$dob',connex='$connex',case_key='$case_key',address1='$address1',address2='$address2',town='$town',postcode='$postcode',title='$title',forename='$forename',surname='$surname',email='$email',type_code='$type_code',mobile='$mobile',campaign='$campaign',defendant='$defendant',company_id='$company',solicitor_name='$solicitor_name', last_updated=NOW() 
 		
 		where (google_lead_id='$google_lead_id' and google_lead_id !='') ",__FILE__,__LINE__);
 	}

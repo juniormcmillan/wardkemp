@@ -415,7 +415,7 @@ $route_map             = array
 		# passed params - these are hardcoded for the route
 		'passed_params'	=>	array(
 			'header'	=>	'header-affiliate.html',
-			'footer'	=>	'footer_basic.html',
+			'footer'	=>	'footer_affiliate.html',
 			'template' 	=> 'affiliate.html',
 			'page_title'			=> 'Ward Kemp',
 			'meta_title'			=> 'Ward Kemp',
@@ -647,6 +647,29 @@ $route_map             = array
 
 	),
 
+
+
+	array(
+		# url
+		'pattern' 		=>	'clientcare/phone',
+		# passed params - these are hardcoded for the route
+		'passed_params'	=>	array(
+			'header'	=>	'header-shorter.html',
+			'footer'	=>	'footer_basic.html',
+			'template' 	=> 'index.html',
+			'page_title'			=> 'Telephone Instructions',
+			'meta_title'			=> 'Telephone Instructions',
+			'content'				=> '',
+
+		),
+		# parameters list to extract from url
+		'params_to_extract' 		=> array(''),
+		# routing data
+		'method'		=>	'',
+		'controller'	=>	'clientcare',
+		'action'		=>	'mobile',
+
+	),
 
 
 

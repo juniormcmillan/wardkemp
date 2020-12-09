@@ -320,6 +320,7 @@
 		var	bformFullName			=	$("#frmContact").validate().element("#formName");
 		var	bformEmail				=	$("#frmContact").validate().element("#formEmail");
 		var	bformPhone				=	$("#frmContact").validate().element("#formTelephone");
+		var	bformQuestion			=	$("#frmContact").validate().element("#formQuestion");
 
 
 		var formData 				= 	$("#frmContact").serialize();
@@ -352,7 +353,7 @@
 							$.alert({
 								type: 'red',
 								confirmButton: 'Ok',
-								title: 'Warning!',
+								title: 'There is a problem',
 								content: data.message,
 							});
 
@@ -385,6 +386,7 @@
 		var	bformFullName			=	$("#frmContact2").validate().element("#formName");
 		var	bformEmail				=	$("#frmContact2").validate().element("#formEmail");
 		var	bformPhone				=	$("#frmContact2").validate().element("#formTelephone");
+		var	bformQuestion			=	$("#frmContact").validate().element("#formQuestion");
 
 
 		var formData 				= 	$("#frmContact2").serialize();
@@ -417,7 +419,7 @@
 							$.alert({
 								type: 'red',
 								confirmButton: 'Ok',
-								title: 'Warning!',
+								title: 'There is a problem',
 								content: data.message,
 							});
 
@@ -474,7 +476,9 @@
 
 
 						rules: {
-
+							formQuestion: {
+								required: true
+							},
 
 							formName: {
 								minlength: 2,

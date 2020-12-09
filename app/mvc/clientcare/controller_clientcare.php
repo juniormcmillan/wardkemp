@@ -89,6 +89,7 @@ array(	"name" => "Insurance Product Information Document (IPID)", 						"link" =
 array(	"name" => "Conditional Fee Agreement (No win no fee agreement)", 				"link" =>	"clientcare/cfa",						"cc"		=> 	"yes",	"var" => "cfa" ),
 array(	"name" => "Instruction to Act Form of Authority", 								"link" =>	"clientcare/instructions",				"cc"		=> 	"yes",	"var" => "clientcare"  	),
 array(	"name" => "Form of Authority instructing your Landlord ", 						"link" =>	"clientcare/landlord",					"cc"		=> 	"yes",	"var" => "landlord"  	),
+array(	"name" => "Instruction to Phone Network Provider", 								"link" =>	"clientcare/phone",						"cc"		=> 	"yes",	"var" => "mobile" ),
 	#			array(	"name" => "DSAR", 																"link" =>	"clientcare/dsar",						"dsar"		=>	"yes"	),
 	);
 
@@ -186,6 +187,219 @@ array(	"name" => "Form of Authority instructing your Landlord ", 						"link" =>
 	public function nothing()
 	{
 	}
+
+
+
+
+	# related to the authority part 1
+	public function mobile($bRenderHeader)
+	{
+
+
+		global $gMysql;
+		$bRenderHeader	=	true;
+
+		if	(isset($this->params['completed']))
+		{
+			# no header / footer version
+			$this->displayDoneIframe();
+		}
+		else
+		{
+
+			# variable GetVariableString from table names - passes pid
+			# here we are grabbing the proclaim_id variable and passing it through the post
+			# so that we can use it in the next line of code.
+			$this->email		=	strtolower(GetVariableString('email',$this->params));
+			$this->case_key		=	GetVariableString('case_key',$this->params);
+			$this->show			= 	GetVariableString('show',$this->params);
+
+			# check the user
+			$gUser	=	new User_Class();
+			# now add the order_id
+			if (($data = $gUser->getUser($this->case_key,$this->email)) == NULL)
+			{
+				AddComment(" does not exist");
+				# we should go to success page, or homepage with a popup
+				gotoURL("/?pUpdate=noClaimRecord");
+			}
+			else
+			{
+
+				$this->title	=	ucfirst(strtolower($data['title']));
+				$this->forename	=	ucfirst(strtolower($data['forename']));
+				$this->surname	=	ucfirst(strtolower($data['surname']));
+				$full_name		=	$this->title ." ". $this->forename ." ".$this->surname;
+				$address		=	$data['address1']  . " "	.	$data['address2'] . " ".	$data['town']. " ".	$data['postcode'];
+				$defendant		=	$data['defendant'];
+				$full_date		=	$today = date("F j, Y");
+				$this->mobile	=	$data['mobile'];
+				$this->dob		=	date( 'F j, Y', strtotime($data['dob']));
+				$this->solicitor_ref	=	$data['solicitor_ref'];
+
+
+				# date
+				$d    = date('d');
+				$m    = date('m');
+				$y    = date('y');
+				$date = $d . $m . $y;
+
+				$this->filename = "DS" . $this->case_key . "_" . $date . "S.pdf";
+
+
+				# decide if we need to build a new pdf, sign it or exit
+				if($this->isCreated("mobile") == true)
+				{
+
+
+					# if we have not signed it, we should display it and get it signed
+					if(($this->isSigned("mobile") == true) && ($this->show != 'yes'))
+					{
+						AddComment("er?");
+						#						gotoURL("/clientcare/instructions?case_key=" .$this->case_key. "&email=" .$this->email."&reload=yes");
+						#						exit;
+						# goto the first unsigned or display done
+						$this->gotoUnSigned();
+
+						$this->displayDoneIframe();
+					}
+					# this will show the pdf from within the iframe
+					else
+					{
+						$cachebuster			= 	rand(0,100000);
+						$this->sign_doc_url     =   $data['mobile_sign_doc_url'] . "&embedded=true&cachebuster=$cachebuster";
+
+						$this->appendTags(array	("{{meta_title}}" 			=>	"Ward Kemp"));
+						$this->appendTags(array	("{{sign_doc_url}}" 		=>	$this->sign_doc_url));
+
+					}
+				}
+				else
+				{
+
+					$client		=	new DigiSignerClient('aadd887d-fdfc-425c-b19b-550e49203e33');
+					$request 	=	new SignatureRequest;
+
+					# mobile document
+					$template = Document::withID('3ba6ca94-c4d1-4f6d-9410-eee72db3d728');
+					$template->setTitle('mobile - '.$this->case_key);
+					$request->addDocument($template);
+
+
+					# this is within the iframe though
+					$request->setRedirectAfterSigningToUrl("https://www.wardkemp.uk/clientcare/?completed=yes");   // HERE YOU DEFINE THE REDIRECT URL
+
+
+					$signer = new Signer('cedric@boxlegal.co.uk');
+					$signer->setRole('Signer 1');
+					$template->addSigner($signer);
+
+
+
+					# name
+					$field1 = new ExistingField('ddf11147-d0e5-4fac-bb33-5a657e299cb5');
+					$field1->setContent($full_name);
+					$field1->setReadOnly(true);
+					$signer->addExistingField($field1);
+
+					# address
+					$field2 = new ExistingField('7d1ec900-2fe9-495c-b63d-4828f1616faa');
+					$field2->setContent($address);
+					$field2->setReadOnly(true);
+					$signer->addExistingField($field2);
+
+
+					# telephone
+					$field3 = new ExistingField('3db395ad-1bd5-4a5b-9365-8e265136cabc');
+					$field3->setContent($this->mobile);
+					$field3->setReadOnly(true);
+					$signer->addExistingField($field3);
+
+
+					# dob
+					$field4 = new ExistingField('22fde3fd-71d1-4052-87d5-88c40c4adde9');
+					$field4->setContent($this->dob);
+					$field4->setReadOnly(true);
+					$signer->addExistingField($field4);
+
+
+					# dated
+					$field3 = new ExistingField('ba27f7e4-e087-4802-995e-b4fe407217b9');
+					$field3->setContent($full_date);
+					$field3->setReadOnly(true);
+					$signer->addExistingField($field3);
+
+					# ref
+					$field3 = new ExistingField('0572327c-36bd-4628-bc38-68900a0b76df');
+					$field3->setContent($this->solicitor_ref);
+					$field3->setReadOnly(true);
+					$signer->addExistingField($field3);
+
+
+
+
+
+
+					$signatureRequest = $client->sendSignatureRequest($request);
+					$signature_request_id	=	$signatureRequest->getId();
+					$document = $signatureRequest->getDocuments();
+					$document = $document[0];
+					$signer = $document->getSigners();
+					$signer = $signer[0];
+
+					$this->document_id  =   $document->getId();
+					$this->sign_doc_url =   $signer->getSignDocumentUrl();
+
+
+					# insert pdf digisigner details into database
+					$gMysql->update("update  ppi_user set mobile_signed='', mobile_signature_request_id='$signature_request_id' ,mobile_document_id='$this->document_id', mobile_sign_doc_url='$this->sign_doc_url', mobile_created_date=NOW() where case_key='$this->case_key'", __FILE__, __LINE__);
+
+					$cachebuster			= 	rand(0,100000);
+					$this->sign_doc_url     =   $this->sign_doc_url . "&embedded=true&cachebuster=$cachebuster";
+
+					$this->appendTags(array	("{{meta_title}}" 			=>	"Ward Kemp"));
+					$this->appendTags(array	("{{sign_doc_url}}" 		=>	$this->sign_doc_url));
+
+				}
+
+			}
+
+
+			if (isset($this->params['reload']))
+			{
+				$bRenderHeader	=	false;
+			}
+
+
+			$this->render($bRenderHeader);
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	# related to the authority part 1
@@ -623,7 +837,7 @@ AddComment("done");
 
 
 					# this is within the iframe though
-					$request->setRedirectAfterSigningToUrl("https://www.wardkemp.uk/clientcare/?completed=yes");   // HERE YOU DEFINE THE REDIRECT URL
+					$request->setRedirectAfterSigningToUrl("https://www.wardkemp.uk/clientcare/phone?case_key=".$this->case_key."&email=".$this->email."&reload=yes&page=phone");   // HERE YOU DEFINE THE REDIRECT URL
 
 
 					$signer = new Signer('cedric@boxlegal.co.uk');

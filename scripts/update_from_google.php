@@ -44,6 +44,8 @@ $postcode			= str_replace($invalid_characters, "",GetVariableString('pcode',$_GE
 $title				= str_replace($invalid_characters, "",GetVariableString('title',$_GET,""));
 $forename			= ucfirst(str_replace($invalid_characters, "",GetVariableString('forename',$_GET,"")));
 $surname			= ucfirst(str_replace($invalid_characters, "",GetVariableString('surname',$_GET,"")));
+$forename2			= ucfirst(str_replace($invalid_characters, "",GetVariableString('forename2',$_GET,"")));
+$surname2			= ucfirst(str_replace($invalid_characters, "",GetVariableString('surname2',$_GET,"")));
 $email				= GetVariableString('email',$_GET,"");
 $mobile				= GetVariableString('mobile',$_GET,"");
 $type_code			= GetVariableString('Type-Code',$_GET,"");
@@ -51,7 +53,9 @@ $campaign			= GetVariable('campaign',$_GET,"");
 $defendant			= GetVariableString('defendant',$_GET,"");
 $company			= strtoupper(GetVariableString('company_id',$_GET,""));
 $solicitor			= GetVariableString('solicitor',$_GET,"");
-
+$date_of_birth		= GetVariableString('dob',$_GET,"");	#	dd/mm/yyyy
+$date_of_birth		= str_replace('/', '-',$date_of_birth);	#	dd/mm/yyyy
+$dob				= date("Y-m-d", strtotime($date_of_birth));
 
 
 # if first numbers are 44, then delete first two numbers
@@ -71,6 +75,8 @@ if($first_one != "0")
 
 
 
+
+
 AddComment("Ok: case_key: $case_key
 email:$email
 address1:$address1
@@ -86,6 +92,7 @@ campaign:$campaign
 defendant:$defendant
 company_id:$company
 solicitor name:$solicitor
+DOB:$dob
 ");
 
 
@@ -97,7 +104,7 @@ if (($data = $gUser->getUserViaLeadID($google_lead_id)) != NULL)
 	AddCommentOnly("FOUND USER via lead_id:$google_lead_id");
 
 	# update details from proclaim - we may have some adjustments to name etc, so accept this
-	$gUser->updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign,$defendant,$company,$solicitor);
+	$gUser->updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign,$defendant,$company,$solicitor,$dob);
 }
 else
 {
@@ -107,15 +114,34 @@ else
 	{
 AddComment("Creating new... LEAD iD:$google_lead_id CASE KEY:$case_key  ");
 		$gUser->createLead($google_lead_id,$email,"$forename $surname",$mobile,$case_key);
-		$gUser->updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign,$defendant,$company,$solicitor);
+		$gUser->updateLeadDetails($google_lead_id,$case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$connex,$type_code,$mobile,$campaign,$defendant,$company,$solicitor,$dob);
 	}
+	# now, we can also check the order_id, but it isn't important
 	else if ((!empty($case_key)) && (!empty($email)))
 	{
 		AddCommentOnly("******** LAST RESORT - CREATING CASE CASE_KEY:$case_key, lead_id:$google_lead_id ");
 		$gUser->createUser($email,$title,$forename,$surname,$mobile,$case_key);
-		$gUser->updateUserDetails($case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$defendant,$google_lead_id,$type_code,$company,$solicitor);
+		$gUser->updateUserDetails($case_key,$address1,$address2,$town,$postcode,$email,$title,$forename,$surname,$defendant,$google_lead_id,$type_code,$company,$solicitor,$dob);
 	}
 }
+
+# now check for second person
+if (!empty($forename2) || !empty($surname2))
+{
+	if  (!empty($case_key))
+	{
+		# if this person exists, now create them with a .2 case key
+		$case_key2		=	$case_key.".2";
+
+AddCommentOnly("******** SECOND PERSON CASE_KEY 2:$case_key2, forename:$forename2, surname:$surname2,  lead_id:$google_lead_id ");
+
+		$gUser->createUser($email,$title,$forename2,$surname2,$mobile,$case_key2);
+		$gUser->updateUserDetails($case_key2,$address1,$address2,$town,$postcode,$email,$title,$forename2,$surname2,$defendant,$google_lead_id,$type_code,$company,$solicitor,$dob);
+	}
+
+}
+
+
 
 # update the link if possible - fixes bad links
 if (($data = $gUser->getUserViaCaseKey($case_key)) != NULL)
@@ -144,7 +170,7 @@ if (($data = $gUser->getUserViaCaseKey($case_key)) != NULL)
 		$gUser->updateLink($case_key,$shortUrl,$id);
 
 		# update the link
-		$destination	= "http://www.wardkemp.uk/clientcare/introduction/?case_key=$case_key&email=$email&code=HD";
+		$destination	= "https://www.wardkemp.uk/clientcare/introduction/?case_key=$case_key&email=$email&code=HD";
 		$post_data["id"] 			= $id;
 		$post_data["title"] 		= $title;
 		$post_data["destination"]	= $destination;
